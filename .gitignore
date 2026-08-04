@@ -1,0 +1,25 @@
+# Build output. `-derivedDataPath build` puts ~540 MB of DerivedData here.
+build/
+DerivedData/
+*.xcresult
+
+# Xcode per-user state — never shared. The shared schemes under
+# xcshareddata/xcschemes are committed, because `xcodebuild -scheme` needs them.
+xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.moved-aside
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
+._*
+
+# Signing material must never be committed
+*.mobileprovision
+*.p12
+*.cer

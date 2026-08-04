@@ -1,0 +1,1102 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		BEEF00000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					BEEF00000000000000000099 = {TestTargetID = BEEF0000000000000000005D;};
+					BEEF000000000000000000A4 = {TestTargetID = BEEF0000000000000000005D;};
+				};
+			};
+			buildConfigurationList = BEEF000000000000000000C2;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				cs,
+				de,
+				es,
+				fr,
+				hr,
+				it,
+				nl,
+				pl,
+				pt,
+			);
+			mainGroup = BEEF000000000000000000BF;
+			productRefGroup = BEEF000000000000000000BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEEF0000000000000000005D /* BeerCHILLER */,
+				BEEF0000000000000000003D /* BeerCHILLERWidget */,
+				BEEF00000000000000000022 /* BeerCHILLERWatch */,
+				BEEF00000000000000000002 /* BeerCHILLERWatchWidget */,
+				BEEF00000000000000000099 /* BeerCHILLERTests */,
+				BEEF000000000000000000A4 /* BeerCHILLERUITests */,
+			);
+		};
+		BEEF00000000000000000002 /* BeerCHILLERWatchWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF0000000000000000001D;
+			buildPhases = (
+				BEEF00000000000000000004,
+				BEEF00000000000000000017,
+				BEEF00000000000000000018,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeerCHILLERWatchWidget;
+			productName = BeerCHILLERWatchWidget;
+			productReference = BEEF00000000000000000003;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BEEF00000000000000000003 /* BeerCHILLERWatchWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeerCHILLERWatchWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF00000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000005,
+				BEEF00000000000000000007,
+				BEEF00000000000000000009,
+				BEEF0000000000000000000B,
+				BEEF0000000000000000000D,
+				BEEF0000000000000000000F,
+				BEEF00000000000000000011,
+				BEEF00000000000000000013,
+				BEEF00000000000000000015,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000005 /* CoolingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000006 /* CoolingModel.swift */; };
+		BEEF00000000000000000006 /* CoolingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolingModel.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000007 /* BrandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000008 /* BrandMark.swift */; };
+		BEEF00000000000000000008 /* BrandMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandMark.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000009 /* WidgetTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000A /* WidgetTimeline.swift */; };
+		BEEF0000000000000000000A /* WidgetTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimeline.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000000B /* ChillSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000C /* ChillSession.swift */; };
+		BEEF0000000000000000000C /* ChillSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChillSession.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000000D /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000E /* SharedStore.swift */; };
+		BEEF0000000000000000000E /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000000F /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000010 /* AppSettings.swift */; };
+		BEEF00000000000000000010 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000011 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000012 /* Theme.swift */; };
+		BEEF00000000000000000012 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000013 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000014 /* Formatting.swift */; };
+		BEEF00000000000000000014 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000015 /* BeerChillerWatchWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000016 /* BeerChillerWatchWidgetBundle.swift */; };
+		BEEF00000000000000000016 /* BeerChillerWatchWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerWatchWidgetBundle.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000017 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000018 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000019,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000019 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001A /* Localizable.xcstrings */; };
+		BEEF0000000000000000001A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BEEF0000000000000000001B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWatchWidget/BeerChillerWatchWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWatchWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.watchkitapp.widget;
+				PRODUCT_NAME = BeerCHILLERWatchWidget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BEEF0000000000000000001C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWatchWidget/BeerChillerWatchWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWatchWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.watchkitapp.widget;
+				PRODUCT_NAME = BeerCHILLERWatchWidget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		BEEF0000000000000000001D /* Build configuration list for PBXNativeTarget "BeerCHILLERWatchWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF0000000000000000001B /* Debug */,
+				BEEF0000000000000000001C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF0000000000000000001E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEEF00000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = BEEF00000000000000000002;
+			remoteInfo = BeerCHILLERWatchWidget;
+		};
+		BEEF0000000000000000001F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEEF00000000000000000002 /* BeerCHILLERWatchWidget */;
+			targetProxy = BEEF0000000000000000001E;
+		};
+		BEEF00000000000000000020 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BEEF00000000000000000021,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000021 /* BeerCHILLERWatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000003 /* BeerCHILLERWatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEEF00000000000000000022 /* BeerCHILLERWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF0000000000000000003C;
+			buildPhases = (
+				BEEF00000000000000000024,
+				BEEF00000000000000000037,
+				BEEF00000000000000000038,
+				BEEF00000000000000000020,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEEF0000000000000000001F,
+			);
+			name = BeerCHILLERWatch;
+			productName = BeerCHILLERWatch;
+			productReference = BEEF00000000000000000023;
+			productType = "com.apple.product-type.application";
+		};
+		BEEF00000000000000000023 /* BeerCHILLERWatch.app */ = {isa = PBXFileReference; explicitFileType = "wrapper.application"; includeInIndex = 0; path = BeerCHILLERWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF00000000000000000024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000025,
+				BEEF00000000000000000026,
+				BEEF00000000000000000027,
+				BEEF00000000000000000028,
+				BEEF00000000000000000029,
+				BEEF0000000000000000002A,
+				BEEF0000000000000000002B,
+				BEEF0000000000000000002C,
+				BEEF0000000000000000002D,
+				BEEF0000000000000000002F,
+				BEEF00000000000000000031,
+				BEEF00000000000000000033,
+				BEEF00000000000000000035,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000025 /* CoolingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000006 /* CoolingModel.swift */; };
+		BEEF00000000000000000026 /* BrandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000008 /* BrandMark.swift */; };
+		BEEF00000000000000000027 /* WidgetTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000A /* WidgetTimeline.swift */; };
+		BEEF00000000000000000028 /* ChillSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000C /* ChillSession.swift */; };
+		BEEF00000000000000000029 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000E /* SharedStore.swift */; };
+		BEEF0000000000000000002A /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000010 /* AppSettings.swift */; };
+		BEEF0000000000000000002B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000012 /* Theme.swift */; };
+		BEEF0000000000000000002C /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000014 /* Formatting.swift */; };
+		BEEF0000000000000000002D /* ChillActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000002E /* ChillActivityAttributes.swift */; };
+		BEEF0000000000000000002E /* ChillActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChillActivityAttributes.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000002F /* ChillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000030 /* ChillController.swift */; };
+		BEEF00000000000000000030 /* ChillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChillController.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000031 /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000032 /* WatchSync.swift */; };
+		BEEF00000000000000000032 /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000033 /* BeerChillerWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000034 /* BeerChillerWatchApp.swift */; };
+		BEEF00000000000000000034 /* BeerChillerWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerWatchApp.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000035 /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000036 /* WatchRootView.swift */; };
+		BEEF00000000000000000036 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000038 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000039,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000039 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001A /* Localizable.xcstrings */; };
+		BEEF0000000000000000003A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWatch/BeerChillerWatch.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.watchkitapp;
+				PRODUCT_NAME = BeerCHILLERWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BEEF0000000000000000003B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWatch/BeerChillerWatch.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.watchkitapp;
+				PRODUCT_NAME = BeerCHILLERWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		BEEF0000000000000000003C /* Build configuration list for PBXNativeTarget "BeerCHILLERWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF0000000000000000003A /* Debug */,
+				BEEF0000000000000000003B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF0000000000000000003D /* BeerCHILLERWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF00000000000000000054;
+			buildPhases = (
+				BEEF0000000000000000003F,
+				BEEF0000000000000000004F,
+				BEEF00000000000000000050,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeerCHILLERWidget;
+			productName = BeerCHILLERWidget;
+			productReference = BEEF0000000000000000003E;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BEEF0000000000000000003E /* BeerCHILLERWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BeerCHILLERWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF0000000000000000003F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000040,
+				BEEF00000000000000000041,
+				BEEF00000000000000000042,
+				BEEF00000000000000000043,
+				BEEF00000000000000000044,
+				BEEF00000000000000000045,
+				BEEF00000000000000000046,
+				BEEF00000000000000000047,
+				BEEF00000000000000000048,
+				BEEF00000000000000000049,
+				BEEF0000000000000000004B,
+				BEEF0000000000000000004D,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000040 /* CoolingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000006 /* CoolingModel.swift */; };
+		BEEF00000000000000000041 /* BrandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000008 /* BrandMark.swift */; };
+		BEEF00000000000000000042 /* WidgetTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000A /* WidgetTimeline.swift */; };
+		BEEF00000000000000000043 /* ChillSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000C /* ChillSession.swift */; };
+		BEEF00000000000000000044 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000E /* SharedStore.swift */; };
+		BEEF00000000000000000045 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000010 /* AppSettings.swift */; };
+		BEEF00000000000000000046 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000012 /* Theme.swift */; };
+		BEEF00000000000000000047 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000014 /* Formatting.swift */; };
+		BEEF00000000000000000048 /* ChillActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000002E /* ChillActivityAttributes.swift */; };
+		BEEF00000000000000000049 /* BeerChillerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000004A /* BeerChillerWidgetBundle.swift */; };
+		BEEF0000000000000000004A /* BeerChillerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerWidgetBundle.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000004B /* ChillTimerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000004C /* ChillTimerWidget.swift */; };
+		BEEF0000000000000000004C /* ChillTimerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChillTimerWidget.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000004D /* ChillLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000004E /* ChillLiveActivity.swift */; };
+		BEEF0000000000000000004E /* ChillLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChillLiveActivity.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000004F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000050 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000051,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000051 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001A /* Localizable.xcstrings */; };
+		BEEF00000000000000000052 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWidget/BeerChillerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.widget;
+				PRODUCT_NAME = BeerCHILLERWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BEEF00000000000000000053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BeerChillerWidget/BeerChillerWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChillerWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.widget;
+				PRODUCT_NAME = BeerCHILLERWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BEEF00000000000000000054 /* Build configuration list for PBXNativeTarget "BeerCHILLERWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF00000000000000000052 /* Debug */,
+				BEEF00000000000000000053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF00000000000000000055 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEEF00000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = BEEF0000000000000000003D;
+			remoteInfo = BeerCHILLERWidget;
+		};
+		BEEF00000000000000000056 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEEF0000000000000000003D /* BeerCHILLERWidget */;
+			targetProxy = BEEF00000000000000000055;
+		};
+		BEEF00000000000000000057 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BEEF00000000000000000058,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000058 /* BeerCHILLERWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000003E /* BeerCHILLERWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEEF00000000000000000059 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEEF00000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = BEEF00000000000000000022;
+			remoteInfo = BeerCHILLERWatch;
+		};
+		BEEF0000000000000000005A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEEF00000000000000000022 /* BeerCHILLERWatch */;
+			targetProxy = BEEF00000000000000000059;
+		};
+		BEEF0000000000000000005B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BEEF0000000000000000005C,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF0000000000000000005C /* BeerCHILLERWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000023 /* BeerCHILLERWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BEEF0000000000000000005D /* BeerCHILLER */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF00000000000000000096;
+			buildPhases = (
+				BEEF0000000000000000005F,
+				BEEF0000000000000000007B,
+				BEEF0000000000000000007C,
+				BEEF00000000000000000057,
+				BEEF0000000000000000005B,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEEF00000000000000000056,
+				BEEF0000000000000000005A,
+			);
+			name = BeerCHILLER;
+			productName = BeerCHILLER;
+			productReference = BEEF0000000000000000005E;
+			productType = "com.apple.product-type.application";
+		};
+		BEEF0000000000000000005E /* BeerCHILLER.app */ = {isa = PBXFileReference; explicitFileType = "wrapper.application"; includeInIndex = 0; path = BeerCHILLER.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF0000000000000000005F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF00000000000000000060,
+				BEEF00000000000000000061,
+				BEEF00000000000000000062,
+				BEEF00000000000000000063,
+				BEEF00000000000000000064,
+				BEEF00000000000000000065,
+				BEEF00000000000000000066,
+				BEEF00000000000000000067,
+				BEEF00000000000000000068,
+				BEEF00000000000000000069,
+				BEEF0000000000000000006A,
+				BEEF0000000000000000006B,
+				BEEF0000000000000000006D,
+				BEEF0000000000000000006F,
+				BEEF00000000000000000071,
+				BEEF00000000000000000073,
+				BEEF00000000000000000075,
+				BEEF00000000000000000077,
+				BEEF00000000000000000079,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF00000000000000000060 /* CoolingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000006 /* CoolingModel.swift */; };
+		BEEF00000000000000000061 /* BrandMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000008 /* BrandMark.swift */; };
+		BEEF00000000000000000062 /* WidgetTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000A /* WidgetTimeline.swift */; };
+		BEEF00000000000000000063 /* ChillSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000C /* ChillSession.swift */; };
+		BEEF00000000000000000064 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000000E /* SharedStore.swift */; };
+		BEEF00000000000000000065 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000010 /* AppSettings.swift */; };
+		BEEF00000000000000000066 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000012 /* Theme.swift */; };
+		BEEF00000000000000000067 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000014 /* Formatting.swift */; };
+		BEEF00000000000000000068 /* ChillActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000002E /* ChillActivityAttributes.swift */; };
+		BEEF00000000000000000069 /* ChillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000030 /* ChillController.swift */; };
+		BEEF0000000000000000006A /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000032 /* WatchSync.swift */; };
+		BEEF0000000000000000006B /* BeerChillerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000006C /* BeerChillerApp.swift */; };
+		BEEF0000000000000000006C /* BeerChillerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerApp.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000006D /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000006E /* Components.swift */; };
+		BEEF0000000000000000006E /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000006F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000070 /* RootView.swift */; };
+		BEEF00000000000000000070 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000071 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000072 /* SettingsView.swift */; };
+		BEEF00000000000000000072 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000073 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000074 /* AlarmView.swift */; };
+		BEEF00000000000000000074 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000075 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000076 /* InfoView.swift */; };
+		BEEF00000000000000000076 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000077 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000078 /* HelpView.swift */; };
+		BEEF00000000000000000078 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		BEEF00000000000000000079 /* MathFormula.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000007A /* MathFormula.swift */; };
+		BEEF0000000000000000007A /* MathFormula.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathFormula.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000007B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF0000000000000000007C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF0000000000000000007D,
+				BEEF0000000000000000007F,
+				BEEF00000000000000000080,
+				BEEF00000000000000000082,
+				BEEF00000000000000000084,
+				BEEF00000000000000000086,
+				BEEF00000000000000000088,
+				BEEF0000000000000000008A,
+				BEEF0000000000000000008C,
+				BEEF0000000000000000008E,
+				BEEF00000000000000000090,
+				BEEF00000000000000000092,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF0000000000000000007D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000007E /* Assets.xcassets */; };
+		BEEF0000000000000000007E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEEF0000000000000000007F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001A /* Localizable.xcstrings */; };
+		BEEF00000000000000000080 /* cooling_model_cs.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000081 /* cooling_model_cs.md */; };
+		BEEF00000000000000000081 /* cooling_model_cs.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_cs.md; sourceTree = "<group>"; };
+		BEEF00000000000000000082 /* cooling_model_de.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000083 /* cooling_model_de.md */; };
+		BEEF00000000000000000083 /* cooling_model_de.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_de.md; sourceTree = "<group>"; };
+		BEEF00000000000000000084 /* cooling_model_en.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000085 /* cooling_model_en.md */; };
+		BEEF00000000000000000085 /* cooling_model_en.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_en.md; sourceTree = "<group>"; };
+		BEEF00000000000000000086 /* cooling_model_es.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000087 /* cooling_model_es.md */; };
+		BEEF00000000000000000087 /* cooling_model_es.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_es.md; sourceTree = "<group>"; };
+		BEEF00000000000000000088 /* cooling_model_fr.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000089 /* cooling_model_fr.md */; };
+		BEEF00000000000000000089 /* cooling_model_fr.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_fr.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008A /* cooling_model_hr.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008B /* cooling_model_hr.md */; };
+		BEEF0000000000000000008B /* cooling_model_hr.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_hr.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008C /* cooling_model_it.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008D /* cooling_model_it.md */; };
+		BEEF0000000000000000008D /* cooling_model_it.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_it.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008E /* cooling_model_nl.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008F /* cooling_model_nl.md */; };
+		BEEF0000000000000000008F /* cooling_model_nl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_nl.md; sourceTree = "<group>"; };
+		BEEF00000000000000000090 /* cooling_model_pl.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000091 /* cooling_model_pl.md */; };
+		BEEF00000000000000000091 /* cooling_model_pl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_pl.md; sourceTree = "<group>"; };
+		BEEF00000000000000000092 /* cooling_model_pt.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000093 /* cooling_model_pt.md */; };
+		BEEF00000000000000000093 /* cooling_model_pt.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_pt.md; sourceTree = "<group>"; };
+		BEEF00000000000000000094 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = BeerChiller/BeerChiller.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChiller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app;
+				PRODUCT_MODULE_NAME = BeerCHILLER;
+				PRODUCT_NAME = BeerCHILLER;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BEEF00000000000000000095 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = BeerChiller/BeerChiller.entitlements;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BeerChiller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app;
+				PRODUCT_MODULE_NAME = BeerCHILLER;
+				PRODUCT_NAME = BeerCHILLER;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BEEF00000000000000000096 /* Build configuration list for PBXNativeTarget "BeerCHILLER" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF00000000000000000094 /* Debug */,
+				BEEF00000000000000000095 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF00000000000000000097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEEF00000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = BEEF0000000000000000005D;
+			remoteInfo = BeerCHILLER;
+		};
+		BEEF00000000000000000098 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEEF0000000000000000005D /* BeerCHILLER */;
+			targetProxy = BEEF00000000000000000097;
+		};
+		BEEF00000000000000000099 /* BeerCHILLERTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF000000000000000000A1;
+			buildPhases = (
+				BEEF0000000000000000009B,
+				BEEF0000000000000000009E,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEEF00000000000000000098,
+			);
+			name = BeerCHILLERTests;
+			productName = BeerCHILLERTests;
+			productReference = BEEF0000000000000000009A;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BEEF0000000000000000009A /* BeerCHILLERTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF0000000000000000009B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF0000000000000000009C,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF0000000000000000009C /* CoolingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000009D /* CoolingModelTests.swift */; };
+		BEEF0000000000000000009D /* CoolingModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolingModelTests.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000009E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF0000000000000000009F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.tests;
+				PRODUCT_NAME = BeerCHILLERTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeerCHILLER.app/BeerCHILLER";
+			};
+			name = Debug;
+		};
+		BEEF000000000000000000A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.tests;
+				PRODUCT_NAME = BeerCHILLERTests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeerCHILLER.app/BeerCHILLER";
+			};
+			name = Release;
+		};
+		BEEF000000000000000000A1 /* Build configuration list for PBXNativeTarget "BeerCHILLERTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF0000000000000000009F /* Debug */,
+				BEEF000000000000000000A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF000000000000000000A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEEF00000000000000000001;
+			proxyType = 1;
+			remoteGlobalIDString = BEEF0000000000000000005D;
+			remoteInfo = BeerCHILLER;
+		};
+		BEEF000000000000000000A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEEF0000000000000000005D /* BeerCHILLER */;
+			targetProxy = BEEF000000000000000000A2;
+		};
+		BEEF000000000000000000A4 /* BeerCHILLERUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEEF000000000000000000AC;
+			buildPhases = (
+				BEEF000000000000000000A6,
+				BEEF000000000000000000A9,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEEF000000000000000000A3,
+			);
+			name = BeerCHILLERUITests;
+			productName = BeerCHILLERUITests;
+			productReference = BEEF000000000000000000A5;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		BEEF000000000000000000A5 /* BeerCHILLERUITests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF000000000000000000A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEEF000000000000000000A7,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF000000000000000000A7 /* BeerChillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF000000000000000000A8 /* BeerChillerUITests.swift */; };
+		BEEF000000000000000000A8 /* BeerChillerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerUITests.swift; sourceTree = "<group>"; };
+		BEEF000000000000000000A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEEF000000000000000000AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.uitests;
+				PRODUCT_NAME = BeerCHILLERUITests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BeerCHILLER;
+			};
+			name = Debug;
+		};
+		BEEF000000000000000000AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bierchiller.app.uitests;
+				PRODUCT_NAME = BeerCHILLERUITests;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BeerCHILLER;
+			};
+			name = Release;
+		};
+		BEEF000000000000000000AC /* Build configuration list for PBXNativeTarget "BeerCHILLERUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF000000000000000000AA /* Debug */,
+				BEEF000000000000000000AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEEF000000000000000000AD /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF00000000000000000006,
+				BEEF00000000000000000008,
+				BEEF0000000000000000000A,
+				BEEF0000000000000000000C,
+				BEEF0000000000000000000E,
+				BEEF00000000000000000010,
+				BEEF00000000000000000012,
+				BEEF00000000000000000014,
+				BEEF0000000000000000002E,
+				BEEF00000000000000000030,
+				BEEF00000000000000000032,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000AE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF0000000000000000006E,
+				BEEF00000000000000000070,
+				BEEF00000000000000000072,
+				BEEF00000000000000000074,
+				BEEF00000000000000000076,
+				BEEF00000000000000000078,
+				BEEF0000000000000000007A,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000AF /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF00000000000000000081,
+				BEEF00000000000000000083,
+				BEEF00000000000000000085,
+				BEEF00000000000000000087,
+				BEEF00000000000000000089,
+				BEEF0000000000000000008B,
+				BEEF0000000000000000008D,
+				BEEF0000000000000000008F,
+				BEEF00000000000000000091,
+				BEEF00000000000000000093,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000B1 /* BeerChiller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChiller.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000B2 /* BeerChiller */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF0000000000000000006C,
+				BEEF000000000000000000AE,
+				BEEF000000000000000000AF,
+				BEEF0000000000000000007E,
+				BEEF0000000000000000001A,
+				BEEF000000000000000000B0,
+				BEEF000000000000000000B1,
+			);
+			path = BeerChiller;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000B4 /* BeerChillerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWidget.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000B5 /* BeerChillerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF0000000000000000004A,
+				BEEF0000000000000000004C,
+				BEEF0000000000000000004E,
+				BEEF000000000000000000B3,
+				BEEF000000000000000000B4,
+			);
+			path = BeerChillerWidget;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000B7 /* BeerChillerWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatch.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000B8 /* BeerChillerWatch */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF00000000000000000034,
+				BEEF00000000000000000036,
+				BEEF000000000000000000B6,
+				BEEF000000000000000000B7,
+			);
+			path = BeerChillerWatch;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000BA /* BeerChillerWatchWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatchWidget.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000BB /* BeerChillerWatchWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF00000000000000000016,
+				BEEF000000000000000000B9,
+				BEEF000000000000000000BA,
+			);
+			path = BeerChillerWatchWidget;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000BC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF0000000000000000009D,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000BD /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF000000000000000000A8,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF0000000000000000005E,
+				BEEF0000000000000000003E,
+				BEEF00000000000000000023,
+				BEEF00000000000000000003,
+				BEEF0000000000000000009A,
+				BEEF000000000000000000A5,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000BF /* BeerCHILLER */ = {
+			isa = PBXGroup;
+			children = (
+				BEEF000000000000000000AD,
+				BEEF000000000000000000B2,
+				BEEF000000000000000000B5,
+				BEEF000000000000000000B8,
+				BEEF000000000000000000BB,
+				BEEF000000000000000000BC,
+				BEEF000000000000000000BD,
+				BEEF000000000000000000BE,
+			);
+			name = BeerCHILLER;
+			sourceTree = "<group>";
+		};
+		BEEF000000000000000000C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BEEF000000000000000000C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		BEEF000000000000000000C2 /* Build configuration list for PBXProject "BeerCHILLER" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEEF000000000000000000C0 /* Debug */,
+				BEEF000000000000000000C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = BEEF00000000000000000001 /* Project object */;
+}
