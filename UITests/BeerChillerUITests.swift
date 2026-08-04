@@ -235,34 +235,65 @@ extension BeerChillerUITests {
 
 extension BeerChillerUITests {
 
-    /// The start button has to be *on screen* in landscape, not merely present.
+    /// **Every** control has to be on screen in landscape, not merely present.
     ///
-    /// This exists because it once was not: with the Beer style's portrait artwork
-    /// scaled to fill a landscape screen, the image's ideal size propagated up
-    /// through the layout and pushed the dial and every control to y ≈ 700 in a
-    /// 402 pt window. Only the header was visible, and the earlier landscape check
-    /// missed it because it ran in the Classic style, which has no image.
+    /// Two separate defects have hidden here, and each one taught the test
+    /// something:
+    ///
+    /// 1. The Beer style's portrait artwork, scaled to fill a landscape screen,
+    ///    propagated its ideal size up through the layout and pushed the dial and
+    ///    all controls to y ≈ 700 in a 402 pt window. The earlier check missed it
+    ///    because it ran in the Classic style, which has no image.
+    /// 2. A Plus/Max iPhone reports a *regular* horizontal size class in
+    ///    landscape, so it took the iPad arrangement, which needs ~1030 pt of a
+    ///    956 pt screen. The segments were clipped and the ⋯ menu was pushed
+    ///    off the display entirely — the menu was unreachable in landscape.
+    ///
+    /// The second one survived a test that checked only the start and stop
+    /// buttons, because those two overflowed by a mere 8 pt while the menu was
+    /// 36 pt out. Hence: every button, and the header wordmark, on both a compact
+    /// and a regular-width iPhone.
     func testLandscapeKeepsTheControlsInsideTheWindow() {
         let app = XCUIApplication()
         app.launchArguments += ["-seedNoSession"]
         app.launch()
         XCUIDevice.shared.orientation = .landscapeLeft
+        defer { XCUIDevice.shared.orientation = .portrait }
 
         let start = app.buttons["action.start"]
         XCTAssertTrue(start.waitForExistence(timeout: 10))
 
-        let window = app.windows.element(boundBy: 0).frame
-        for identifier in ["action.start", "action.stop"] {
-            let frame = app.buttons[identifier].frame
-            XCTAssertTrue(window.contains(frame),
-                          "\(identifier) is outside the window in landscape: "
-                          + "\(frame) vs \(window)")
+        // A rotation is animated. Reading frames straight after setting the
+        // orientation samples the animation, which made this assertion depend on
+        // how fast the machine is rather than on the layout. Waiting for the frame
+        // to stop moving does not weaken it — a genuine overflow is stable.
+        var previous = CGRect.null
+        for _ in 0..<25 {
+            let current = start.frame
+            if current == previous { break }
+            previous = current
+            Thread.sleep(forTimeInterval: 0.2)
         }
 
-        // The dial's label lives at the centre of the screen's left column.
-        let dialLabels = app.staticTexts.allElementsBoundByIndex
-            .filter { window.intersects($0.frame) }
-        XCTAssertGreaterThan(dialLabels.count, 2,
-                             "almost nothing is on screen in landscape")
+        let window = app.windows.element(boundBy: 0).frame
+
+        var outside: [String] = []
+        for button in app.buttons.allElementsBoundByIndex where button.exists {
+            let frame = button.frame
+            // Zero-sized elements carry no geometry worth checking.
+            guard frame.width > 1, frame.height > 1 else { continue }
+            if !window.contains(frame) {
+                let name = button.identifier.isEmpty ? button.label : button.identifier
+                outside.append("'\(name)' \(frame)")
+            }
+        }
+        XCTAssertTrue(outside.isEmpty,
+                      "controls outside the \(window) window in landscape: "
+                      + outside.joined(separator: " | "))
+
+        // The wordmark shares its row with the ⋯ menu, so an overflowing header
+        // shows up here too.
+        XCTAssertTrue(window.contains(app.staticTexts["BeerCHILLER"].frame),
+                      "the header is outside the window in landscape")
     }
 }

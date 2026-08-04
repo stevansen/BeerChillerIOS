@@ -148,24 +148,31 @@ struct BrandHeader: View {
                 }
 
                 Section {
+                    // Identifiers so automation can reach these rows without
+                    // matching a localized label — the screenshot run navigates
+                    // here, and guessing by position silently opened the wrong
+                    // screen.
                     Button {
                         onOpenHelp()
                     } label: {
                         Label(LocalizedStringKey("menu_calculation_model"),
                               systemImage: "function")
                     }
+                    .accessibilityIdentifier("menu.model")
 
                     Button {
                         onOpenInfo()
                     } label: {
                         Label(LocalizedStringKey("menu_info"), systemImage: "info.circle")
                     }
+                    .accessibilityIdentifier("menu.info")
 
                     Button {
                         onOpenSettings()
                     } label: {
                         Label(LocalizedStringKey("menu_settings"), systemImage: "gearshape")
                     }
+                    .accessibilityIdentifier("menu.settings")
                 }
             } label: {
                 // The label has to sit on the Menu's *content*: putting
@@ -177,6 +184,7 @@ struct BrandHeader: View {
                     .foregroundStyle(palette.primaryText)
                     .frame(width: 44, height: 44)
                     .accessibilityLabel(Text(LocalizedStringKey("menu_open")))
+                    .accessibilityIdentifier("menu.open")
             }
         }
     }
@@ -308,12 +316,17 @@ struct ThemedSegments<Value: Hashable>: View {
                         )
                         .frame(maxWidth: .infinity)
                         .frame(minHeight: 44)
-                        .background(
-                            Capsule(style: .continuous)
-                                .fill(selected ? palette.selectedFill : palette.chip)
-                        )
                 }
                 .buttonStyle(.plain)
+                // Outside the label, like the action buttons: SwiftUI dims a
+                // disabled button's label and everything drawn inside it, so a
+                // capsule placed there goes translucent too. That is one of two
+                // layers — the dominant one while a run is in progress is the
+                // container's own opacity in RootView; this removes the second.
+                .background(
+                    Capsule(style: .continuous)
+                        .fill(selected ? palette.selectedFill : palette.chip)
+                )
                 .disabled(!enabled)
                 .accessibilityAddTraits(selected ? [.isButton, .isSelected] : .isButton)
             }
@@ -398,9 +411,10 @@ struct TemperatureRow: View {
                 .font(.body.weight(.semibold))
                 .foregroundStyle(enabled ? palette.primaryText : palette.disabledText)
                 .frame(width: 44, height: 44)
-                .background(Circle().fill(palette.chip))
         }
         .buttonStyle(.plain)
+        // Behind the button, not inside its label — see ActionButtonBackground.
+        .background(Circle().fill(palette.chip))
         .disabled(!enabled)
     }
 }
@@ -465,9 +479,10 @@ struct CompactTemperatureCell: View {
                 .font(.body.weight(.semibold))
                 .foregroundStyle(enabled ? palette.primaryText : palette.disabledText)
                 .frame(width: 44, height: 44)
-                .background(Circle().fill(palette.chip))
         }
         .buttonStyle(.plain)
+        // Behind the button, not inside its label — see ActionButtonBackground.
+        .background(Circle().fill(palette.chip))
         .disabled(!enabled)
     }
 }

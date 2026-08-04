@@ -1,0 +1,1 @@
+How long does your beer need in the freezer? BeerCHILLER works it out from a calibrated cooling model, times it, and tells you the moment it is cold.

@@ -387,11 +387,32 @@ final class HelpFormulaTests: XCTestCase {
         "lambda", "rho", "infty",
     ]
 
+    /// Every help page the app ships, checked against the languages the bundle
+    /// actually advertises.
+    ///
+    /// This used to assert a hardcoded count of ten, which is a number that goes
+    /// stale the moment a language is added or dropped — and a stale count fails
+    /// the build for a *correct* change while saying nothing about the defect
+    /// that matters. Deriving the expectation from `Bundle.main.localizations`
+    /// catches the real problem instead: a language offered in the App Store
+    /// listing whose longest document silently falls back to English.
     private func helpMarkdown() throws -> [(name: String, text: String)] {
         let urls = Bundle.main.urls(forResourcesWithExtension: "md", subdirectory: nil) ?? []
         let helpURLs = urls.filter { $0.lastPathComponent.hasPrefix("cooling_model_") }
-        XCTAssertEqual(helpURLs.count, 10,
-                       "expected ten localized help files, found \(helpURLs.count)")
+
+        // "Base" is a resource-lookup fallback, not a language.
+        let shipped = Set(Bundle.main.localizations).subtracting(["Base"])
+        let covered = Set(helpURLs.compactMap {
+            $0.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: "cooling_model_", with: "")
+        })
+
+        XCTAssertEqual(covered, shipped,
+                       "the help pages and the bundle's languages disagree — "
+                       + "missing: \(shipped.subtracting(covered).sorted()), "
+                       + "orphaned: \(covered.subtracting(shipped).sorted())")
+        XCTAssertFalse(shipped.isEmpty, "the bundle advertises no languages at all")
+
         return try helpURLs.map {
             (name: $0.lastPathComponent, text: try String(contentsOf: $0, encoding: .utf8))
         }

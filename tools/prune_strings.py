@@ -53,6 +53,21 @@ REDUNDANT = [
 
 REMOVE = ANDROID_ONLY + REDUNDANT
 
+# Languages held back from the first release.
+#
+# Their help pages arrived from upstream fully transliterated to ASCII — a Polish
+# document of 207 lines without one Polish character. Only the titles, the
+# introduction and the section headings were repaired; the body text is still
+# ASCII. Shipping a localization whose longest document reads as broken is worse
+# for a Czech, Croatian or Polish user than shipping English, which is what the
+# help viewer falls back to. iOS also advertises the language in the App Store
+# listing, so a half-finished localization is a promise the app does not keep.
+#
+# Re-add a code here once its help page has had a native-speaker pass: drop the
+# entry, restore BeerChiller/Help/cooling_model_<code>.md, add the code back to
+# KNOWN_REGIONS in generate_project.py, and re-run this script.
+DROPPED_LANGUAGES = ["cs", "hr", "pl"]
+
 
 def swift_referenced_keys():
     """Every key the Swift sources look up, so nothing in use gets deleted."""
@@ -60,7 +75,10 @@ def swift_referenced_keys():
     patterns = [
         r'LocalizedStringKey\("([a-z0-9_]+)"\)',
         r'localized\("([a-z0-9_]+)"\)',
-        r'titleKey: "([a-z0-9_]+)"',
+        # The watch rows pass their key through differently named parameters;
+        # without these the report calls watch_temp_start/target unused, which
+        # invites someone to delete a key the UI is actually showing.
+        r'(?:titleKey|shortKey|spokenKey): "([a-z0-9_]+)"',
         r'return "([a-z0-9_]+)"',
     ]
     for path in SOURCE_ROOT.rglob("*.swift"):
@@ -101,11 +119,24 @@ def main():
         else:
             missing.append(key)
 
+    # --- 3. drop the languages held back from the release ---
+    dropped = 0
+    for entry in strings.values():
+        for lang in DROPPED_LANGUAGES:
+            if entry.get("localizations", {}).pop(lang, None) is not None:
+                dropped += 1
+
     catalog["strings"] = OrderedDict(sorted(strings.items()))
     CATALOG.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n",
                        encoding="utf-8")
 
+    languages = sorted({lang for entry in catalog["strings"].values()
+                        for lang in entry.get("localizations", {})})
     print(f"brand-name values rewritten : {renamed}")
+    print(f"localizations dropped       : {dropped}"
+          f" ({', '.join(DROPPED_LANGUAGES)})")
+    print(f"languages remaining         : {len(languages)}"
+          f" ({', '.join(languages)})")
     print(f"keys removed                : {len(removed)}")
     print(f"keys already absent         : {len(missing)}"
           + (f" ({', '.join(missing)})" if missing else ""))

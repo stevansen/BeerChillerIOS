@@ -1,6 +1,6 @@
 # Modelo de cálculo
 
-La app calcula el tiempo de enfriamiento de la cerveza en el frigorífico o el congelador con el modelo **BeerCHILLER Calibrated V2**.
+La app calcula el tiempo de enfriamiento de la cerveza en el frigorífico o el congelador con el modelo **BeerChiller Calibrated V2.1**.
 
 El modelo es una aproximación práctica. Usa la temperatura inicial, la temperatura deseada, la temperatura del aparato, el recipiente, el volumen y la posición. Los aparatos reales pueden enfriar más rápido o más lento por el flujo de aire, las superficies de contacto, la carga y las aperturas de la puerta.
 

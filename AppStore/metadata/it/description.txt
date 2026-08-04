@@ -1,0 +1,36 @@
+BeerCHILLER ti dice quanto tempo serve alla tua birra in frigo o in congelatore, e ti avvisa appena è fredda.
+
+Scegli il contenitore, il volume, la posizione e le temperature. BeerCHILLER stima il tempo di raffreddamento con un modello termodinamico calibrato, avvia il timer e ti notifica al raggiungimento della temperatura desiderata. Senza registrazione, senza account, senza rete.
+
+COME FUNZIONA
+
+La stima deriva dal modello BeerChiller Calibrated V2.1. Birra e contenitore sono trattati come un unico corpo e l’aria dell’apparecchio come un serbatoio a temperatura costante: il raffreddamento rallenta quindi in modo realistico man mano che la birra si avvicina — gli ultimi due gradi richiedono molto più tempo dei primi due. Bottiglia e lattina, 0,33 / 0,5 / 1,0 litri, in piedi o coricata, frigo o congelatore: ogni combinazione ha la propria calibrazione, e per le bottiglie messe in congelatore si applica una correzione di avvio a freddo.
+
+Il modello completo, con tutte le formule e le costanti, è documentato dentro l’app. Nulla resta nascosto in una scatola nera.
+
+MENTRE IL TIMER SCORRE
+
+• Un quadrante conta alla rovescia e mostra la temperatura stimata della birra
+• Widget per schermata Home e schermata di blocco, in quattro dimensioni
+• Un’attività in tempo reale nella Dynamic Island
+• Un’app per Apple Watch che può avviare e fermare da sola, con complicazioni per il quadrante
+• Una notifica quando la birra è pronta, anche con l’app chiusa
+• Il timer sopravvive alla chiusura dell’app e al riavvio dell’iPhone
+
+FATTA PER iOS
+
+• Chiaro e scuro, selezionabili indipendentemente dall’impostazione di sistema
+• Due aspetti: uno stile Classico essenziale e uno stile Birra con grafica originale
+• Testo dinamico fino alle dimensioni di accessibilità più grandi
+• Etichette VoiceOver in tutta l’app, anche per le formule, lette come parole invece che simbolo per simbolo
+• iPhone e iPad, verticale e orizzontale
+
+PRIVACY
+
+BeerCHILLER non raccoglie nulla e non contiene alcun codice di rete. Le impostazioni e il timer in corso restano sul dispositivo, condivisi solo con il widget e l’app per l’orologio di BeerCHILLER perché possano mostrare il conto alla rovescia.
+
+SULLA PRECISIONE
+
+I tempi sono stime. Un frigorifero o un congelatore reale raffredda più o meno rapidamente in base al flusso d’aria, al carico, al contatto con il ripiano e a quante volte si apre la porta. Considera il conto alla rovescia una buona indicazione, non una misura.
+
+BeerCHILLER per iOS è un port dell’app Android di C. Auer. Bevi responsabilmente.

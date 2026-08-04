@@ -138,6 +138,12 @@ public final class AppSettings: ObservableObject {
     private var isLoading = true
 
     public init() {
+        #if DEBUG
+        // Has to run before the first read below: this initialiser is what turns
+        // the stored defaults into published state, so a style seeded afterwards
+        // would not be picked up until something wrote to it again.
+        SharedStore.seedFromLaunchArgumentsIfRequested()
+        #endif
         startTempC = SharedStore.int(SharedStore.Key.startTemp,
                                      default: CoolingModel.defaultStartTempC,
                                      min: CoolingModel.minStartTempC,

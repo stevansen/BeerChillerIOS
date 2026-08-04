@@ -1,0 +1,36 @@
+BeerCHILLER tells you how long your beer needs in the fridge or the freezer — and alerts you the moment it is cold.
+
+Pick the container, the volume, how it sits and the temperatures. BeerCHILLER estimates the cooling time from a calibrated thermodynamic model, starts a timer, and notifies you when your target temperature is reached. No sign-up, no account, no network.
+
+HOW IT WORKS
+
+The estimate comes from the BeerChiller Calibrated V2.1 model. Beer and container are treated as one body and the appliance air as a reservoir at constant temperature, so cooling slows realistically as the beer approaches it — the last two degrees take far longer than the first two. Bottle and can, 0.33 / 0.5 / 1.0 litre, standing or lying, fridge or freezer: each combination has its own calibration, and a cold-start correction applies to bottles going into the freezer.
+
+The complete model, with every formula and every constant, is documented inside the app. Nothing is hidden behind a black box.
+
+WHILE IT RUNS
+
+• A dial counts down and shows the estimated current beer temperature
+• Home Screen and Lock Screen widgets in four sizes
+• A Live Activity in the Dynamic Island
+• An Apple Watch app that can start and stop a run on its own, plus watch face complications
+• A notification when the beer is ready, even with the app closed
+• The run survives closing the app or restarting your iPhone
+
+MADE FOR iOS
+
+• Light and dark mode, selectable independently of the system setting
+• Two looks: a clean Classic style, and a Beer style with original artwork
+• Dynamic Type up to the largest accessibility sizes
+• VoiceOver labels throughout — including the formulas, which are read as words rather than spelled out symbol by symbol
+• iPhone and iPad, portrait and landscape
+
+PRIVACY
+
+BeerCHILLER collects nothing and contains no network code at all. Your settings and the running timer stay on your device, shared only with the app's own widget and watch app so they can show your countdown.
+
+A NOTE ON ACCURACY
+
+The times are estimates. A real fridge or freezer cools faster or slower depending on airflow, how full it is, contact with the shelf, and how often the door opens. Treat the countdown as a good guide, not a measurement.
+
+BeerCHILLER for iOS is a port of the Android app by C. Auer. Enjoy responsibly.

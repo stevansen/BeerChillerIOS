@@ -1,6 +1,6 @@
 # Berekeningsmodel
 
-De app berekent de koeltijd van bier in een koelkast of vriezer met het model **BeerCHILLER Calibrated V2**.
+De app berekent de koeltijd van bier in een koelkast of vriezer met het model **BeerChiller Calibrated V2.1**.
 
 Het model is een praktische benadering. Het gebruikt de starttemperatuur, doeltemperatuur, apparaattemperatuur, verpakking, volume en positie. In de praktijk kunnen apparaten sneller of langzamer koelen door luchtstroming, contactoppervlakken, belading en het openen van de deur.
 

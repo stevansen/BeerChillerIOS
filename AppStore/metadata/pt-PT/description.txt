@@ -1,0 +1,36 @@
+O BeerCHILLER diz-te quanto tempo a tua cerveja precisa no frigorífico ou no congelador, e avisa assim que estiver fresca.
+
+Escolhe o recipiente, o volume, a posição e as temperaturas. O BeerCHILLER estima o tempo de arrefecimento com um modelo termodinâmico calibrado, inicia o temporizador e notifica-te quando a temperatura pretendida for atingida. Sem registo, sem conta, sem rede.
+
+COMO FUNCIONA
+
+A estimativa vem do modelo BeerChiller Calibrated V2.1. A cerveja e o recipiente são tratados como um só corpo, e o ar do aparelho como um reservatório a temperatura constante, pelo que o arrefecimento abranda de forma realista à medida que se aproxima: os dois últimos graus demoram muito mais do que os dois primeiros. Garrafa e lata, 0,33 / 0,5 / 1,0 litros, em pé ou deitada, frigorífico ou congelador: cada combinação tem a sua própria calibração, e às garrafas colocadas no congelador aplica-se uma correção de arranque a frio.
+
+O modelo completo, com todas as fórmulas e constantes, está documentado dentro da app. Nada fica escondido numa caixa negra.
+
+ENQUANTO CORRE
+
+• Um mostrador faz a contagem decrescente e indica a temperatura estimada da cerveja
+• Widgets para o ecrã principal e o ecrã bloqueado, em quatro tamanhos
+• Uma atividade em direto na Dynamic Island
+• Uma app para Apple Watch capaz de iniciar e parar por si só, com complicações para o mostrador
+• Uma notificação quando a cerveja está pronta, mesmo com a app fechada
+• O temporizador sobrevive ao fecho da app e ao reinício do iPhone
+
+FEITA PARA iOS
+
+• Modo claro e escuro, à escolha, independentemente da definição do sistema
+• Dois aspetos: um estilo Clássico sóbrio e um estilo Cerveja com ilustração original
+• Texto dinâmico até aos maiores tamanhos de acessibilidade
+• Etiquetas VoiceOver em toda a app, incluindo nas fórmulas, lidas como palavras em vez de símbolo a símbolo
+• iPhone e iPad, vertical e horizontal
+
+PRIVACIDADE
+
+O BeerCHILLER não recolhe nada e não contém qualquer código de rede. As tuas definições e o temporizador em curso ficam no teu dispositivo, partilhados apenas com o widget e a app de relógio do próprio BeerCHILLER, para que possam mostrar a contagem.
+
+SOBRE A PRECISÃO
+
+Os tempos são estimativas. Um frigorífico ou congelador real arrefece mais depressa ou mais devagar, dependendo da circulação de ar, da carga, do contacto com a prateleira e da frequência com que a porta é aberta. Toma a contagem como uma boa referência, não como uma medição.
+
+O BeerCHILLER para iOS é uma adaptação da app Android de C. Auer. Bebe com responsabilidade.

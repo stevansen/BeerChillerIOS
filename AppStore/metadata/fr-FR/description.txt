@@ -1,0 +1,36 @@
+BeerCHILLER vous dit combien de temps votre bière doit rester au réfrigérateur ou au congélateur, et vous prévient dès qu’elle est fraîche.
+
+Choisissez le récipient, le volume, la position et les températures. BeerCHILLER estime le temps de refroidissement à partir d’un modèle thermodynamique calibré, lance le minuteur et vous notifie lorsque la température cible est atteinte. Sans inscription, sans compte, sans réseau.
+
+COMMENT ÇA MARCHE
+
+L’estimation vient du modèle BeerChiller Calibrated V2.1. La bière et son récipient sont traités comme un seul corps, et l’air de l’appareil comme un réservoir à température constante : le refroidissement ralentit donc de façon réaliste à l’approche de la cible — les deux derniers degrés prennent bien plus longtemps que les deux premiers. Bouteille et canette, 0,33 / 0,5 / 1,0 litre, debout ou couchée, réfrigérateur ou congélateur : chaque combinaison a son propre calibrage, et une correction de démarrage à froid s’applique aux bouteilles mises au congélateur.
+
+Le modèle complet, avec toutes ses formules et constantes, est documenté dans l’app. Rien n’est caché dans une boîte noire.
+
+PENDANT LE REFROIDISSEMENT
+
+• Un cadran décompte et affiche la température estimée de la bière
+• Des widgets pour l’écran d’accueil et l’écran verrouillé, en quatre tailles
+• Une activité en direct dans la Dynamic Island
+• Une app Apple Watch capable de démarrer et d’arrêter seule, avec des complications pour le cadran
+• Une notification quand la bière est prête, même app fermée
+• Le minuteur survit à la fermeture de l’app et au redémarrage de l’iPhone
+
+CONÇUE POUR iOS
+
+• Mode clair et sombre, au choix, indépendamment du réglage système
+• Deux apparences : un style Classique sobre et un style Bière avec une illustration originale
+• Texte dynamique jusqu’aux plus grandes tailles d’accessibilité
+• Étiquettes VoiceOver partout, y compris pour les formules, lues comme des mots plutôt qu’épelées symbole par symbole
+• iPhone et iPad, portrait et paysage
+
+CONFIDENTIALITÉ
+
+BeerCHILLER ne collecte rien et ne contient aucun code réseau. Vos réglages et le minuteur en cours restent sur votre appareil, partagés uniquement avec le widget et l’app de montre de BeerCHILLER pour qu’ils puissent afficher le décompte.
+
+À PROPOS DE LA PRÉCISION
+
+Les durées sont des estimations. Un réfrigérateur ou un congélateur réel refroidit plus vite ou plus lentement selon la circulation de l’air, le remplissage, le contact avec la clayette et la fréquence d’ouverture de la porte. Prenez le décompte comme un bon repère, pas comme une mesure.
+
+BeerCHILLER pour iOS est un portage de l’app Android de C. Auer. À consommer avec modération.

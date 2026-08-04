@@ -1,0 +1,36 @@
+BeerCHILLER sagt dir, wie lange dein Bier im Kühlschrank oder Gefrierschrank braucht — und meldet sich, sobald es kalt ist.
+
+Gebinde, Volumen, Lage und Temperaturen wählen: BeerCHILLER berechnet die Kühlzeit mit einem kalibrierten thermodynamischen Modell, startet den Timer und benachrichtigt dich, wenn die Zieltemperatur erreicht ist. Keine Anmeldung, kein Konto, kein Netzwerk.
+
+WIE ES RECHNET
+
+Die Schätzung stammt vom Modell BeerChiller Calibrated V2.1. Bier und Gebinde werden als ein Körper behandelt, die Geräteluft als Reservoir mit konstanter Temperatur. Dadurch verlangsamt sich die Kühlung realistisch, je näher das Bier der Gerätetemperatur kommt — die letzten zwei Grad dauern deutlich länger als die ersten zwei. Flasche und Dose, 0,33 / 0,5 / 1,0 Liter, stehend oder liegend, Kühl- oder Gefrierschrank: jede Kombination hat ihre eigene Kalibrierung, und für Flaschen im Gefrierschrank kommt eine Kaltstart-Korrektur hinzu.
+
+Das vollständige Modell mit allen Formeln und Konstanten ist in der App dokumentiert. Nichts versteckt sich in einer Blackbox.
+
+WÄHREND DER KÜHLZEIT
+
+• Eine Skala zählt herunter und zeigt die geschätzte aktuelle Biertemperatur
+• Widgets für Home- und Sperrbildschirm in vier Größen
+• Eine Live-Aktivität in der Dynamic Island
+• Eine Apple-Watch-App, die eigenständig starten und stoppen kann, samt Komplikationen für das Zifferblatt
+• Eine Mitteilung, wenn das Bier fertig ist — auch bei geschlossener App
+• Der Timer übersteht das Schließen der App und einen Neustart des iPhones
+
+FÜR iOS GEMACHT
+
+• Hell und dunkel, unabhängig von der Systemeinstellung wählbar
+• Zwei Optiken: eine klare Klassik-Variante und eine Bier-Variante mit eigener Grafik
+• Dynamische Schrift bis zu den größten Bedienungshilfen-Größen
+• Durchgehend VoiceOver-Beschriftungen — auch für die Formeln, die als Worte gelesen werden statt Zeichen für Zeichen
+• iPhone und iPad, Hoch- und Querformat
+
+DATENSCHUTZ
+
+BeerCHILLER erhebt keine Daten und enthält überhaupt keinen Netzwerkcode. Einstellungen und laufender Timer bleiben auf dem Gerät und werden nur mit dem eigenen Widget und der eigenen Watch-App geteilt, damit diese den Countdown anzeigen können.
+
+ZUR GENAUIGKEIT
+
+Die Zeiten sind Schätzungen. Ein echter Kühl- oder Gefrierschrank kühlt schneller oder langsamer — je nach Luftstrom, Beladung, Kontakt zum Einlegeboden und wie oft die Tür aufgeht. Nimm den Countdown als guten Richtwert, nicht als Messung.
+
+BeerCHILLER für iOS ist eine Portierung der Android-App von C. Auer. Genieße verantwortungsvoll.

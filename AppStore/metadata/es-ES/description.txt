@@ -1,0 +1,36 @@
+BeerCHILLER te dice cuánto tiempo necesita tu cerveza en la nevera o el congelador, y te avisa en cuanto está fría.
+
+Elige el envase, el volumen, la posición y las temperaturas. BeerCHILLER calcula el tiempo de enfriamiento con un modelo termodinámico calibrado, pone en marcha el temporizador y te notifica al alcanzar la temperatura objetivo. Sin registro, sin cuenta, sin red.
+
+CÓMO FUNCIONA
+
+La estimación proviene del modelo BeerChiller Calibrated V2.1. La cerveza y el envase se tratan como un solo cuerpo, y el aire del aparato como un depósito a temperatura constante, de modo que el enfriamiento se ralentiza de forma realista al acercarse: los dos últimos grados tardan mucho más que los dos primeros. Botella y lata, 0,33 / 0,5 / 1,0 litros, de pie o tumbada, nevera o congelador: cada combinación tiene su propia calibración, y las botellas que entran en el congelador reciben una corrección de arranque en frío.
+
+El modelo completo, con todas las fórmulas y constantes, está documentado dentro de la app. Nada queda oculto en una caja negra.
+
+MIENTRAS FUNCIONA
+
+• Un dial cuenta atrás y muestra la temperatura estimada de la cerveza
+• Widgets para la pantalla de inicio y la pantalla bloqueada, en cuatro tamaños
+• Una actividad en directo en la Dynamic Island
+• Una app para Apple Watch capaz de iniciar y detener por sí sola, con complicaciones para la esfera
+• Una notificación cuando la cerveza está lista, incluso con la app cerrada
+• El temporizador sobrevive al cierre de la app y al reinicio del iPhone
+
+HECHA PARA iOS
+
+• Modo claro y oscuro, elegible con independencia del ajuste del sistema
+• Dos aspectos: un estilo Clásico sobrio y un estilo Cerveza con ilustración propia
+• Texto dinámico hasta los tamaños de accesibilidad más grandes
+• Etiquetas de VoiceOver en toda la app, también en las fórmulas, que se leen como palabras y no símbolo a símbolo
+• iPhone y iPad, vertical y horizontal
+
+PRIVACIDAD
+
+BeerCHILLER no recopila nada y no contiene ningún código de red. Tus ajustes y el temporizador en curso se quedan en tu dispositivo y solo se comparten con el widget y la app de reloj propios, para que puedan mostrar la cuenta atrás.
+
+SOBRE LA PRECISIÓN
+
+Los tiempos son estimaciones. Una nevera o un congelador reales enfrían más rápido o más despacio según la circulación del aire, la carga, el contacto con la bandeja y la frecuencia con que se abre la puerta. Toma la cuenta atrás como una buena guía, no como una medición.
+
+BeerCHILLER para iOS es una adaptación de la app de Android de C. Auer. Consume con responsabilidad.

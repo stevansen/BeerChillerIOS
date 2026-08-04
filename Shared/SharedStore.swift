@@ -80,9 +80,49 @@ public enum SharedStore {
     ///
     ///   -seedFinishedSession   a run that ended a minute ago
     ///   -seedRunningSession    a run that is 40 % through a 34-minute cool-down
+    ///   -seedNoSession         nothing running
+    ///   -seedStyle classic|beer          visual style
+    ///   -seedAppearance system|light|dark
+    ///
+    /// The style and appearance arguments exist for the App Store screenshots:
+    /// both live in the App Group, which `-key value` launch arguments cannot
+    /// reach — those only populate the *standard* defaults' argument domain, and
+    /// this app deliberately reads a suite so the widget and the watch see the
+    /// same values. Editing the simulator's plist from outside is the
+    /// alternative, and it loses races with `cfprefsd`.
+    ///
+    /// Called from both `AppSettings.init` and `ChillController.init` because
+    /// either may come first depending on the target, so it runs at most once —
+    /// a second pass would restart the seeded session's clock and shift the
+    /// countdown between two screenshots that are supposed to match.
+    private static var hasSeeded = false
+
     static func seedFromLaunchArgumentsIfRequested() {
+        guard !hasSeeded else { return }
+        hasSeeded = true
+
         let arguments = ProcessInfo.processInfo.arguments
         let now = Date()
+
+        func value(after flag: String) -> String? {
+            guard let index = arguments.firstIndex(of: flag),
+                  arguments.index(after: index) < arguments.endIndex else { return nil }
+            return arguments[arguments.index(after: index)]
+        }
+
+        if let style = value(after: "-seedStyle") {
+            let styles: [String: VisualStyle] = ["classic": .classic, "beer": .beer]
+            if let resolved = styles[style.lowercased()] {
+                defaults.set(resolved.rawValue, forKey: Key.visualStyle)
+            }
+        }
+        if let appearance = value(after: "-seedAppearance") {
+            let modes: [String: AppearanceMode] = ["system": .system, "light": .light,
+                                                   "dark": .dark]
+            if let resolved = modes[appearance.lowercased()] {
+                defaults.set(resolved.rawValue, forKey: Key.appearance)
+            }
+        }
 
         func store(totalMinutes: Double, progress: Double, endedAgo: TimeInterval = 0) {
             let total = totalMinutes * 60

@@ -11,6 +11,20 @@ the target temperature is reached.
 * iOS 16.0 or later, watchOS 9.0 or later
 * No third-party dependencies
 
+## App Store submission
+
+Everything for the store lives in [`AppStore/`](AppStore/):
+
+* [`AppStore/SUBMISSION.md`](AppStore/SUBMISSION.md) — the checklist: identifiers
+  and capabilities to register, archive/validate/upload commands, and the
+  recommended answers to the age-rating and privacy questionnaires.
+* `AppStore/metadata/<locale>/` — name, subtitle, description, keywords and
+  promotional text in all seven shipped languages. Regenerate with
+  `python3 tools/make_appstore_metadata.py`, which fails if any field exceeds
+  Apple's limit.
+* `AppStore/screenshots/` — regenerate with
+  `bash tools/make_appstore_screenshots.sh`.
+
 ## Licence and credits
 
 * [`LICENSE.md`](LICENSE.md) — MIT for the source, CC BY 4.0 for design and
@@ -120,8 +134,8 @@ the 0.5 l example at 288, plus the invalid-input cases.
    concepts iOS does not have — notification channels, Google Play in-app
    updates, the Android 14 full-screen-intent permission — or duplicated a key
    already in use. Two of them (`version_alarm`, `info_text`) literally read
-   "Android alarm", which would have been wrong in an iOS build. 62 keys remain
-   and none is unused.
+   "Android alarm", which would have been wrong in an iOS build. 66 keys remain
+   and one is unused (see *Known limitations*).
 
 ## Landscape
 
@@ -153,8 +167,8 @@ headers inside a menu — the group titles are supplied to SwiftUI but the syste
 shows dividers only.
 
 `InfoView` is a normal iOS about screen: brand mark, word mark, version and the
-tagline (translated in all ten languages but unused until now), plus a link into
-the model page.
+tagline (translated in every shipped language but unused until now), plus a link
+into the model page.
 
 ## Formula typesetting
 
@@ -172,7 +186,7 @@ and hyphens stood in for minus signs. What it does now:
 * wide formulas scroll sideways (`ViewThatFits`) rather than clip or shrink
 * VoiceOver reads a spoken form, not the symbol sequence
 
-`HelpFormulaTests` parses every formula in all ten localized files and asserts
+`HelpFormulaTests` parses every formula in every localized help file and asserts
 that no LaTeX command name survives into the output. It exists because two
 unhandled commands shipped unnoticed: `\text{min}` printed "textmin", and `\le`
 — used 30 times across the files — printed a literal "le" instead of "≤". That
@@ -243,7 +257,7 @@ python3 tools/inject_session.py <udid> clear
   the phone.
 * Widget: registered and discoverable in the widget gallery with localized title,
   description and three size previews.
-* All ten languages present; the German build was used throughout.
+* All shipped languages present; the German build was used throughout.
 
 ### What was *not* verified
 
@@ -286,7 +300,7 @@ python3 tools/inject_session.py <udid> clear
   `accessibilityElement(children: .contain)`.
 * The watch inputs reused unrelated string keys, labelling the container picker
   "bottle size" and the appliance picker "settings". Three new keys were added in
-  all ten languages.
+  every shipped language.
 
 ## A note on verifying with screenshots
 
@@ -304,9 +318,8 @@ host clock when in doubt.
 ### Translations need a native-speaker pass
 
 Every language other than **German, Italian and English** is machine-translated
-and has not been checked by a native speaker — the interface strings, the ten
-help pages, the fourteen iOS-only keys added for this port, and the diacritics
-restored in the Czech, Croatian and Polish headings alike.
+and has not been checked by a native speaker — the interface strings, the seven
+help pages and the fourteen iOS-only keys added for this port alike.
 
 `tools/audit_translations.py` only covers what is mechanically checkable:
 diacritic density, format-specifier mismatches, untranslated leftovers and length
@@ -315,51 +328,56 @@ terminology is used consistently, or whether a term is the one speakers of that
 language would actually expect. Two findings from reading the strings show why
 that matters:
 
-* `bottle_size` and `bottle_volume` are byte-identical in all ten languages, and
-  five of them render as plain "Bottle" — including when a *can* is selected.
-* Six languages mix the English loanword "timer" into the button while using
-  their own word in the widget name: *Uruchom timer* against *Minutnik
-  chłodzenia* (pl), *Spustit timer* against *Časovač* (cs), likewise es, pt, hr
-  and fr.
+* `bottle_size` and `bottle_volume` are byte-identical in every language, and
+  three of them render as plain "Bottle" — including when a *can* is selected.
+* Several languages mix the English loanword "timer" into the button while using
+  their own word in the widget name — es, pt and fr among them.
 
 Both are wording decisions rather than typos, so they are left for whoever does
 the language review.
 
-### Partly transliterated help pages
+### Czech, Croatian and Polish are held back
 
-**The Czech, Croatian and Polish help pages are partly transliterated.** They
-arrived from upstream stripped of diacritics — a 207-line Polish document
-contained not a single Polish character. The document title, both introductory
-paragraphs and all section headings have been restored
-(`tools/restore_diacritics.py`); the body paragraphs are still as upstream wrote
-them. Restoring those would mean rewriting roughly 260 distinct words per
-language, which is closer to re-translation than to proof-reading and should be
-done by a native speaker.
+The app shipped upstream in ten languages; this port ships **seven** (de, en, es,
+fr, it, nl, pt). Czech, Croatian and Polish are removed for the first release.
 
-`tools/audit_translations.py` reports the current state: diacritic density per
-language, format-specifier mismatches, untranslated leftovers and length
-outliers. Dutch shows zero diacritics and is a false positive — Dutch barely
-uses them.
+Their help pages arrived from upstream stripped of diacritics — a 207-line Polish
+document contained not a single Polish character. Titles, introduction and
+section headings were repaired, but the body text was still ASCII, and restoring
+it would mean rewriting roughly 260 distinct words per language: re-translation,
+not proof-reading. A localization whose longest document reads as broken serves a
+Czech, Croatian or Polish user worse than the English fallback, and listing the
+language in the App Store is a promise the app would not keep.
 
-The German and Portuguese help pages had the same defect confined to section 6
-(the passage added for model V2.1); both are fixed.
+The German and Portuguese pages had the same defect confined to section 6 (the
+passage added for model V2.1); both were fixed and both ship.
+
+To bring a language back: drop its code from `DROPPED_LANGUAGES` in
+`tools/prune_strings.py`, restore `BeerChiller/Help/cooling_model_<code>.md`, add
+the code to `KNOWN_REGIONS` in `tools/generate_project.py`, and re-run both
+scripts. `HelpFormulaTests` asserts that the help pages and the bundle's
+advertised languages match exactly, so a half-finished restoration fails the
+build rather than shipping.
+
+Note that a language removal only reaches the built product on a **clean** build:
+`.lproj` directories from an earlier build are not pruned, so an incremental
+archive would still carry the removed languages.
 
 ## Localization
 
 Three scripts, run in this order:
 
 1. `tools/make_xcstrings.py` converts the Android `values-*/strings.xml` files
-   into `Localizable.xcstrings` (81 keys × 10 languages: cs, de, en, es, fr, hr,
-   it, nl, pl, pt), converting `%1$s` to `%1$@` and decoding both XML entities
-   and Android backslash escapes.
+   into `Localizable.xcstrings` (81 keys × the 10 upstream languages), converting
+   `%1$s` to `%1$@` and decoding both XML entities and Android backslash escapes.
 2. `tools/add_ios_strings.py` adds the 14 keys with no Android counterpart —
    appearance override, watch picker titles, plain style names, and the spoken
-   forms VoiceOver uses for formulas — also in all ten languages.
-3. `tools/prune_strings.py` normalises the brand name and deletes the
-   Android-only keys. It refuses to delete anything the Swift sources still
-   reference, so it stays safe to re-run.
+   forms VoiceOver uses for formulas.
+3. `tools/prune_strings.py` normalises the brand name, deletes the Android-only
+   keys, and drops the languages held back from the release. It refuses to delete
+   anything the Swift sources still reference, so it stays safe to re-run.
 
-Result: **62 keys × 10 languages, none unused.**
+Result: **66 keys × 7 shipped languages** (de, en, es, fr, it, nl, pt).
 
 Provenance: the 48 keys imported from the Android project carry that project's
 translations; the 14 added for this port were translated for it. Outside German,

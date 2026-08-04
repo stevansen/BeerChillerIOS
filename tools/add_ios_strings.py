@@ -10,125 +10,115 @@ import sys
 from collections import OrderedDict
 from pathlib import Path
 
-LANGS = ["cs", "de", "en", "es", "fr", "hr", "it", "nl", "pl", "pt"]
+LANGS = ["de", "en", "es", "fr", "it", "nl", "pt"]
 
 NEW = {
     "appearance_title": {
-        "cs": "Vzhled", "de": "Erscheinungsbild", "en": "Appearance",
-        "es": "Apariencia", "fr": "Apparence", "hr": "Izgled",
-        "it": "Aspetto", "nl": "Weergave", "pl": "Wygląd", "pt": "Aparência",
+        "de": "Erscheinungsbild", "en": "Appearance",
+        "es": "Apariencia", "fr": "Apparence", "it": "Aspetto", "nl": "Weergave", "pt": "Aparência",
     },
     "appearance_system": {
-        "cs": "Nastavení systému", "de": "Systemeinstellung", "en": "System setting",
-        "es": "Ajuste del sistema", "fr": "Réglage système", "hr": "Postavka sustava",
-        "it": "Impostazione di sistema", "nl": "Systeeminstelling",
-        "pl": "Ustawienie systemowe", "pt": "Definição do sistema",
+        "de": "Systemeinstellung", "en": "System setting",
+        "es": "Ajuste del sistema", "fr": "Réglage système", "it": "Impostazione di sistema", "nl": "Systeeminstelling",
+        "pt": "Definição do sistema",
     },
     "appearance_light": {
-        "cs": "Světlý", "de": "Hell", "en": "Light", "es": "Claro",
-        "fr": "Clair", "hr": "Svijetlo", "it": "Chiaro", "nl": "Licht",
-        "pl": "Jasny", "pt": "Claro",
+        "de": "Hell", "en": "Light", "es": "Claro",
+        "fr": "Clair", "it": "Chiaro", "nl": "Licht",
+        "pt": "Claro",
     },
     "appearance_dark": {
-        "cs": "Tmavý", "de": "Dunkel", "en": "Dark", "es": "Oscuro",
-        "fr": "Sombre", "hr": "Tamno", "it": "Scuro", "nl": "Donker",
-        "pl": "Ciemny", "pt": "Escuro",
+        "de": "Dunkel", "en": "Dark", "es": "Oscuro",
+        "fr": "Sombre", "it": "Scuro", "nl": "Donker",
+        "pt": "Escuro",
     },
     "language_footer": {
-        "cs": "Jazyk aplikace vyberte v nastavení systému.",
         "de": "Die App-Sprache wird in den Systemeinstellungen gewählt.",
         "en": "Choose the app language in the system settings.",
         "es": "Elige el idioma de la app en los ajustes del sistema.",
         "fr": "Choisissez la langue de l’app dans les réglages du système.",
-        "hr": "Jezik aplikacije odaberite u postavkama sustava.",
         "it": "Scegli la lingua dell’app nelle impostazioni di sistema.",
         "nl": "Kies de taal van de app in de systeeminstellingen.",
-        "pl": "Wybierz język aplikacji w ustawieniach systemu.",
         "pt": "Escolha o idioma da app nas definições do sistema.",
     },
     # Watch-specific: the phone UI has room for the full label, the watch does not.
     "watch_start": {
-        "cs": "Start", "de": "Start", "en": "Start", "es": "Iniciar",
-        "fr": "Démarrer", "hr": "Start", "it": "Avvia", "nl": "Start",
-        "pl": "Start", "pt": "Iniciar",
+        "de": "Start", "en": "Start", "es": "Iniciar",
+        "fr": "Démarrer", "it": "Avvia", "nl": "Start",
+        "pt": "Iniciar",
     },
     # The Android UI labels these groups only by their options (segmented
     # controls), so there are no source strings for the row titles the watch's
     # list-style pickers need.
     "picker_container": {
-        "cs": "Obal", "de": "Gebinde", "en": "Container", "es": "Envase",
-        "fr": "Récipient", "hr": "Ambalaža", "it": "Contenitore",
-        "nl": "Verpakking", "pl": "Opakowanie", "pt": "Recipiente",
+        "de": "Gebinde", "en": "Container", "es": "Envase",
+        "fr": "Récipient", "it": "Contenitore",
+        "nl": "Verpakking", "pt": "Recipiente",
     },
     "picker_appliance": {
-        "cs": "Zařízení", "de": "Gerät", "en": "Appliance", "es": "Aparato",
-        "fr": "Appareil", "hr": "Uređaj", "it": "Apparecchio",
-        "nl": "Apparaat", "pl": "Urządzenie", "pt": "Aparelho",
+        "de": "Gerät", "en": "Appliance", "es": "Aparato",
+        "fr": "Appareil", "it": "Apparecchio",
+        "nl": "Apparaat", "pt": "Aparelho",
     },
     # The Android labels are "Classic UI" / "Beer UI". Inside a menu section
     # already titled "Appearance", the "UI" is both redundant and jargon that
     # Apple's own UI never uses, so the styles get plain names.
     "style_classic": {
-        "cs": "Klasický", "de": "Klassisch", "en": "Classic", "es": "Clásico",
-        "fr": "Classique", "hr": "Klasično", "it": "Classico",
-        "nl": "Klassiek", "pl": "Klasyczny", "pt": "Clássico",
+        "de": "Klassisch", "en": "Classic", "es": "Clásico",
+        "fr": "Classique", "it": "Classico",
+        "nl": "Klassiek", "pt": "Clássico",
     },
     "style_beer": {
-        "cs": "Pivo", "de": "Bier", "en": "Beer", "es": "Cerveza",
-        "fr": "Bière", "hr": "Pivo", "it": "Birra", "nl": "Bier",
-        "pl": "Piwo", "pt": "Cerveja",
+        "de": "Bier", "en": "Beer", "es": "Cerveza",
+        "fr": "Bière", "it": "Birra", "nl": "Bier",
+        "pt": "Cerveja",
     },
     # Spoken forms so VoiceOver reads a formula as words instead of spelling out
     # symbols. Padded with spaces because they are concatenated into a sentence.
     "math_to_the_power_of": {
-        "cs": " na ", "de": " hoch ", "en": " to the power of ",
-        "es": " elevado a ", "fr": " puissance ", "hr": " na ",
-        "it": " elevato a ", "nl": " tot de macht ", "pl": " do potęgi ",
-        "pt": " elevado a ",
+        "de": " hoch ", "en": " to the power of ",
+        "es": " elevado a ", "fr": " puissance ", "it": " elevato a ", "nl": " tot de macht ", "pt": " elevado a ",
     },
     "math_sub": {
-        "cs": "index", "de": "Index", "en": "sub", "es": "índice",
-        "fr": "indice", "hr": "indeks", "it": "indice", "nl": "index",
-        "pl": "indeks", "pt": "índice",
+        "de": "Index", "en": "sub", "es": "índice",
+        "fr": "indice", "it": "indice", "nl": "index",
+        "pt": "índice",
     },
     "math_divided_by": {
-        "cs": " děleno ", "de": " geteilt durch ", "en": " divided by ",
-        "es": " dividido por ", "fr": " divisé par ", "hr": " podijeljeno s ",
-        "it": " diviso ", "nl": " gedeeld door ", "pl": " podzielone przez ",
-        "pt": " dividido por ",
+        "de": " geteilt durch ", "en": " divided by ",
+        "es": " dividido por ", "fr": " divisé par ", "it": " diviso ", "nl": " gedeeld door ", "pt": " dividido por ",
     },
     # "bottle size" is wrong as soon as a can is selected, which is plainly
     # visible on the watch where the label sits next to the value.
     "picker_volume": {
-        "cs": "Objem", "de": "Volumen", "en": "Volume", "es": "Volumen",
-        "fr": "Volume", "hr": "Volumen", "it": "Volume", "nl": "Volume",
-        "pl": "Objętość", "pt": "Volume",
+        "de": "Volumen", "en": "Volume", "es": "Volumen",
+        "fr": "Volume", "it": "Volume", "nl": "Volume",
+        "pt": "Volume",
     },
     # VoiceOver hint for the watch rows that cycle their value on tap.
     "watch_toggle_hint": {
-        "cs": "Dvojitým tapnutím změníte", "de": "Zum Wechseln doppeltippen",
+        "de": "Zum Wechseln doppeltippen",
         "en": "Double tap to change", "es": "Toca dos veces para cambiar",
-        "fr": "Touchez deux fois pour changer", "hr": "Dvaput dodirnite za promjenu",
-        "it": "Tocca due volte per cambiare", "nl": "Dubbeltik om te wijzigen",
-        "pl": "Dotknij dwukrotnie, aby zmienić", "pt": "Toque duas vezes para alterar",
+        "fr": "Touchez deux fois pour changer", "it": "Tocca due volte per cambiare", "nl": "Dubbeltik om te wijzigen",
+        "pt": "Toque duas vezes para alterar",
     },
     # Short forms for the watch temperature rows. The full compounds
     # ("Gerätetemperatur", "Apparaattemperatuur") truncate next to the ± buttons,
     # and beside a value of "22 °C" the word "temperature" is redundant anyway.
     "watch_temp_start": {
-        "cs": "Start", "de": "Start", "en": "Start", "es": "Inicial",
-        "fr": "Initiale", "hr": "Start", "it": "Iniziale", "nl": "Start",
-        "pl": "Start", "pt": "Inicial",
+        "de": "Start", "en": "Start", "es": "Inicial",
+        "fr": "Initiale", "it": "Iniziale", "nl": "Start",
+        "pt": "Inicial",
     },
     "watch_temp_target": {
-        "cs": "Cíl", "de": "Ziel", "en": "Target", "es": "Objetivo",
-        "fr": "Cible", "hr": "Cilj", "it": "Obiettivo", "nl": "Doel",
-        "pl": "Cel", "pt": "Objetivo",
+        "de": "Ziel", "en": "Target", "es": "Objetivo",
+        "fr": "Cible", "it": "Obiettivo", "nl": "Doel",
+        "pt": "Objetivo",
     },
     "picker_position": {
-        "cs": "Poloha", "de": "Lage", "en": "Position", "es": "Posición",
-        "fr": "Position", "hr": "Položaj", "it": "Posizione",
-        "nl": "Positie", "pl": "Pozycja", "pt": "Posição",
+        "de": "Lage", "en": "Position", "es": "Posición",
+        "fr": "Position", "it": "Posizione",
+        "nl": "Positie", "pt": "Posição",
     },
 }
 

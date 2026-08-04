@@ -1,0 +1,37 @@
+BeerCHILLER vertelt je hoe lang je bier in de koelkast of de vriezer moet, en laat het weten zodra het koud is.
+
+Kies de verpakking, het volume, de positie en de temperaturen. BeerCHILLER berekent de koeltijd met een gekalibreerd thermodynamisch model, start de timer en stuurt een melding wanneer de doeltemperatuur is bereikt. Geen registratie, geen account, geen netwerk.
+
+HOE HET REKENT
+
+De schatting komt van het model BeerChiller Calibrated V2.1. Bier en verpakking worden als één lichaam behandeld en de lucht in het apparaat als een reservoir met constante temperatuur, waardoor het koelen realistisch vertraagt naarmate het bier dichterbij komt: de laatste twee graden duren veel langer dan de eerste twee. Fles en blikje, 0,33 / 0,5 / 1,0 liter, staand of liggend, koelkast of vriezer: elke combinatie heeft zijn eigen kalibratie, en voor flessen in de vriezer geldt een koudestartcorrectie.
+
+Het volledige model, met alle formules en constanten, staat gedocumenteerd in de app. Niets verdwijnt in een zwarte doos.
+
+TIJDENS HET KOELEN
+
+• Een schijf telt af en toont de geschatte biertemperatuur
+• Widgets voor beginscherm en toegangsscherm, in vier maten
+• Een live activiteit in de Dynamic Island
+• Een Apple Watch-app die zelfstandig kan starten en stoppen, met complicaties voor de wijzerplaat
+• Een melding wanneer het bier klaar is, ook met de app gesloten
+• De timer overleeft het sluiten van de app en het herstarten van je iPhone
+
+GEMAAKT VOOR iOS
+
+• Lichte en donkere modus, los van de systeeminstelling te kiezen
+• Twee uiterlijken: een rustige Klassieke stijl en een Bier-stijl met eigen illustratie
+• Dynamische tekst tot en met de grootste toegankelijkheidsformaten
+• VoiceOver-labels in de hele app, ook bij de formules, die als woorden worden voorgelezen in plaats van teken voor teken
+
+• iPhone en iPad, staand en liggend
+
+PRIVACY
+
+BeerCHILLER verzamelt niets en bevat helemaal geen netwerkcode. Je instellingen en de lopende timer blijven op je toestel en worden alleen gedeeld met de eigen widget en watch-app, zodat die het aftellen kunnen tonen.
+
+OVER DE NAUWKEURIGHEID
+
+De tijden zijn schattingen. Een echte koelkast of vriezer koelt sneller of langzamer, afhankelijk van luchtstroming, belading, contact met de plaat en hoe vaak de deur opengaat. Zie het aftellen als een goede richtlijn, niet als een meting.
+
+BeerCHILLER voor iOS is een port van de Android-app van C. Auer. Geniet met mate.

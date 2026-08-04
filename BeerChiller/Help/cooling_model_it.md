@@ -1,6 +1,6 @@
 # Modello di calcolo
 
-L'app calcola il tempo di raffreddamento della birra in frigorifero o in congelatore con il modello **BeerCHILLER Calibrated V2**.
+L'app calcola il tempo di raffreddamento della birra in frigorifero o in congelatore con il modello **BeerChiller Calibrated V2.1**.
 
 Il modello è una stima pratica. Usa la temperatura iniziale, la temperatura desiderata, la temperatura dell'apparecchio, il contenitore, il volume e la posizione. Gli apparecchi reali possono raffreddare più rapidamente o più lentamente a causa del flusso d'aria, delle superfici di contatto, del carico e delle aperture dello sportello.
 

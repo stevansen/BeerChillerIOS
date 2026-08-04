@@ -12,29 +12,26 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					BEEF000000000000000000A0 = {TestTargetID = BEEF00000000000000000063;};
-					BEEF000000000000000000AB = {TestTargetID = BEEF00000000000000000063;};
+					BEEF0000000000000000009A = {TestTargetID = BEEF00000000000000000063;};
+					BEEF000000000000000000A5 = {TestTargetID = BEEF00000000000000000063;};
 				};
 			};
-			buildConfigurationList = BEEF000000000000000000C9;
+			buildConfigurationList = BEEF000000000000000000C5;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				cs,
 				de,
 				es,
 				fr,
-				hr,
 				it,
 				nl,
-				pl,
 				pt,
 			);
-			mainGroup = BEEF000000000000000000C6;
-			productRefGroup = BEEF000000000000000000C5 /* Products */;
+			mainGroup = BEEF000000000000000000C2;
+			productRefGroup = BEEF000000000000000000C1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -42,8 +39,8 @@
 				BEEF00000000000000000042 /* BeerCHILLERWidget */,
 				BEEF00000000000000000024 /* BeerCHILLERWatch */,
 				BEEF00000000000000000002 /* BeerCHILLERWatchWidget */,
-				BEEF000000000000000000A0 /* BeerCHILLERTests */,
-				BEEF000000000000000000AB /* BeerCHILLERUITests */,
+				BEEF0000000000000000009A /* BeerCHILLERTests */,
+				BEEF000000000000000000A5 /* BeerCHILLERUITests */,
 			);
 		};
 		BEEF00000000000000000002 /* BeerCHILLERWatchWidget */ = {
@@ -502,7 +499,7 @@
 		BEEF00000000000000000062 /* BeerCHILLERWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000025 /* BeerCHILLERWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BEEF00000000000000000063 /* BeerCHILLER */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEEF0000000000000000009D;
+			buildConfigurationList = BEEF00000000000000000097;
 			buildPhases = (
 				BEEF00000000000000000065,
 				BEEF00000000000000000081,
@@ -596,9 +593,6 @@
 				BEEF0000000000000000008F,
 				BEEF00000000000000000091,
 				BEEF00000000000000000093,
-				BEEF00000000000000000095,
-				BEEF00000000000000000097,
-				BEEF00000000000000000099,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,27 +600,21 @@
 		BEEF00000000000000000084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEEF00000000000000000085 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001A /* Localizable.xcstrings */; };
 		BEEF00000000000000000086 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000001C /* PrivacyInfo.xcprivacy */; };
-		BEEF00000000000000000087 /* cooling_model_cs.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000088 /* cooling_model_cs.md */; };
-		BEEF00000000000000000088 /* cooling_model_cs.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_cs.md; sourceTree = "<group>"; };
-		BEEF00000000000000000089 /* cooling_model_de.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008A /* cooling_model_de.md */; };
-		BEEF0000000000000000008A /* cooling_model_de.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_de.md; sourceTree = "<group>"; };
-		BEEF0000000000000000008B /* cooling_model_en.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008C /* cooling_model_en.md */; };
-		BEEF0000000000000000008C /* cooling_model_en.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_en.md; sourceTree = "<group>"; };
-		BEEF0000000000000000008D /* cooling_model_es.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008E /* cooling_model_es.md */; };
-		BEEF0000000000000000008E /* cooling_model_es.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_es.md; sourceTree = "<group>"; };
-		BEEF0000000000000000008F /* cooling_model_fr.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000090 /* cooling_model_fr.md */; };
-		BEEF00000000000000000090 /* cooling_model_fr.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_fr.md; sourceTree = "<group>"; };
-		BEEF00000000000000000091 /* cooling_model_hr.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000092 /* cooling_model_hr.md */; };
-		BEEF00000000000000000092 /* cooling_model_hr.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_hr.md; sourceTree = "<group>"; };
-		BEEF00000000000000000093 /* cooling_model_it.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000094 /* cooling_model_it.md */; };
-		BEEF00000000000000000094 /* cooling_model_it.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_it.md; sourceTree = "<group>"; };
-		BEEF00000000000000000095 /* cooling_model_nl.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000096 /* cooling_model_nl.md */; };
-		BEEF00000000000000000096 /* cooling_model_nl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_nl.md; sourceTree = "<group>"; };
-		BEEF00000000000000000097 /* cooling_model_pl.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000098 /* cooling_model_pl.md */; };
-		BEEF00000000000000000098 /* cooling_model_pl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_pl.md; sourceTree = "<group>"; };
-		BEEF00000000000000000099 /* cooling_model_pt.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000009A /* cooling_model_pt.md */; };
-		BEEF0000000000000000009A /* cooling_model_pt.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_pt.md; sourceTree = "<group>"; };
-		BEEF0000000000000000009B /* Debug */ = {
+		BEEF00000000000000000087 /* cooling_model_de.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000088 /* cooling_model_de.md */; };
+		BEEF00000000000000000088 /* cooling_model_de.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_de.md; sourceTree = "<group>"; };
+		BEEF00000000000000000089 /* cooling_model_en.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008A /* cooling_model_en.md */; };
+		BEEF0000000000000000008A /* cooling_model_en.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_en.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008B /* cooling_model_es.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008C /* cooling_model_es.md */; };
+		BEEF0000000000000000008C /* cooling_model_es.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_es.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008D /* cooling_model_fr.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000008E /* cooling_model_fr.md */; };
+		BEEF0000000000000000008E /* cooling_model_fr.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_fr.md; sourceTree = "<group>"; };
+		BEEF0000000000000000008F /* cooling_model_it.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000090 /* cooling_model_it.md */; };
+		BEEF00000000000000000090 /* cooling_model_it.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_it.md; sourceTree = "<group>"; };
+		BEEF00000000000000000091 /* cooling_model_nl.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000092 /* cooling_model_nl.md */; };
+		BEEF00000000000000000092 /* cooling_model_nl.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_nl.md; sourceTree = "<group>"; };
+		BEEF00000000000000000093 /* cooling_model_pt.md in Resources */ = {isa = PBXBuildFile; fileRef = BEEF00000000000000000094 /* cooling_model_pt.md */; };
+		BEEF00000000000000000094 /* cooling_model_pt.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = cooling_model_pt.md; sourceTree = "<group>"; };
+		BEEF00000000000000000095 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -651,7 +639,7 @@
 			};
 			name = Debug;
 		};
-		BEEF0000000000000000009C /* Release */ = {
+		BEEF00000000000000000096 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -676,63 +664,63 @@
 			};
 			name = Release;
 		};
-		BEEF0000000000000000009D /* Build configuration list for PBXNativeTarget "BeerCHILLER" */ = {
+		BEEF00000000000000000097 /* Build configuration list for PBXNativeTarget "BeerCHILLER" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEEF0000000000000000009B /* Debug */,
-				BEEF0000000000000000009C /* Release */,
+				BEEF00000000000000000095 /* Debug */,
+				BEEF00000000000000000096 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEEF0000000000000000009E /* PBXContainerItemProxy */ = {
+		BEEF00000000000000000098 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BEEF00000000000000000001;
 			proxyType = 1;
 			remoteGlobalIDString = BEEF00000000000000000063;
 			remoteInfo = BeerCHILLER;
 		};
-		BEEF0000000000000000009F /* PBXTargetDependency */ = {
+		BEEF00000000000000000099 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BEEF00000000000000000063 /* BeerCHILLER */;
-			targetProxy = BEEF0000000000000000009E;
+			targetProxy = BEEF00000000000000000098;
 		};
-		BEEF000000000000000000A0 /* BeerCHILLERTests */ = {
+		BEEF0000000000000000009A /* BeerCHILLERTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEEF000000000000000000A8;
+			buildConfigurationList = BEEF000000000000000000A2;
 			buildPhases = (
-				BEEF000000000000000000A2,
-				BEEF000000000000000000A5,
+				BEEF0000000000000000009C,
+				BEEF0000000000000000009F,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BEEF0000000000000000009F,
+				BEEF00000000000000000099,
 			);
 			name = BeerCHILLERTests;
 			productName = BeerCHILLERTests;
-			productReference = BEEF000000000000000000A1;
+			productReference = BEEF0000000000000000009B;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BEEF000000000000000000A1 /* BeerCHILLERTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEEF000000000000000000A2 /* Sources */ = {
+		BEEF0000000000000000009B /* BeerCHILLERTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF0000000000000000009C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEEF000000000000000000A3,
+				BEEF0000000000000000009D,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BEEF000000000000000000A3 /* CoolingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF000000000000000000A4 /* CoolingModelTests.swift */; };
-		BEEF000000000000000000A4 /* CoolingModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolingModelTests.swift; sourceTree = "<group>"; };
-		BEEF000000000000000000A5 /* Frameworks */ = {
+		BEEF0000000000000000009D /* CoolingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF0000000000000000009E /* CoolingModelTests.swift */; };
+		BEEF0000000000000000009E /* CoolingModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolingModelTests.swift; sourceTree = "<group>"; };
+		BEEF0000000000000000009F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BEEF000000000000000000A6 /* Debug */ = {
+		BEEF000000000000000000A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -753,7 +741,7 @@
 			};
 			name = Debug;
 		};
-		BEEF000000000000000000A7 /* Release */ = {
+		BEEF000000000000000000A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -774,63 +762,66 @@
 			};
 			name = Release;
 		};
-		BEEF000000000000000000A8 /* Build configuration list for PBXNativeTarget "BeerCHILLERTests" */ = {
+		BEEF000000000000000000A2 /* Build configuration list for PBXNativeTarget "BeerCHILLERTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEEF000000000000000000A6 /* Debug */,
-				BEEF000000000000000000A7 /* Release */,
+				BEEF000000000000000000A0 /* Debug */,
+				BEEF000000000000000000A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEEF000000000000000000A9 /* PBXContainerItemProxy */ = {
+		BEEF000000000000000000A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BEEF00000000000000000001;
 			proxyType = 1;
 			remoteGlobalIDString = BEEF00000000000000000063;
 			remoteInfo = BeerCHILLER;
 		};
-		BEEF000000000000000000AA /* PBXTargetDependency */ = {
+		BEEF000000000000000000A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BEEF00000000000000000063 /* BeerCHILLER */;
-			targetProxy = BEEF000000000000000000A9;
+			targetProxy = BEEF000000000000000000A3;
 		};
-		BEEF000000000000000000AB /* BeerCHILLERUITests */ = {
+		BEEF000000000000000000A5 /* BeerCHILLERUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BEEF000000000000000000B3;
+			buildConfigurationList = BEEF000000000000000000AF;
 			buildPhases = (
-				BEEF000000000000000000AD,
-				BEEF000000000000000000B0,
+				BEEF000000000000000000A7,
+				BEEF000000000000000000AC,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BEEF000000000000000000AA,
+				BEEF000000000000000000A4,
 			);
 			name = BeerCHILLERUITests;
 			productName = BeerCHILLERUITests;
-			productReference = BEEF000000000000000000AC;
+			productReference = BEEF000000000000000000A6;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		BEEF000000000000000000AC /* BeerCHILLERUITests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEEF000000000000000000AD /* Sources */ = {
+		BEEF000000000000000000A6 /* BeerCHILLERUITests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = BeerCHILLERUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEEF000000000000000000A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEEF000000000000000000AE,
+				BEEF000000000000000000A8,
+				BEEF000000000000000000AA,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BEEF000000000000000000AE /* BeerChillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF000000000000000000AF /* BeerChillerUITests.swift */; };
-		BEEF000000000000000000AF /* BeerChillerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerUITests.swift; sourceTree = "<group>"; };
-		BEEF000000000000000000B0 /* Frameworks */ = {
+		BEEF000000000000000000A8 /* AppStoreScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF000000000000000000A9 /* AppStoreScreenshots.swift */; };
+		BEEF000000000000000000A9 /* AppStoreScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreScreenshots.swift; sourceTree = "<group>"; };
+		BEEF000000000000000000AA /* BeerChillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEF000000000000000000AB /* BeerChillerUITests.swift */; };
+		BEEF000000000000000000AB /* BeerChillerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerChillerUITests.swift; sourceTree = "<group>"; };
+		BEEF000000000000000000AC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BEEF000000000000000000B1 /* Debug */ = {
+		BEEF000000000000000000AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
@@ -850,7 +841,7 @@
 			};
 			name = Debug;
 		};
-		BEEF000000000000000000B2 /* Release */ = {
+		BEEF000000000000000000AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
@@ -870,16 +861,16 @@
 			};
 			name = Release;
 		};
-		BEEF000000000000000000B3 /* Build configuration list for PBXNativeTarget "BeerCHILLERUITests" */ = {
+		BEEF000000000000000000AF /* Build configuration list for PBXNativeTarget "BeerCHILLERUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEEF000000000000000000B1 /* Debug */,
-				BEEF000000000000000000B2 /* Release */,
+				BEEF000000000000000000AD /* Debug */,
+				BEEF000000000000000000AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BEEF000000000000000000B4 /* Shared */ = {
+		BEEF000000000000000000B0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000006,
@@ -897,7 +888,7 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000B5 /* Views */ = {
+		BEEF000000000000000000B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000074,
@@ -911,7 +902,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000B6 /* Help */ = {
+		BEEF000000000000000000B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000088,
@@ -921,115 +912,113 @@
 				BEEF00000000000000000090,
 				BEEF00000000000000000092,
 				BEEF00000000000000000094,
-				BEEF00000000000000000096,
-				BEEF00000000000000000098,
-				BEEF0000000000000000009A,
 			);
 			path = Help;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEEF000000000000000000B8 /* BeerChiller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChiller.entitlements; sourceTree = "<group>"; };
-		BEEF000000000000000000B9 /* BeerChiller */ = {
+		BEEF000000000000000000B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000B4 /* BeerChiller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChiller.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000B5 /* BeerChiller */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000072,
-				BEEF000000000000000000B5,
-				BEEF000000000000000000B6,
+				BEEF000000000000000000B1,
+				BEEF000000000000000000B2,
 				BEEF00000000000000000084,
 				BEEF0000000000000000001A,
 				BEEF0000000000000000001C,
-				BEEF000000000000000000B7,
-				BEEF000000000000000000B8,
+				BEEF000000000000000000B3,
+				BEEF000000000000000000B4,
 			);
 			path = BeerChiller;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEEF000000000000000000BB /* BeerChillerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWidget.entitlements; sourceTree = "<group>"; };
-		BEEF000000000000000000BC /* BeerChillerWidget */ = {
+		BEEF000000000000000000B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000B7 /* BeerChillerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWidget.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000B8 /* BeerChillerWidget */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF0000000000000000004F,
 				BEEF00000000000000000051,
 				BEEF00000000000000000053,
-				BEEF000000000000000000BA,
-				BEEF000000000000000000BB,
+				BEEF000000000000000000B6,
+				BEEF000000000000000000B7,
 			);
 			path = BeerChillerWidget;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEEF000000000000000000BE /* BeerChillerWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatch.entitlements; sourceTree = "<group>"; };
-		BEEF000000000000000000BF /* BeerChillerWatch */ = {
+		BEEF000000000000000000B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000BA /* BeerChillerWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatch.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000BB /* BeerChillerWatch */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000036,
 				BEEF00000000000000000038,
 				BEEF0000000000000000003C,
-				BEEF000000000000000000BD,
-				BEEF000000000000000000BE,
+				BEEF000000000000000000B9,
+				BEEF000000000000000000BA,
 			);
 			path = BeerChillerWatch;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEEF000000000000000000C1 /* BeerChillerWatchWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatchWidget.entitlements; sourceTree = "<group>"; };
-		BEEF000000000000000000C2 /* BeerChillerWatchWidget */ = {
+		BEEF000000000000000000BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEF000000000000000000BD /* BeerChillerWatchWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeerChillerWatchWidget.entitlements; sourceTree = "<group>"; };
+		BEEF000000000000000000BE /* BeerChillerWatchWidget */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000016,
-				BEEF000000000000000000C0,
-				BEEF000000000000000000C1,
+				BEEF000000000000000000BC,
+				BEEF000000000000000000BD,
 			);
 			path = BeerChillerWatchWidget;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C3 /* Tests */ = {
+		BEEF000000000000000000BF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				BEEF000000000000000000A4,
+				BEEF0000000000000000009E,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C4 /* UITests */ = {
+		BEEF000000000000000000C0 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				BEEF000000000000000000AF,
+				BEEF000000000000000000A9,
+				BEEF000000000000000000AB,
 			);
 			path = UITests;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C5 /* Products */ = {
+		BEEF000000000000000000C1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				BEEF00000000000000000064,
 				BEEF00000000000000000043,
 				BEEF00000000000000000025,
 				BEEF00000000000000000003,
-				BEEF000000000000000000A1,
-				BEEF000000000000000000AC,
+				BEEF0000000000000000009B,
+				BEEF000000000000000000A6,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C6 /* BeerCHILLER */ = {
+		BEEF000000000000000000C2 /* BeerCHILLER */ = {
 			isa = PBXGroup;
 			children = (
-				BEEF000000000000000000B4,
-				BEEF000000000000000000B9,
-				BEEF000000000000000000BC,
+				BEEF000000000000000000B0,
+				BEEF000000000000000000B5,
+				BEEF000000000000000000B8,
+				BEEF000000000000000000BB,
+				BEEF000000000000000000BE,
 				BEEF000000000000000000BF,
-				BEEF000000000000000000C2,
-				BEEF000000000000000000C3,
-				BEEF000000000000000000C4,
-				BEEF000000000000000000C5,
+				BEEF000000000000000000C0,
+				BEEF000000000000000000C1,
 			);
 			name = BeerCHILLER;
 			sourceTree = "<group>";
 		};
-		BEEF000000000000000000C7 /* Debug */ = {
+		BEEF000000000000000000C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1069,7 +1058,7 @@
 			};
 			name = Debug;
 		};
-		BEEF000000000000000000C8 /* Release */ = {
+		BEEF000000000000000000C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1104,11 +1093,11 @@
 			};
 			name = Release;
 		};
-		BEEF000000000000000000C9 /* Build configuration list for PBXProject "BeerCHILLER" */ = {
+		BEEF000000000000000000C5 /* Build configuration list for PBXProject "BeerCHILLER" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BEEF000000000000000000C7 /* Debug */,
-				BEEF000000000000000000C8 /* Release */,
+				BEEF000000000000000000C3 /* Debug */,
+				BEEF000000000000000000C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

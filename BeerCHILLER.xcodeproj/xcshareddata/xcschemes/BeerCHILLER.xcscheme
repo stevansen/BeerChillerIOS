@@ -18,7 +18,7 @@
       <TestableReference skipped = "NO">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF000000000000000000A0"
+            BlueprintIdentifier = "BEEF0000000000000000009A"
             BuildableName = "BeerCHILLERTests.xctest"
             BlueprintName = "BeerCHILLERTests"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">
@@ -27,7 +27,7 @@
       <TestableReference skipped = "NO">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF000000000000000000AB"
+            BlueprintIdentifier = "BEEF000000000000000000A5"
             BuildableName = "BeerCHILLERUITests.xctest"
             BlueprintName = "BeerCHILLERUITests"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">

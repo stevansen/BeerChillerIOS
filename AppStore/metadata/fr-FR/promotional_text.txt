@@ -1,0 +1,1 @@
+Combien de temps votre bière doit-elle rester au congélateur ? BeerCHILLER le calcule avec un modèle calibré, lance le minuteur et vous prévient dès qu’elle est fraîche.

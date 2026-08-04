@@ -44,18 +44,33 @@ struct RootView: View {
         GeometryReader { geometry in
             let isWide = geometry.size.width > geometry.size.height
             let isRegular = horizontalSizeClass == .regular
+            // `.regular` does not mean "iPad". A Plus/Max iPhone reports a regular
+            // horizontal size class in landscape while being only ~956 pt wide,
+            // and the iPad tuning below — a 0.38 dial, a 560 pt control column,
+            // 40 pt margins, plus flanking spacers — needs about 1030. On an
+            // iPhone 17 Pro Max the result overflowed the screen: the volume and
+            // orientation segments were clipped and the ⋯ menu was pushed off
+            // the display entirely, leaving the menu unreachable in landscape.
+            //
+            // The generous arrangement is therefore gated on the width actually
+            // available, not on the size class. iPad landscape starts at 1194 pt;
+            // an iPad in a narrow Split View slot correctly gets the compact
+            // treatment, because it genuinely has phone-like width.
+            let isRoomy = isRegular && geometry.size.width >= 1000
 
             ZStack {
                 ThemedBackground()
 
-                Group {
-                    if isWide {
-                        wideLayout(geometry: geometry, isRegular: isRegular)
-                    } else {
-                        tallLayout(geometry: geometry, isRegular: isRegular)
-                    }
+                if isWide {
+                    wideLayout(geometry: geometry, isRoomy: isRoomy)
+                        .padding(.horizontal, isRoomy ? 40 : 20)
+                } else {
+                    tallLayout(geometry: geometry, isRegular: isRegular)
+                        // Portrait keeps the size class: an iPad in portrait is
+                        // 820 pt wide, which is roomy for a single column even
+                        // though it is under the landscape threshold.
+                        .padding(.horizontal, isRegular ? 40 : 20)
                 }
-                .padding(.horizontal, isRegular ? 40 : 20)
             }
         }
         .environment(\.palette, palette)
@@ -122,27 +137,29 @@ struct RootView: View {
     ///
     /// Getting it to fit costs two things: a trimmed header, and temperature
     /// controls whose label sits above the stepper so three fit in one row.
-    private func wideLayout(geometry: GeometryProxy, isRegular: Bool) -> some View {
-        let columnSpacing: CGFloat = isRegular ? 28 : 18
+    /// `isRoomy` means "there is iPad-class width here", not "regular size class"
+    /// — see the note in `body`.
+    private func wideLayout(geometry: GeometryProxy, isRoomy: Bool) -> some View {
+        let columnSpacing: CGFloat = isRoomy ? 28 : 18
         // The dial takes just over a third of the width, and never more height
         // than is left once the header and the safe area are accounted for.
-        // On iPhone: 0.30 rather than a bigger share, because each of the three
+        // On a phone: 0.30 rather than a bigger share, because each of the three
         // compact temperature cells needs ~150 pt for its value chip to hold
-        // "-18 °C" without truncating. iPad has width to spare, so the dial takes
-        // more of it and the control column is capped and centred instead.
-        let dialSize = min(geometry.size.width * (isRegular ? 0.38 : 0.30),
-                           geometry.size.height - (isRegular ? 96 : 66))
+        // "-18 °C" without truncating. An iPad has width to spare, so the dial
+        // takes more of it and the control column is capped and centred instead.
+        let dialSize = min(geometry.size.width * (isRoomy ? 0.38 : 0.30),
+                           geometry.size.height - (isRoomy ? 96 : 66))
 
         return VStack(spacing: 6) {
             BrandHeader(
                 onOpenSettings: { activeSheet = .settings },
                 onOpenHelp: { activeSheet = .help },
                 onOpenInfo: { activeSheet = .info },
-                isCompact: !isRegular
+                isCompact: !isRoomy
             )
 
             HStack(alignment: .center, spacing: columnSpacing) {
-                if isRegular { Spacer(minLength: 0) }
+                if isRoomy { Spacer(minLength: 0) }
 
                 dial
                     .frame(width: dialSize, height: dialSize)
@@ -155,10 +172,12 @@ struct RootView: View {
                     ScrollView(showsIndicators: false) { wideControls }
                 }
                 // Capped on iPad so the three temperature cells stay a compact
-                // group instead of stretching across the whole column.
-                .frame(maxWidth: isRegular ? 560 : .infinity)
+                // group instead of stretching across the whole column. Left
+                // uncapped on a phone, where the column needs every point it can
+                // get — capping it there is what pushed the content off screen.
+                .frame(maxWidth: isRoomy ? 560 : .infinity)
 
-                if isRegular { Spacer(minLength: 0) }
+                if isRoomy { Spacer(minLength: 0) }
             }
             .frame(maxHeight: .infinity)
         }
@@ -230,7 +249,14 @@ struct RootView: View {
                 }
             }
             .disabled(controller.isRunning)
-            .opacity(controller.isRunning ? 0.6 : 1)
+            // The inputs are locked while a run is in progress — they describe the
+            // run that was started, so changing them mid-cool-down would be
+            // meaningless. 0.85 rather than 0.6: SwiftUI already dims a disabled
+            // control's own label, and stacking a 0.6 container opacity on top of
+            // that, on top of the Beer style's translucent card, on top of the
+            // artwork, left "Gefrierschrank" and the ± buttons barely readable.
+            // Still visibly recessed, still legible.
+            .opacity(controller.isRunning ? 0.85 : 1)
 
             actionRow
         }
@@ -297,7 +323,14 @@ struct RootView: View {
             }
         }
         .disabled(controller.isRunning)
-        .opacity(controller.isRunning ? 0.6 : 1)
+        // The inputs are locked while a run is in progress — they describe the
+        // run that was started, so changing them mid-cool-down would be
+        // meaningless. 0.85 rather than 0.6: SwiftUI already dims a disabled
+        // control's own label, and stacking a 0.6 container opacity on top of
+        // that, on top of the Beer style's translucent card, on top of the
+        // artwork, left "Gefrierschrank" and the ± buttons barely readable.
+        // Still visibly recessed, still legible.
+        .opacity(controller.isRunning ? 0.85 : 1)
     }
 
     /// The three full-width temperature controls, shared by the portrait layout

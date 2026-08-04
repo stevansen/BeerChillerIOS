@@ -1,6 +1,6 @@
 # Modèle de calcul
 
-L'application calcule le temps de refroidissement de la bière dans un réfrigérateur ou un congélateur avec le modèle **BeerCHILLER Calibrated V2**.
+L'application calcule le temps de refroidissement de la bière dans un réfrigérateur ou un congélateur avec le modèle **BeerChiller Calibrated V2.1**.
 
 Le modèle est une approximation pratique. Il utilise la température initiale, la température cible, la température de l'appareil, le contenant, le volume et la position. En pratique, les appareils peuvent refroidir plus vite ou plus lentement selon le flux d'air, les surfaces de contact, le chargement et les ouvertures de porte.
 

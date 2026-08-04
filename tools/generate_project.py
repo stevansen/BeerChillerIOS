@@ -94,8 +94,21 @@ WATCH_WIDGET_SOURCES = SHARED_CORE + [
     "BeerChillerWatchWidget/BeerChillerWatchWidgetBundle.swift",
 ]
 
-TEST_SOURCES = ["Tests/CoolingModelTests.swift"]
-UI_TEST_SOURCES = ["UITests/BeerChillerUITests.swift"]
+def swift_sources(directory):
+    """Every .swift file in a directory, sorted.
+
+    Globbed rather than listed by hand. These two were hardcoded lists, and a new
+    test file that is not in the list is not merely skipped — `xcodebuild test`
+    reports ** TEST SUCCEEDED ** for a run in which nothing executed, which is
+    the most misleading result the tool can produce.
+    """
+    path = os.path.join(ROOT, directory)
+    return sorted(f"{directory}/{name}" for name in os.listdir(path)
+                  if name.endswith(".swift"))
+
+
+TEST_SOURCES = swift_sources("Tests")
+UI_TEST_SOURCES = swift_sources("UITests")
 
 HELP_FILES = sorted(
     f"BeerChiller/Help/{name}"
@@ -654,7 +667,7 @@ def main():
         f"\t\t\thasScannedForEncodings = 0;\n"
         f"\t\t\tknownRegions = (\n"
         + "".join(f"\t\t\t\t{r},\n" for r in
-                  ["en", "Base", "cs", "de", "es", "fr", "hr", "it", "nl", "pl", "pt"]) +
+                  ["en", "Base", "de", "es", "fr", "it", "nl", "pt"]) +
         f"\t\t\t);\n"
         f"\t\t\tmainGroup = {root_group};\n"
         f"\t\t\tproductRefGroup = {products_group} /* Products */;\n"

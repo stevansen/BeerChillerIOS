@@ -18,22 +18,29 @@ ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "BeerChiller/Localizable.xcstrings"
 HELP = ROOT / "BeerChiller/Help"
 
-LANGS = ["cs", "de", "en", "es", "fr", "hr", "it", "nl", "pl", "pt"]
+LANGS = ["de", "en", "es", "fr", "it", "nl", "pt"]
 
 # Characters each language is expected to use. A file that needs them and has
 # none has probably been transliterated to ASCII.
 EXPECTED_DIACRITICS = {
-    "cs": "áčďéěíňóřšťúůýž",
     "de": "äöüß",
     "es": "áéíóúñ¿¡",
     "fr": "àâçèéêëîïôùûü",
-    "hr": "čćđšž",
     "it": "àèéìòù",
     "nl": "ëïéêáó",
-    "pl": "ąćęłńóśźż",
     "pt": "ãõáâàéêíóôúç",
     "en": "",
 }
+
+# Languages where the absence of diacritics proves nothing.
+#
+# Dutch uses a trema only in a handful of words (coëfficiënt, beïnvloeden), and
+# the cooling-model page happens to use none of them: it contains zero non-ASCII
+# letters and is nonetheless idiomatic Dutch. Reporting it as transliterated
+# invites a maintainer to "repair" text that is already correct — the exact
+# mistake this audit exists to prevent. The catalog check still runs for nl; only
+# the all-or-nothing verdict on the long help page is suppressed.
+DIACRITICS_OPTIONAL = {"nl"}
 
 # ASCII stand-ins for German umlauts. The whitelist holds words where the
 # digraph is genuinely part of the spelling.
@@ -135,7 +142,7 @@ def audit_help():
 
         # Any language: expected diacritics entirely absent from a long document.
         expected = EXPECTED_DIACRITICS.get(lang, "")
-        if expected:
+        if expected and lang not in DIACRITICS_OPTIONAL:
             used = {c for c in text.lower() if c in expected}
             if len(used) < 2:
                 problems[f"{lang}: looks transliterated"].append(
