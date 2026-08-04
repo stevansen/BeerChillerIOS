@@ -69,6 +69,31 @@ Recommended answers are in section 4.
 
 ## 2. Build and upload
 
+### 2.0 Sign Xcode in to the account first
+
+**Do this before anything else.** Automatic signing cannot invent a certificate:
+without one, `xcodebuild archive` fails with four *"No profiles for
+com.bierchiller.app… were found"* errors, and the message only suggests a missing
+flag — it does not mention that the machine has no signing identity at all.
+
+Xcode → **Settings** → **Accounts** → **+** → Apple ID → sign in with
+`Stefan.Hellweger@mac.com`, then select the team and **Manage Certificates** →
+**+** → *Apple Development* and *Apple Distribution*.
+
+This is interactive and needs the Apple ID password and two-factor code, so it
+cannot be scripted.
+
+Check the machine is ready:
+
+```bash
+bash tools/check_signing.sh
+```
+
+It verifies the four things that have to line up — a team in the project, a
+development certificate, a distribution certificate, and at least one
+provisioning profile — and names the missing one instead of letting a three-minute
+archive fail at the end.
+
 ### 2.1 Switch the project to your team
 
 Signing is parameterised — ad-hoc signing is the committed default so that
@@ -88,6 +113,11 @@ Clean first. A language was removed from this build, and stale `.lproj`
 directories from an earlier incremental build are **not** pruned — an incremental
 archive would ship Czech, Croatian and Polish as empty localizations.
 
+`-allowProvisioningUpdates` is not optional. Without it xcodebuild refuses to
+create or refresh a profile even when the account could — it fails with *"No
+profiles for 'com.bierchiller.app' were found"* — and with it, Xcode registers the
+four App IDs and the App Group for you if they are not in the portal yet.
+
 ```bash
 rm -rf build
 xcodebuild archive \
@@ -95,7 +125,8 @@ xcodebuild archive \
   -scheme BeerCHILLER \
   -configuration Release \
   -destination 'generic/platform=iOS' \
-  -archivePath build/BeerCHILLER.xcarchive
+  -archivePath build/BeerCHILLER.xcarchive \
+  -allowProvisioningUpdates
 ```
 
 Confirm the archive carries exactly the seven shipped languages:
