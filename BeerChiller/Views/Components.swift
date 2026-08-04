@@ -474,6 +474,37 @@ struct CompactTemperatureCell: View {
 
 // MARK: - Action buttons
 
+/// The outline that keeps an action button readable as a *control* in the Beer
+/// style, where it sits directly on the artwork rather than on a card.
+///
+/// Enabled gets an accent-tinted edge, disabled a plain separator: that carries
+/// the state difference, so neither variant has to thin its fill.
+///
+/// This is applied *behind* the Button rather than inside its label, and that
+/// placement is the actual fix for the disabled stop button. SwiftUI dims the
+/// whole label of a disabled button — the background it contains along with the
+/// text — so a capsule drawn inside the label goes translucent no matter what
+/// opacity it was given, and over the beer artwork the bubbles showed straight
+/// through it. Outside the label the fill keeps its strength and only the text
+/// dims, which is what "unavailable" is supposed to look like.
+private struct ActionButtonBackground: View {
+    @Environment(\.palette) private var palette
+
+    var fill: Color
+    var isEnabled: Bool
+
+    var body: some View {
+        Capsule(style: .continuous)
+            .fill(fill)
+            .overlay(
+                Capsule(style: .continuous)
+                    .strokeBorder(isEnabled ? palette.accent.opacity(0.55)
+                                            : palette.separator,
+                                  lineWidth: isEnabled ? 1.5 : 1)
+            )
+    }
+}
+
 struct PrimaryActionButton: View {
     @Environment(\.palette) private var palette
 
@@ -492,16 +523,14 @@ struct PrimaryActionButton: View {
             .foregroundStyle(isEnabled ? palette.accentText : palette.disabledText)
             .frame(maxWidth: .infinity)
             .frame(minHeight: 52)
-            .background(
-                Capsule(style: .continuous)
-                    .fill(isEnabled ? palette.accent : palette.chip)
-            )
             // Refuse vertical compression: without this the button silently
             // shrinks and clips its label when the column is short, instead of
             // letting ViewThatFits switch to the scrolling variant.
             .fixedSize(horizontal: false, vertical: true)
         }
         .buttonStyle(.plain)
+        .background(ActionButtonBackground(fill: isEnabled ? palette.accent : palette.chip,
+                                          isEnabled: isEnabled))
         .disabled(!isEnabled)
     }
 }
@@ -516,17 +545,14 @@ struct SecondaryActionButton: View {
     var body: some View {
         Button(action: action) {
             Text(LocalizedStringKey(titleKey))
-                .font(.body)
+                .font(.body.weight(isEnabled ? .semibold : .regular))
                 .foregroundStyle(isEnabled ? palette.primaryText : palette.disabledText)
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 52)
-                .background(
-                    Capsule(style: .continuous)
-                        .fill(palette.chip.opacity(isEnabled ? 1 : 0.5))
-                )
                 .fixedSize(horizontal: false, vertical: true)
         }
         .buttonStyle(.plain)
+        .background(ActionButtonBackground(fill: palette.chip, isEnabled: isEnabled))
         .disabled(!isEnabled)
     }
 }

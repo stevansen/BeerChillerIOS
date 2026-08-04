@@ -11,6 +11,15 @@ the target temperature is reached.
 * iOS 16.0 or later, watchOS 9.0 or later
 * No third-party dependencies
 
+## Licence and credits
+
+* [`LICENSE.md`](LICENSE.md) — MIT for the source, CC BY 4.0 for design and
+  documentation.
+* [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) — authorship, and the note that
+  AI-assisted tooling was used during development.
+
+Original concept and base design: C. Auer. iOS port and adaptation: S. Hellweger.
+
 ## Project layout
 
 The Xcode project is **generated** — there is no `xcodegen` or `xcodeproj` gem on

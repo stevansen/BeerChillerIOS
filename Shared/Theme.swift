@@ -123,7 +123,11 @@ public struct Palette {
         selectedFill: Color(hex: 0xD79E12),
         selectedText: Color(hex: 0xFFFFFF),
         unselectedText: Color(hex: 0x3D2A08),
-        disabledText: Color(hex: 0x9A8355),
+        // Darker than the dark palette's equivalent: on the cream chip the
+        // lighter brown only reached 3.5:1, which is legible on a plain surface
+        // and not on top of the beer artwork. 5:1 here, still far below the
+        // 13:1 of an enabled label, so "unavailable" still reads at a glance.
+        disabledText: Color(hex: 0x7F6A3E),
         dialTrack: Color(hex: 0xFFFFFF, opacity: 0.55),
         dialProgress: Color(hex: 0xFFFFFF),
         separator: Color(hex: 0xE8D9AE),
