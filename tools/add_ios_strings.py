@@ -8,6 +8,7 @@ Idempotent: re-running only fills in what is missing.
 import json
 import sys
 from collections import OrderedDict
+from pathlib import Path
 
 LANGS = ["cs", "de", "en", "es", "fr", "hr", "it", "nl", "pl", "pt"]
 
@@ -165,5 +166,5 @@ def main(path):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1
-         else "/Users/shell/BeerChilleriOS/BeerChiller/Localizable.xcstrings")
+    default = Path(__file__).resolve().parent.parent / "BeerChiller/Localizable.xcstrings"
+    main(sys.argv[1] if len(sys.argv) > 1 else default)

@@ -13,7 +13,8 @@ import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path("/Users/shell/BeerChilleriOS")
+# Derived from this file's location, so the script works in any clone.
+ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "BeerChiller/Localizable.xcstrings"
 HELP = ROOT / "BeerChiller/Help"
 

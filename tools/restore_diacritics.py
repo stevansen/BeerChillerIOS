@@ -15,7 +15,8 @@ upstream text turns into a loud failure rather than a silent no-op.
 import sys
 from pathlib import Path
 
-HELP = Path("/Users/shell/BeerChilleriOS/BeerChiller/Help")
+# Derived from this file's location, so the script works in any clone.
+HELP = Path(__file__).resolve().parent.parent / "BeerChiller/Help"
 
 FIXES = {
     "cs": [

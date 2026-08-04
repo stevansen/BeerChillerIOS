@@ -18,8 +18,9 @@ import sys
 from collections import OrderedDict
 from pathlib import Path
 
-CATALOG = Path("/Users/shell/BeerChilleriOS/BeerChiller/Localizable.xcstrings")
-SOURCE_ROOT = Path("/Users/shell/BeerChilleriOS")
+# Derived from this file's location, so the script works in any clone.
+SOURCE_ROOT = Path(__file__).resolve().parent.parent
+CATALOG = SOURCE_ROOT / "BeerChiller/Localizable.xcstrings"
 
 # Android platform concepts with no iOS counterpart.
 ANDROID_ONLY = [
