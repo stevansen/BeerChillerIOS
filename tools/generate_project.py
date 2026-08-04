@@ -26,6 +26,24 @@ import sys
 # watch targets still build on their own scheme.
 EMBED_WATCH = "--no-watch-embed" not in sys.argv
 
+# App Store submission needs a real Apple Developer team; simulator builds do
+# not. Without --team the project keeps ad-hoc signing, which is all a simulator
+# needs but cannot produce an archive. With it, automatic signing is used:
+#
+#     python3 tools/generate_project.py --team ABCDE12345
+#
+# The Team ID is the 10-character string in the Apple Developer portal under
+# Membership details.
+def _team_id():
+    for index, argument in enumerate(sys.argv):
+        if argument == "--team" and index + 1 < len(sys.argv):
+            return sys.argv[index + 1]
+        if argument.startswith("--team="):
+            return argument.split("=", 1)[1]
+    return os.environ.get("BEERCHILLER_TEAM_ID", "")
+
+TEAM_ID = _team_id()
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_NAME = "BeerCHILLER"
 PROJECT_DIR = os.path.join(ROOT, f"{PROJECT_NAME}.xcodeproj")
@@ -85,12 +103,19 @@ HELP_FILES = sorted(
     if name.endswith(".md")
 )
 
-APP_RESOURCES = ["BeerChiller/Assets.xcassets", "BeerChiller/Localizable.xcstrings"] + HELP_FILES
-WIDGET_RESOURCES = ["BeerChiller/Localizable.xcstrings"]
-WATCH_RESOURCES = ["BeerChiller/Localizable.xcstrings"]
-WATCH_WIDGET_RESOURCES = ["BeerChiller/Localizable.xcstrings"]
+# The privacy manifest has to sit at the root of every shipped bundle, so it is
+# added to the app and to each extension.
+PRIVACY_MANIFEST = "BeerChiller/PrivacyInfo.xcprivacy"
+
+APP_RESOURCES = ["BeerChiller/Assets.xcassets", "BeerChiller/Localizable.xcstrings",
+                 PRIVACY_MANIFEST] + HELP_FILES
+WIDGET_RESOURCES = ["BeerChiller/Localizable.xcstrings", PRIVACY_MANIFEST]
+WATCH_RESOURCES = ["BeerChillerWatch/Assets.xcassets",
+                   "BeerChiller/Localizable.xcstrings", PRIVACY_MANIFEST]
+WATCH_WIDGET_RESOURCES = ["BeerChiller/Localizable.xcstrings", PRIVACY_MANIFEST]
 
 KNOWN_TYPES = {
+    ".xcprivacy": "text.plist.xml",
     ".swift": "sourcecode.swift",
     ".xcassets": "folder.assetcatalog",
     ".xcstrings": "text.json.xcstrings",
@@ -333,14 +358,16 @@ PROJECT_COMMON = {
     "SWIFT_VERSION": "5.0",
     "IPHONEOS_DEPLOYMENT_TARGET": IOS_TARGET,
     "WATCHOS_DEPLOYMENT_TARGET": WATCH_TARGET,
-    # Ad-hoc signing: this project has no development team configured, which is
-    # all a simulator build needs.
-    "CODE_SIGN_IDENTITY": "-",
     "CODE_SIGN_STYLE": "Automatic",
-    "DEVELOPMENT_TEAM": "",
+    "DEVELOPMENT_TEAM": TEAM_ID,
     "MARKETING_VERSION": "1.0",
     "CURRENT_PROJECT_VERSION": "1",
 }
+
+# Ad-hoc signing is enough for the simulator, but it makes `archive` fail. Only
+# fall back to it when no team is configured.
+if not TEAM_ID:
+    PROJECT_COMMON["CODE_SIGN_IDENTITY"] = "-"
 
 PROJECT_DEBUG = dict(PROJECT_COMMON, **{
     "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -453,6 +480,7 @@ def main():
         "LD_RUNPATH_SEARCH_PATHS": ["$(inherited)", "@executable_path/Frameworks"],
         "SWIFT_VERSION": "5.0",
         "ENABLE_PREVIEWS": "YES",
+        "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
     }
     watch_id, watch_prod = target(
         "BeerCHILLERWatch", "watch",
@@ -575,6 +603,7 @@ def main():
         help_group,
         file_ref("BeerChiller/Assets.xcassets"),
         file_ref("BeerChiller/Localizable.xcstrings"),
+        file_ref(PRIVACY_MANIFEST),
         file_ref("BeerChiller/Info.plist"),
         file_ref("BeerChiller/BeerChiller.entitlements"),
     ], path="BeerChiller")
@@ -585,7 +614,8 @@ def main():
         path="BeerChillerWidget")
     watch_group = group("BeerChillerWatch", [
         file_ref(p) for p in WATCH_SOURCES if p.startswith("BeerChillerWatch/")
-    ] + [file_ref("BeerChillerWatch/Info.plist"),
+    ] + [file_ref("BeerChillerWatch/Assets.xcassets"),
+         file_ref("BeerChillerWatch/Info.plist"),
          file_ref("BeerChillerWatch/BeerChillerWatch.entitlements")],
         path="BeerChillerWatch")
     watch_widget_group = group("BeerChillerWatchWidget", [
