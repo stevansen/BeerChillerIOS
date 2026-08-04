@@ -379,8 +379,14 @@ PROJECT_COMMON = {
 
 # Ad-hoc signing is enough for the simulator, but it makes `archive` fail. Only
 # fall back to it when no team is configured.
+#
+# CODE_SIGN_STYLE goes to Manual along with it: automatic signing with an empty
+# DEVELOPMENT_TEAM builds fine for the simulator and then fails for a device with
+# a message about missing profiles, which reads as an account problem rather than
+# as "this project was generated without --team".
 if not TEAM_ID:
     PROJECT_COMMON["CODE_SIGN_IDENTITY"] = "-"
+    PROJECT_COMMON["CODE_SIGN_STYLE"] = "Manual"
 
 PROJECT_DEBUG = dict(PROJECT_COMMON, **{
     "DEBUG_INFORMATION_FORMAT": "dwarf",
