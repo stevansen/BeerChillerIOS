@@ -96,6 +96,34 @@ NEW = {
         "it": " diviso ", "nl": " gedeeld door ", "pl": " podzielone przez ",
         "pt": " dividido por ",
     },
+    # "bottle size" is wrong as soon as a can is selected, which is plainly
+    # visible on the watch where the label sits next to the value.
+    "picker_volume": {
+        "cs": "Objem", "de": "Volumen", "en": "Volume", "es": "Volumen",
+        "fr": "Volume", "hr": "Volumen", "it": "Volume", "nl": "Volume",
+        "pl": "Objętość", "pt": "Volume",
+    },
+    # VoiceOver hint for the watch rows that cycle their value on tap.
+    "watch_toggle_hint": {
+        "cs": "Dvojitým tapnutím změníte", "de": "Zum Wechseln doppeltippen",
+        "en": "Double tap to change", "es": "Toca dos veces para cambiar",
+        "fr": "Touchez deux fois pour changer", "hr": "Dvaput dodirnite za promjenu",
+        "it": "Tocca due volte per cambiare", "nl": "Dubbeltik om te wijzigen",
+        "pl": "Dotknij dwukrotnie, aby zmienić", "pt": "Toque duas vezes para alterar",
+    },
+    # Short forms for the watch temperature rows. The full compounds
+    # ("Gerätetemperatur", "Apparaattemperatuur") truncate next to the ± buttons,
+    # and beside a value of "22 °C" the word "temperature" is redundant anyway.
+    "watch_temp_start": {
+        "cs": "Start", "de": "Start", "en": "Start", "es": "Inicial",
+        "fr": "Initiale", "hr": "Start", "it": "Iniziale", "nl": "Start",
+        "pl": "Start", "pt": "Inicial",
+    },
+    "watch_temp_target": {
+        "cs": "Cíl", "de": "Ziel", "en": "Target", "es": "Objetivo",
+        "fr": "Cible", "hr": "Cilj", "it": "Obiettivo", "nl": "Doel",
+        "pl": "Cel", "pt": "Objetivo",
+    },
     "picker_position": {
         "cs": "Poloha", "de": "Lage", "en": "Position", "es": "Posición",
         "fr": "Position", "hr": "Položaj", "it": "Posizione",

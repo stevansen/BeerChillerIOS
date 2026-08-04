@@ -211,6 +211,17 @@ private struct ChillRing<Content: View>: View {
 
 // MARK: - Inputs tab
 
+/// Seven settings on a screen that shows three rows at a time, so the shape of
+/// each row matters.
+///
+/// The three either/or choices — container, position, appliance — used to be
+/// `Picker`s, which on watchOS push a whole selection screen to flip one of two
+/// values. They are now rows that toggle in place: one tap instead of tap,
+/// choose, go back. Volume keeps a picker because it has three options.
+///
+/// The volume row is also no longer labelled "bottle size"; that was simply wrong
+/// with a can selected, and on the watch the label sits right next to the value
+/// where the contradiction is obvious.
 struct WatchInputsView: View {
 
     @EnvironmentObject private var settings: AppSettings
@@ -219,73 +230,134 @@ struct WatchInputsView: View {
 
     var body: some View {
         List {
-            Picker(selection: $settings.containerType) {
-                Text(LocalizedStringKey("container_bottle")).tag(ContainerType.bottle)
-                Text(LocalizedStringKey("container_can")).tag(ContainerType.can)
-            } label: {
-                Text(LocalizedStringKey("picker_container"))
+            WatchToggleRow(titleKey: "picker_container",
+                           value: settings.containerType == .bottle
+                               ? Formatting.localized("container_bottle")
+                               : Formatting.localized("container_can")) {
+                settings.containerType = settings.containerType == .bottle ? .can : .bottle
             }
 
-            Picker(selection: $settings.volume) {
-                ForEach(VolumeOption.allCases.filter(settings.isVolumeAvailable), id: \.self) {
-                    Text(Formatting.volume($0)).tag($0)
+            // Cycles rather than picking: a `Picker` put the label above the value
+            // while every other row here puts the value first, and it pushed a
+            // screen for what is at most three options. Cycling keeps all four
+            // choice rows identical in look and in behaviour.
+            WatchToggleRow(titleKey: "picker_volume",
+                           value: Formatting.volume(settings.volume)) {
+                let available = VolumeOption.allCases.filter(settings.isVolumeAvailable)
+                guard let index = available.firstIndex(of: settings.volume) else {
+                    settings.volume = available.first ?? .small
+                    return
                 }
-            } label: {
-                Text(LocalizedStringKey("bottle_volume"))
+                settings.volume = available[(index + 1) % available.count]
             }
 
-            Picker(selection: $settings.deviceMode) {
-                Text(LocalizedStringKey("freezer")).tag(DeviceMode.freezer)
-                Text(LocalizedStringKey("fridge")).tag(DeviceMode.fridge)
-            } label: {
-                Text(LocalizedStringKey("picker_appliance"))
+            WatchToggleRow(titleKey: "picker_appliance",
+                           value: settings.deviceMode == .freezer
+                               ? Formatting.localized("freezer")
+                               : Formatting.localized("fridge")) {
+                settings.deviceMode = settings.deviceMode == .freezer ? .fridge : .freezer
             }
 
-            Picker(selection: $settings.orientation) {
-                Text(LocalizedStringKey("orientation_lying")).tag(ContainerOrientation.lying)
-                Text(LocalizedStringKey("orientation_standing")).tag(ContainerOrientation.standing)
-            } label: {
-                Text(LocalizedStringKey("picker_position"))
+            WatchToggleRow(titleKey: "picker_position",
+                           value: settings.orientation == .standing
+                               ? Formatting.localized("orientation_standing")
+                               : Formatting.localized("orientation_lying")) {
+                settings.orientation = settings.orientation == .standing ? .lying : .standing
             }
 
-            stepper(titleKey: "start_temperature",
-                    value: settings.startTempC,
-                    range: CoolingModel.minStartTempC...CoolingModel.maxStartTempC) {
-                settings.stepStartTemp($0)
-            }
+            temperatureStepper(shortKey: "watch_temp_start",
+                               spokenKey: "start_temperature",
+                               value: settings.startTempC,
+                               range: CoolingModel.minStartTempC...CoolingModel.maxStartTempC,
+                               onStep: settings.stepStartTemp)
 
-            stepper(titleKey: "target_temperature",
-                    value: settings.targetTempC,
-                    range: CoolingModel.minTargetTempC...CoolingModel.maxTargetTempC) {
-                settings.stepTargetTemp($0)
-            }
+            temperatureStepper(shortKey: "watch_temp_target",
+                               spokenKey: "target_temperature",
+                               value: settings.targetTempC,
+                               range: CoolingModel.minTargetTempC...CoolingModel.maxTargetTempC,
+                               onStep: settings.stepTargetTemp)
 
-            stepper(titleKey: "device_temperature",
-                    value: settings.deviceTempC,
-                    range: CoolingModel.minDeviceTempC...CoolingModel.maxDeviceTempC) {
-                settings.stepDeviceTemp($0)
-            }
+            temperatureStepper(shortKey: "picker_appliance",
+                               spokenKey: "device_temperature",
+                               value: settings.deviceTempC,
+                               range: CoolingModel.minDeviceTempC...CoolingModel.maxDeviceTempC,
+                               onStep: settings.stepDeviceTemp)
         }
         .disabled(controller.isRunning)
     }
 
-    private func stepper(titleKey: String,
-                         value: Int,
-                         range: ClosedRange<Int>,
-                         onStep: @escaping (Int) -> Void) -> some View {
+    /// `Stepper` is kept for the temperatures rather than a toggle: they have a
+    /// range, and on watchOS a focused Stepper is driven by the Digital Crown,
+    /// which beats tapping ±1 twenty times. The value leads and the label is
+    /// secondary, because the value is what you came to read.
+    /// `shortKey` is what the row shows; `spokenKey` is the full wording VoiceOver
+    /// announces, so shortening the visible label costs nothing in clarity.
+    private func temperatureStepper(shortKey: String,
+                                    spokenKey: String,
+                                    value: Int,
+                                    range: ClosedRange<Int>,
+                                    onStep: @escaping (Int) -> Void) -> some View {
         Stepper {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(LocalizedStringKey(titleKey))
-                    .font(.caption2)
-                    .foregroundStyle(palette.secondaryText)
+            VStack(alignment: .leading, spacing: 0) {
                 Text(Formatting.temperature(celsius: value, unit: settings.temperatureUnit))
-                    .font(.body.weight(.medium))
+                    .font(.title3.weight(.semibold))
                     .monospacedDigit()
+                    .foregroundStyle(palette.primaryText)
+
+                Text(LocalizedStringKey(shortKey))
+                    .font(.caption2)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .foregroundStyle(palette.secondaryText)
             }
         } onIncrement: {
             if value < range.upperBound { onStep(1) }
         } onDecrement: {
             if value > range.lowerBound { onStep(-1) }
         }
+        .accessibilityLabel(Text(LocalizedStringKey(spokenKey)))
+        .accessibilityValue(Text(Formatting.temperature(celsius: value,
+                                                        unit: settings.temperatureUnit)))
+    }
+}
+
+/// An either/or setting that flips on tap instead of pushing a selection screen.
+private struct WatchToggleRow: View {
+    @Environment(\.palette) private var palette
+
+    var titleKey: String
+    var value: String
+    var toggle: () -> Void
+
+    var body: some View {
+        Button(action: toggle) {
+            HStack(spacing: 6) {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(value)
+                        .font(.body.weight(.medium))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                        .foregroundStyle(palette.primaryText)
+
+                    Text(LocalizedStringKey(titleKey))
+                        .font(.caption2)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                        .foregroundStyle(palette.secondaryText)
+                }
+
+                Spacer(minLength: 4)
+
+                // Signals that the row cycles rather than opening something.
+                Image(systemName: "arrow.trianglehead.2.clockwise")
+                    .font(.caption)
+                    .foregroundStyle(palette.secondaryText)
+                    .accessibilityHidden(true)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text(LocalizedStringKey(titleKey)))
+        .accessibilityValue(Text(value))
+        .accessibilityHint(Text(LocalizedStringKey("watch_toggle_hint")))
     }
 }

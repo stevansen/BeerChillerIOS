@@ -55,7 +55,8 @@ public struct Palette {
     public var separator: Color
     public var shadow: Color
 
-    /// Beer style only: the photo background and how strongly it is scrimmed.
+    /// Beer style only: the generated beer artwork and how strongly it is scrimmed.
+    /// Light gets a lager, dark gets a dunkel; the asset catalog switches them.
     public var usesPhotoBackground: Bool = false
     public var photoScrim: Color = .clear
 
@@ -128,7 +129,7 @@ public struct Palette {
         separator: Color(hex: 0xE8D9AE),
         shadow: Color(hex: 0x3D2A08, opacity: 0.18),
         usesPhotoBackground: true,
-        photoScrim: Color(hex: 0x000000, opacity: 0.05)
+        photoScrim: Color(hex: 0x000000, opacity: 0.12)
     )
 
     static let beerDark = Palette(
@@ -152,7 +153,7 @@ public struct Palette {
         separator: Color(hex: 0x4A3410),
         shadow: Color(hex: 0x000000, opacity: 0.6),
         usesPhotoBackground: true,
-        photoScrim: Color(hex: 0x000000, opacity: 0.45)
+        photoScrim: Color(hex: 0x000000, opacity: 0.22)
     )
 
     public static func resolve(style: VisualStyle, scheme: ColorScheme) -> Palette {
