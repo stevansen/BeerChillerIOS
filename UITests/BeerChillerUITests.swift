@@ -230,3 +230,39 @@ extension BeerChillerUITests {
         XCTAssertFalse(app.buttons["alarm.stop"].exists)
     }
 }
+
+// MARK: - Landscape regression
+
+extension BeerChillerUITests {
+
+    /// The start button has to be *on screen* in landscape, not merely present.
+    ///
+    /// This exists because it once was not: with the Beer style's portrait artwork
+    /// scaled to fill a landscape screen, the image's ideal size propagated up
+    /// through the layout and pushed the dial and every control to y ≈ 700 in a
+    /// 402 pt window. Only the header was visible, and the earlier landscape check
+    /// missed it because it ran in the Classic style, which has no image.
+    func testLandscapeKeepsTheControlsInsideTheWindow() {
+        let app = XCUIApplication()
+        app.launchArguments += ["-seedNoSession"]
+        app.launch()
+        XCUIDevice.shared.orientation = .landscapeLeft
+
+        let start = app.buttons["action.start"]
+        XCTAssertTrue(start.waitForExistence(timeout: 10))
+
+        let window = app.windows.element(boundBy: 0).frame
+        for identifier in ["action.start", "action.stop"] {
+            let frame = app.buttons[identifier].frame
+            XCTAssertTrue(window.contains(frame),
+                          "\(identifier) is outside the window in landscape: "
+                          + "\(frame) vs \(window)")
+        }
+
+        // The dial's label lives at the centre of the screen's left column.
+        let dialLabels = app.staticTexts.allElementsBoundByIndex
+            .filter { window.intersects($0.frame) }
+        XCTAssertGreaterThan(dialLabels.count, 2,
+                             "almost nothing is on screen in landscape")
+    }
+}

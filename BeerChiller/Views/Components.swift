@@ -10,9 +10,10 @@ import SwiftUI
 
 // MARK: - Background
 
-/// Solid colour in Classic style, the beer photo in Beer style. In Beer style a
-/// scrim sits over the photo (heavier in dark mode) so text stays legible, and
-/// the photo is dropped entirely when the user asks for reduced transparency.
+/// Solid colour in Classic style, the generated beer artwork in Beer style — a
+/// lager in light mode, a dunkel in dark mode, switched by the asset catalog. A
+/// scrim sits over it so text stays legible, and the artwork is dropped entirely
+/// for a plain gradient when the user asks for reduced transparency.
 struct ThemedBackground: View {
     @Environment(\.palette) private var palette
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
@@ -22,10 +23,23 @@ struct ThemedBackground: View {
             if palette.usesPhotoBackground && !reduceTransparency {
                 LinearGradient(colors: [palette.background, palette.backgroundSecondary],
                                startPoint: .top, endPoint: .bottom)
-                Image("BeerBackground")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .accessibilityHidden(true)
+
+                // The artwork is portrait, so `.fill` in landscape asks for a
+                // frame far larger than the screen. Left unbounded that ideal size
+                // propagates up through the ZStack and pushes the actual UI out of
+                // the window — in landscape the dial and every control ended up at
+                // y ≈ 700 in a 402 pt tall window, leaving only the header visible.
+                // A GeometryReader accepts the proposed size and does not pass its
+                // child's ideal size back up, which is what isolates the layout.
+                GeometryReader { geometry in
+                    Image("BeerBackground")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .clipped()
+                }
+                .accessibilityHidden(true)
+
                 palette.photoScrim
             } else {
                 LinearGradient(colors: [palette.background, palette.backgroundSecondary],
