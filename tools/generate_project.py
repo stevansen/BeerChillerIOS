@@ -408,6 +408,27 @@ PROJECT_RELEASE = dict(PROJECT_COMMON, **{
     "VALIDATE_PRODUCT": "YES",
 })
 
+# Note on archiving, because two plausible-looking fixes are both wrong.
+#
+# `xcodebuild archive` with automatic signing asks Apple for a *development*
+# provisioning profile, even for a Release archive — the distribution identity is
+# applied later, by `-exportArchive`. Apple refuses to issue a development profile
+# to a team with no registered devices:
+#
+#   Your team has no devices from which to generate a provisioning profile.
+#
+# Pinning CODE_SIGN_IDENTITY = "Apple Distribution" here does not help; automatic
+# signing then rejects it outright:
+#
+#   ... is automatically signed for development, but a conflicting code signing
+#   identity Apple Distribution has been manually specified.
+#
+# The fix is on the account side, not in this file: register one device with the
+# team (connect an iPhone and let Xcode add it, or paste a UDID into Certificates,
+# Identifiers & Profiles → Devices). Signing stays automatic. The alternative is
+# full manual signing with four hand-made App Store profiles, which is more portal
+# work for the same result.
+
 
 def target(name, tag, product_type, product_ext, explicit_type, sources,
            resources, settings, dependencies=(), extra_phases=()):

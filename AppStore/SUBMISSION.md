@@ -43,7 +43,30 @@ notifications, no iCloud, no sign-in.
 > inherited from the Play Store listing. Renaming it later orphans installs, so it
 > is worth being sure now.
 
-### 1.3 Check the name is free
+### 1.3 Register one device
+
+Counter-intuitive but required: `xcodebuild archive` with automatic signing asks
+Apple for a **development** provisioning profile even for a Release archive — the
+distribution identity is applied afterwards, by `-exportArchive`. Apple refuses to
+issue a development profile to a team with no devices:
+
+> Your team has no devices from which to generate a provisioning profile.
+
+So the team needs at least one. Either connect an iPhone over USB and let Xcode
+register it (Window → Devices and Simulators), or paste a UDID into Certificates,
+Identifiers & Profiles → **Devices** → **+**.
+
+Pinning `CODE_SIGN_IDENTITY = "Apple Distribution"` for Release looks like the fix
+and is not — automatic signing rejects it: *"is automatically signed for
+development, but a conflicting code signing identity Apple Distribution has been
+manually specified"*. The note in `tools/generate_project.py` records both dead
+ends.
+
+You need a device anyway: the widget on a real Home Screen, the Dynamic Island
+presentations and the watch complications are the part of this app that
+simulators cannot confirm.
+
+### 1.4 Check the name is free
 
 App Store Connect reserves app names globally. **BeerCHILLER** may be taken. Try
 to create the app record early — that is the only way to find out. If it is
@@ -51,7 +74,7 @@ taken, the fallback is a distinguishing suffix in the *store* name only
 (`BeerCHILLER – Beer Cooling Timer`); the on-device display name stays
 `BeerCHILLER` and needs no code change.
 
-### 1.4 Create the app record
+### 1.5 Create the app record
 
 App Store Connect → Apps → **+** → New App:
 
@@ -61,7 +84,7 @@ App Store Connect → Apps → **+** → New App:
 * SKU: anything unique, e.g. `beerchiller-ios-1`
 * User Access: Full Access
 
-### 1.5 Answer the questionnaires
+### 1.6 Answer the questionnaires
 
 Recommended answers are in section 4.
 
@@ -301,7 +324,8 @@ prefixes.
 ## 7. Order of operations
 
 1. Register the identifiers and the App Group (1.2)
-2. Create the app record, confirming the name is free (1.3, 1.4)
+2. Register a device, then create the app record, confirming the name
+   is free (1.3, 1.4, 1.5)
 3. `python3 tools/generate_project.py --team $TEAM`
 4. `rm -rf build` and archive, then check the `.lproj` list (2.2)
 5. Validate, then upload (2.3)
