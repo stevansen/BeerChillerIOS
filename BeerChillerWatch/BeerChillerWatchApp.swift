@@ -29,6 +29,9 @@ struct BeerChillerWatchApp: App {
         }
         .onChange(of: scenePhase) { phase in
             if phase == .active {
+                // Pull the counterpart's latest state rather than waiting for a
+                // delegate callback that may never arrive.
+                WatchSync.shared.adoptReceivedContext()
                 controller.refreshNow()
             }
         }

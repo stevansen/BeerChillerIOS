@@ -41,6 +41,9 @@ struct BeerChillerApp: App {
             // Coming back from the background: recompute against the wall clock
             // instead of trusting a timer that was suspended.
             if phase == .active {
+                // Pull the counterpart's latest state rather than waiting for a
+                // delegate callback that may never arrive.
+                WatchSync.shared.adoptReceivedContext()
                 controller.refreshNow()
             }
         }

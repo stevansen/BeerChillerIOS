@@ -36,6 +36,9 @@ public enum SharedStore {
 
     enum Key {
         static let session = "chillSession"
+        /// When this side last changed the session itself. Used to reject a stale
+        /// application context that would otherwise resurrect a cleared run.
+        static let sessionChangedAt = "chillSessionChangedAt"
 
         static let startTemp = "startTemp"
         static let targetTemp = "targetTemp"
@@ -62,7 +65,13 @@ public enum SharedStore {
         } else {
             defaults.removeObject(forKey: Key.session)
         }
+        defaults.set(Date().timeIntervalSince1970, forKey: Key.sessionChangedAt)
         NotificationCenter.default.post(name: sessionDidChangeNotification, object: nil)
+    }
+
+    /// Wall-clock time of this side's last session change, 0 if it never changed.
+    public static var sessionChangedAt: Double {
+        defaults.double(forKey: Key.sessionChangedAt)
     }
 
     #if DEBUG

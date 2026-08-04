@@ -63,18 +63,26 @@ struct WatchTimerView: View {
     }
 
     private var readyState: some View {
-        VStack(spacing: 10) {
-            Image(systemName: "snowflake")
-                .font(.system(size: 34))
-                .foregroundStyle(palette.accent)
+        VStack(spacing: 6) {
+            ChillRing(progress: 1, isRunning: true) {
+                Image(systemName: "snowflake")
+                    .font(.system(size: 30, weight: .light))
+                    .foregroundStyle(palette.accent)
+            }
+
             Text(LocalizedStringKey("alarm_ringing"))
-                .font(.headline)
+                .font(.footnote.weight(.semibold))
                 .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
                 .foregroundStyle(palette.primaryText)
+
             Button {
                 controller.acknowledgeAlarm()
             } label: {
                 Text(LocalizedStringKey("stop_alarm"))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .frame(maxWidth: .infinity)
             }
             .tint(palette.accent)
@@ -82,63 +90,122 @@ struct WatchTimerView: View {
     }
 
     private func runningState(_ session: ChillSession) -> some View {
-        VStack(spacing: 8) {
-            ProgressView(value: session.progress(at: controller.now)) {
-                Text(LocalizedStringKey("remaining_time"))
-                    .font(.caption2)
-                    .foregroundStyle(palette.secondaryText)
+        VStack(spacing: 6) {
+            ChillRing(progress: session.progress(at: controller.now), isRunning: true) {
+                VStack(spacing: 0) {
+                    Text(timerInterval: controller.now...session.endDate, countsDown: true)
+                        .font(.system(size: 30, weight: .semibold, design: .rounded))
+                        .monospacedDigit()
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .foregroundStyle(palette.primaryText)
+
+                    Text(Formatting.temperature(
+                        celsius: session.currentTemperatureC(at: controller.now),
+                        unit: settings.temperatureUnit))
+                        .font(.caption2)
+                        .monospacedDigit()
+                        .foregroundStyle(palette.secondaryText)
+                }
+                .padding(.horizontal, 4)
             }
-            .tint(palette.dialProgress)
-
-            Text(timerInterval: controller.now...session.endDate, countsDown: true)
-                .font(.system(size: 32, weight: .semibold))
-                .monospacedDigit()
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-                .foregroundStyle(palette.primaryText)
-
-            Text(Formatting.temperature(celsius: session.currentTemperatureC(at: controller.now),
-                                        unit: settings.temperatureUnit))
-                .font(.footnote)
-                .foregroundStyle(palette.secondaryText)
 
             Text(Formatting.endsAt(session.endDate))
                 .font(.caption2)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 .foregroundStyle(palette.secondaryText)
 
             Button {
                 controller.stop()
             } label: {
                 Text(LocalizedStringKey("stop"))
+                    .lineLimit(1)
                     .frame(maxWidth: .infinity)
             }
         }
     }
 
     private var idleState: some View {
-        VStack(spacing: 8) {
-            Text(LocalizedStringKey("cooling_time"))
-                .font(.caption2)
-                .foregroundStyle(palette.secondaryText)
+        VStack(spacing: 6) {
+            ChillRing(progress: 0, isRunning: false) {
+                VStack(spacing: 0) {
+                    Text(settings.coolingMinutes.map(Formatting.minutes)
+                         ?? Formatting.localized("check_inputs_short"))
+                        .font(.system(size: 28, weight: .semibold, design: .rounded))
+                        .monospacedDigit()
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
+                        .foregroundStyle(palette.primaryText)
 
-            Text(settings.coolingMinutes.map(Formatting.minutes)
-                 ?? Formatting.localized("check_inputs_short"))
-                .font(.system(size: 30, weight: .semibold))
-                .monospacedDigit()
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-                .foregroundStyle(palette.primaryText)
+                    Text(LocalizedStringKey("cooling_time"))
+                        .font(.system(size: 10))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                        .foregroundStyle(palette.secondaryText)
+                }
+                .padding(.horizontal, 4)
+            }
 
             Button {
                 controller.requestNotificationAuthorizationIfNeeded()
                 controller.start()
             } label: {
                 Text(LocalizedStringKey("watch_start"))
+                    .lineLimit(1)
                     .frame(maxWidth: .infinity)
             }
             .tint(palette.accent)
             .disabled((settings.coolingMinutes ?? 0) <= 0)
         }
+    }
+}
+
+/// The watch's counterpart to the phone's dial: a progress ring with the value
+/// inside it. A ring rather than a linear `ProgressView` because that is the
+/// idiom watchOS uses for timers, and because it puts the number in the middle of
+/// a round display instead of leaving the corners empty.
+///
+/// Sized against the screen so it fits a 40 mm watch without scrolling — the ring
+/// plus the end time plus the button have to live in about 170 pt of height.
+private struct ChillRing<Content: View>: View {
+    @Environment(\.palette) private var palette
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var progress: Double
+    var isRunning: Bool
+    @ViewBuilder var content: Content
+
+    /// Sized from the actual screen instead of the available space: inside a
+    /// scroll view the available height is unbounded, so a self-sizing ring grew
+    /// until it pushed the end time and the stop button off the display.
+    private var side: CGFloat {
+        let bounds = WKInterfaceDevice.current().screenBounds
+        // 0.45 leaves room for the end time and a full-height button below on a
+        // 40 mm watch; at 0.52 the button was clipped by the bottom bezel.
+        return min(bounds.width - 16, bounds.height * 0.45)
+    }
+
+    var body: some View {
+        let lineWidth = max(5, side * 0.075)
+
+        return ZStack {
+            Circle()
+                .stroke(palette.dialTrack, lineWidth: lineWidth)
+
+            if isRunning {
+                Circle()
+                    .trim(from: 0, to: max(0.001, min(progress, 1)))
+                    .stroke(palette.dialProgress,
+                            style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                    .animation(reduceMotion ? nil : .linear(duration: 0.9),
+                               value: progress)
+            }
+
+            content
+        }
+        .frame(width: side, height: side)
     }
 }
 
