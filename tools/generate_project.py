@@ -44,6 +44,62 @@ def _team_id():
 
 TEAM_ID = _team_id()
 
+
+# Manual signing with App Store profiles, for when automatic signing cannot be
+# used. Automatic signing demands a *development* profile for the archive, and
+# Apple issues those only to a team with registered devices — including, for the
+# embedded watch targets, a registered Apple Watch. Distribution profiles need no
+# devices at all, so this is the way out when the hardware is not available.
+#
+#     python3 tools/generate_project.py --team ABCDE12345 --manual-signing \
+#         --profile com.bierchiller.app="BeerCHILLER App Store" \
+#         --profile com.bierchiller.app.widget="BeerCHILLER Widget App Store"
+#
+# A bundle identifier with no --profile keeps automatic signing, so the flag can
+# be introduced one target at a time.
+def _manual_signing():
+    return "--manual-signing" in sys.argv
+
+
+def _profiles():
+    mapping = {}
+    for index, argument in enumerate(sys.argv):
+        value = None
+        if argument == "--profile" and index + 1 < len(sys.argv):
+            value = sys.argv[index + 1]
+        elif argument.startswith("--profile="):
+            value = argument.split("=", 1)[1]
+        if value is None:
+            continue
+        if "=" not in value:
+            raise SystemExit(f"--profile expects bundleid=profile name, got {value!r}")
+        bundle_id, name = value.split("=", 1)
+        mapping[bundle_id.strip()] = name.strip()
+    return mapping
+
+
+MANUAL_SIGNING = _manual_signing()
+PROFILES = _profiles()
+
+if MANUAL_SIGNING and not TEAM_ID:
+    raise SystemExit("--manual-signing needs --team as well")
+if PROFILES and not MANUAL_SIGNING:
+    raise SystemExit("--profile only applies with --manual-signing")
+
+
+def signing_settings(bundle_id):
+    """Per-target signing overrides, empty unless manual signing is requested."""
+    if not MANUAL_SIGNING:
+        return {}
+    settings = {
+        "CODE_SIGN_STYLE": "Manual",
+        "CODE_SIGN_IDENTITY": "Apple Distribution",
+        "DEVELOPMENT_TEAM": TEAM_ID,
+    }
+    if bundle_id in PROFILES:
+        settings["PROVISIONING_PROFILE_SPECIFIER"] = PROFILES[bundle_id]
+    return settings
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_NAME = "BeerCHILLER"
 PROJECT_DIR = os.path.join(ROOT, f"{PROJECT_NAME}.xcodeproj")
@@ -500,6 +556,7 @@ def main():
                                     "@executable_path/../../Frameworks"],
         "SWIFT_VERSION": "5.0",
     }
+    watch_widget_settings.update(signing_settings(APP_BUNDLE_ID + ".watchkitapp.widget"))
     watch_widget_id, watch_widget_prod = target(
         "BeerCHILLERWatchWidget", "watchwidget",
         "com.apple.product-type.app-extension", "appex",
@@ -522,6 +579,7 @@ def main():
         "ENABLE_PREVIEWS": "YES",
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
     }
+    watch_settings.update(signing_settings(APP_BUNDLE_ID + ".watchkitapp"))
     watch_id, watch_prod = target(
         "BeerCHILLERWatch", "watch",
         "com.apple.product-type.application", "app",
@@ -547,6 +605,7 @@ def main():
                                     "@executable_path/../../Frameworks"],
         "SWIFT_VERSION": "5.0",
     }
+    widget_settings.update(signing_settings(APP_BUNDLE_ID + ".widget"))
     widget_id, widget_prod = target(
         "BeerCHILLERWidget", "widget",
         "com.apple.product-type.app-extension", "appex",
@@ -571,6 +630,7 @@ def main():
         "ENABLE_PREVIEWS": "YES",
         "SWIFT_EMIT_LOC_STRINGS": "YES",
     }
+    app_settings.update(signing_settings(APP_BUNDLE_ID))
     app_dependencies = [dependency(widget_id, "BeerCHILLERWidget", project_id)]
     app_phases = [embed_phase("Embed Foundation Extensions", "", 13,
                               [(widget_prod, "BeerCHILLERWidget.appex")], "app")]

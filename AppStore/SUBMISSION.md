@@ -52,9 +52,30 @@ issue a development profile to a team with no devices:
 
 > Your team has no devices from which to generate a provisioning profile.
 
-So the team needs at least one. Either connect an iPhone over USB and let Xcode
-register it (Window → Devices and Simulators), or paste a UDID into Certificates,
-Identifiers & Profiles → **Devices** → **+**.
+So the team needs at least one, and **connecting a device does not register it**.
+`xcodebuild -allowProvisioningUpdates` will not do it either — it fails with
+*"Device … isn't registered in your developer account"* and stops. Registration is
+a separate, deliberate step:
+
+* **Portal**: developer.apple.com → Certificates, Identifiers & Profiles →
+  **Devices** → **+** → Platform *iOS*, paste the UDID.
+* **Xcode.app**: Window → Devices and Simulators, select the device, or just run
+  the app to it once — Xcode offers to register it.
+
+Read a connected device's UDID with:
+
+```bash
+xcrun devicectl list devices --json-output /tmp/d.json >/dev/null \
+  && python3 -c "import json;[print(x['deviceProperties']['name'], x['hardwareProperties']['udid']) for x in json.load(open('/tmp/d.json'))['result']['devices']]"
+```
+
+A UDID looks like `00008110-001925E034FA801E` — not the `devicectl` identifier,
+which is a different UUID and the portal will reject it.
+
+**The watch app may need its own device.** Provisioning profiles are per platform,
+so the embedded watchOS targets can require a registered Apple Watch even after an
+iPhone or iPad is in the list. If no Apple Watch is available, the way out is
+manual signing (section 2.4), which needs no devices at all.
 
 Pinning `CODE_SIGN_IDENTITY = "Apple Distribution"` for Release looks like the fix
 and is not — automatic signing rejects it: *"is automatically signed for
@@ -190,6 +211,36 @@ xcrun altool --validate-app -f build/export/BeerCHILLER.ipa \
 Then upload with `--upload-app` and the same arguments. An App Store Connect API
 key (Users and Access → Integrations → **App Store Connect API**) avoids typing an
 app-specific password; Xcode's Organizer works too if you prefer clicking.
+
+### 2.4 Fallback: manual signing, no devices needed
+
+The device requirement in 1.3 exists only because automatic signing insists on a
+*development* profile for the archive. App Store distribution profiles need no
+devices, so manual signing sidesteps the problem entirely — at the cost of four
+profiles made by hand.
+
+Worth taking when there is no Apple Watch to register, or when this runs on a
+build machine that should not depend on a device list.
+
+1. In the portal, create four **App Store** distribution profiles, one per App ID
+   from the table in 1.2. Download and double-click each one.
+2. Regenerate with manual signing, naming the profiles:
+
+   ```bash
+   python3 tools/generate_project.py --team $TEAM --manual-signing \
+     --profile com.bierchiller.app="BeerCHILLER App Store" \
+     --profile com.bierchiller.app.widget="BeerCHILLER Widget App Store" \
+     --profile com.bierchiller.app.watchkitapp="BeerCHILLER Watch App Store" \
+     --profile com.bierchiller.app.watchkitapp.widget="BeerCHILLER Watch Widget App Store"
+   ```
+
+   Substitute the exact profile names as the portal shows them.
+3. Archive as in 2.2. `-allowProvisioningUpdates` is unnecessary with manual
+   signing, and harmless if left in.
+
+> This path is documented but has not been exercised here — no App Store profiles
+> exist for this team yet. If you take it and a profile name does not match, the
+> error names the profile it looked for, which is enough to correct it.
 
 ---
 
