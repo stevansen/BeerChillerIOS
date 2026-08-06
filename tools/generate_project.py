@@ -106,6 +106,12 @@ PROJECT_DIR = os.path.join(ROOT, f"{PROJECT_NAME}.xcodeproj")
 
 APP_BUNDLE_ID = "com.bierchiller.app"
 APP_GROUP = "group.com.bierchiller.app.shared"
+# App Store Connect rejects an upload whose build number it has already seen, so
+# BUILD_NUMBER has to rise for every upload — even a re-upload of identical code.
+# MARKETING_VERSION is what users see and only changes for a release.
+MARKETING_VERSION = "1.0"
+BUILD_NUMBER = "2"
+
 IOS_TARGET = "16.0"
 WATCH_TARGET = "9.0"
 
@@ -437,8 +443,8 @@ PROJECT_COMMON = {
     "WATCHOS_DEPLOYMENT_TARGET": WATCH_TARGET,
     "CODE_SIGN_STYLE": "Automatic",
     "DEVELOPMENT_TEAM": TEAM_ID,
-    "MARKETING_VERSION": "1.0",
-    "CURRENT_PROJECT_VERSION": "1",
+    "MARKETING_VERSION": MARKETING_VERSION,
+    "CURRENT_PROJECT_VERSION": BUILD_NUMBER,
 }
 
 # Ad-hoc signing is enough for the simulator, but it makes `archive` fail. Only

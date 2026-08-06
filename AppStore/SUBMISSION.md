@@ -151,6 +151,32 @@ This turns on automatic signing for all four targets. **Do not commit the
 result**; it hardcodes your Team ID. Regenerate without `--team` afterwards, or
 use the `BEERCHILLER_TEAM_ID` environment variable instead.
 
+### 2.1a Bump the build number
+
+App Store Connect refuses an upload whose build number it has already seen, even
+if the code is identical. One edit:
+
+```python
+# tools/generate_project.py
+MARKETING_VERSION = "1.0"   # what users see; changes for a release
+BUILD_NUMBER = "2"          # must rise for every upload
+```
+
+Then regenerate. All four bundles read these through
+`$(CURRENT_PROJECT_VERSION)` and `$(MARKETING_VERSION)` in their Info.plist, so
+one edit moves the app, the widget, the watch app and the watch complications
+together.
+
+> They used to be literal `1` and `1.0` in each Info.plist, which silently won
+> over the build setting: bumping `BUILD_NUMBER` produced an archive still
+> stamped `1.0 (1)`. Nothing warned — the mismatch would only have surfaced as a
+> rejected upload. Check the archive after building:
+>
+> ```bash
+> /usr/libexec/PlistBuddy -c "Print :CFBundleVersion" \
+>   build/BeerCHILLER.xcarchive/Products/Applications/BeerCHILLER.app/Info.plist
+> ```
+
 ### 2.2 Archive
 
 Clean first. A language was removed from this build, and stale `.lproj`
@@ -349,6 +375,28 @@ than a failing test.
 
 Upload order in App Store Connect is the display order, so keep the numeric
 prefixes.
+
+Watch screenshots must match the display type exactly. 416 × 496 is
+`APP_WATCH_SERIES_10` (46 mm); sending it as `APP_WATCH_ULTRA` is accepted by the
+upload and then fails asynchronously with `IMAGE_INCORRECT_DIMENSIONS`, so check
+`assetDeliveryState` rather than trusting the upload's success.
+
+---
+
+## 5a. TestFlight
+
+The upload alone does not put a build in front of testers.
+
+* **Internal group** — gets every build automatically. Assigning one explicitly
+  is rejected: *"Cannot add internal group to a build."*
+* **External group** — needs the build assigned to it, and the group needs a
+  passed beta review.
+* **Testers** must accept their invitation. A tester sitting at `INVITED` sees
+  nothing in the TestFlight app, and the device has to be signed in with that
+  same Apple ID. The public link (`publicLink` on the external group) sidesteps
+  both.
+* **"What to Test"** is `betaBuildLocalizations.whatsNew`, per build. Empty by
+  default, so testers are told nothing about what changed unless it is set.
 
 ---
 
