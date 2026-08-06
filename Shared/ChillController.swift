@@ -104,6 +104,12 @@ public final class ChillController: ObservableObject {
         isShowingAlarm = false
 
         scheduleCompletionNotification(for: newSession)
+        // Both, deliberately. The notification is the floor that works on every
+        // supported version; the AlarmKit alarm is what actually wakes someone in
+        // another room, and only exists from iOS 26.1. If both fire, the user
+        // gets two alerts — which is the failure mode to prefer over none.
+        let remaining = newSession.endDate.timeIntervalSinceNow
+        Task { await SystemAlarm.schedule(endingIn: remaining) }
         startLiveActivity(for: newSession)
         reloadWidgets()
         startTickingIfNeeded()
@@ -117,6 +123,8 @@ public final class ChillController: ObservableObject {
         isShowingAlarm = false
 
         cancelCompletionNotification()
+        SystemAlarm.cancel()
+        AlarmSound.shared.stop()
         endLiveActivity()
         reloadWidgets()
         stopTicking()
@@ -126,6 +134,8 @@ public final class ChillController: ObservableObject {
     /// Called when the user dismisses the "your beer is cold" screen.
     public func acknowledgeAlarm() {
         isShowingAlarm = false
+        AlarmSound.shared.stop()
+        SystemAlarm.cancel()
         stop()
     }
 
@@ -144,6 +154,7 @@ public final class ChillController: ObservableObject {
         guard let session else { return }
         if session.isFinished() {
             isShowingAlarm = true
+            AlarmSound.shared.start()
         }
     }
 
@@ -173,6 +184,9 @@ public final class ChillController: ObservableObject {
         }
         if session.isFinished(at: date) {
             isShowingAlarm = true
+            // Frontmost, so no notification will be presented — without this the
+            // alarm screen appeared in silence.
+            AlarmSound.shared.start()
             stopTicking()
             endLiveActivity()
             reloadWidgets()
@@ -188,6 +202,7 @@ public final class ChillController: ObservableObject {
         reloadFromStore()
         if let session, session.isFinished(at: now) {
             isShowingAlarm = true
+            AlarmSound.shared.start()
         }
         startTickingIfNeeded()
     }

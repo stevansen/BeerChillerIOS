@@ -5,7 +5,7 @@
          <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BEEF00000000000000000063"
+               BlueprintIdentifier = "BEEF00000000000000000067"
                BuildableName = "BeerCHILLER.app"
                BlueprintName = "BeerCHILLER"
                ReferencedContainer = "container:BeerCHILLER.xcodeproj">
@@ -18,7 +18,7 @@
       <TestableReference skipped = "NO">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF0000000000000000009A"
+            BlueprintIdentifier = "BEEF000000000000000000A4"
             BuildableName = "BeerCHILLERTests.xctest"
             BlueprintName = "BeerCHILLERTests"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">
@@ -27,7 +27,7 @@
       <TestableReference skipped = "NO">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF000000000000000000A5"
+            BlueprintIdentifier = "BEEF000000000000000000B1"
             BuildableName = "BeerCHILLERUITests.xctest"
             BlueprintName = "BeerCHILLERUITests"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">
@@ -39,7 +39,7 @@
       <BuildableProductRunnable runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF00000000000000000063"
+            BlueprintIdentifier = "BEEF00000000000000000067"
             BuildableName = "BeerCHILLER.app"
             BlueprintName = "BeerCHILLER"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">
@@ -50,7 +50,7 @@
       <BuildableProductRunnable runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEEF00000000000000000063"
+            BlueprintIdentifier = "BEEF00000000000000000067"
             BuildableName = "BeerCHILLER.app"
             BlueprintName = "BeerCHILLER"
             ReferencedContainer = "container:BeerCHILLER.xcodeproj">

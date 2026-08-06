@@ -1,0 +1,53 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSAlarmKitUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER stellt einen Wecker, damit du erfährst, sobald dein Bier kalt ist – auch wenn das iPhone stumm geschaltet ist."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER uses an alarm to tell you the moment your beer is cold, even when your iPhone is silenced."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER usa una alarma para avisarte en cuanto tu cerveza esté fría, incluso con el iPhone en silencio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER utilise une alarme pour vous prévenir dès que votre bière est fraîche, même iPhone en mode silencieux."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER usa una sveglia per avvisarti appena la birra è fredda, anche con l’iPhone silenziato."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BeerCHILLER gebruikt een wekker om je te laten weten zodra je bier koud is, ook als je iPhone op stil staat."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O BeerCHILLER usa um alarme para te avisar assim que a cerveja estiver fresca, mesmo com o iPhone silenciado."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

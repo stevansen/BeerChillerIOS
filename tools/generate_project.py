@@ -122,7 +122,8 @@ SHARED_CORE = [
     "Shared/Formatting.swift",
 ]
 SHARED_ACTIVITY = ["Shared/ChillActivityAttributes.swift"]
-SHARED_RUNTIME = ["Shared/ChillController.swift", "Shared/WatchSync.swift"]
+SHARED_RUNTIME = ["Shared/ChillController.swift", "Shared/WatchSync.swift",
+                  "Shared/AlarmSound.swift", "Shared/SystemAlarm.swift"]
 
 APP_SOURCES = SHARED_CORE + SHARED_ACTIVITY + SHARED_RUNTIME + [
     "BeerChiller/BeerChillerApp.swift",
@@ -176,8 +177,14 @@ HELP_FILES = sorted(
 # added to the app and to each extension.
 PRIVACY_MANIFEST = "BeerChiller/PrivacyInfo.xcprivacy"
 
+ALARM_SOUND = "BeerChiller/Resources/alarm.wav"
+
 APP_RESOURCES = ["BeerChiller/Assets.xcassets", "BeerChiller/Localizable.xcstrings",
-                 PRIVACY_MANIFEST] + HELP_FILES
+                 PRIVACY_MANIFEST, ALARM_SOUND,
+                 # Localises the permission prompt; without it the system
+                 # dialog would be the one English string in a fully
+                 # translated app.
+                 "BeerChiller/InfoPlist.xcstrings"] + HELP_FILES
 WIDGET_RESOURCES = ["BeerChiller/Localizable.xcstrings", PRIVACY_MANIFEST]
 WATCH_RESOURCES = ["BeerChillerWatch/Assets.xcassets",
                    "BeerChiller/Localizable.xcstrings", PRIVACY_MANIFEST]
@@ -190,6 +197,7 @@ KNOWN_TYPES = {
     ".xcstrings": "text.json.xcstrings",
     ".md": "net.daringfireball.markdown",
     ".plist": "text.plist.xml",
+    ".wav": "audio.wav",
     ".entitlements": "text.plist.entitlements",
 }
 
@@ -697,12 +705,18 @@ def main():
     views_group = group("Views", [file_ref(p) for p in APP_SOURCES
                                   if p.startswith("BeerChiller/Views/")], path="Views")
     help_group = group("Help", [file_ref(p) for p in HELP_FILES], path="Help")
+    # A file reference alone is not enough: without a group carrying the
+    # directory, Xcode resolves `path = alarm.wav` against the project root and
+    # the build fails with "no such file". The Help group does the same job.
+    resources_group = group("Resources", [file_ref(ALARM_SOUND)], path="Resources")
     app_group_node = group("BeerChiller", [
         file_ref("BeerChiller/BeerChillerApp.swift"),
         views_group,
         help_group,
+        resources_group,
         file_ref("BeerChiller/Assets.xcassets"),
         file_ref("BeerChiller/Localizable.xcstrings"),
+        file_ref("BeerChiller/InfoPlist.xcstrings"),
         file_ref(PRIVACY_MANIFEST),
         file_ref("BeerChiller/Info.plist"),
         file_ref("BeerChiller/BeerChiller.entitlements"),
