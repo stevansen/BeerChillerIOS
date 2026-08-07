@@ -34,4 +34,4 @@ OVER DE NAUWKEURIGHEID
 
 De tijden zijn schattingen. Een echte koelkast of vriezer koelt sneller of langzamer, afhankelijk van luchtstroming, belading, contact met de plaat en hoe vaak de deur opengaat. Zie het aftellen als een goede richtlijn, niet als een meting.
 
-BeerCHILLER voor iOS is een port van de Android-app van C. Auer. Geniet met mate.
+BeerCHILLER is gebaseerd op een oorspronkelijk concept en ontwerp van C. Auer. Geniet met mate.

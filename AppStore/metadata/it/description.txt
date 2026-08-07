@@ -33,4 +33,4 @@ SULLA PRECISIONE
 
 I tempi sono stime. Un frigorifero o un congelatore reale raffredda più o meno rapidamente in base al flusso d’aria, al carico, al contatto con il ripiano e a quante volte si apre la porta. Considera il conto alla rovescia una buona indicazione, non una misura.
 
-BeerCHILLER per iOS è un port dell’app Android di C. Auer. Bevi responsabilmente.
+BeerCHILLER si basa su un’idea e un design originali di C. Auer. Bevi responsabilmente.

@@ -295,16 +295,20 @@ responsibly".
 
 | Question | Answer |
 |---|---|
-| Alcohol, Tobacco, or Drug Use or References | **Yes — infrequent/mild** |
+| Alcohol, Tobacco, or Drug Use or References | **Yes — frequent/intense** |
 | Everything else (violence, sexual content, gambling, horror, profanity, contests, medical/treatment information) | **None** |
 | Unrestricted web access | **No** |
 | Made for Kids | **No** |
 
-App Store Connect computes the final band from these answers rather than letting
-you pick it. Expect something in the 16+/17+ region — that is normal for
-alcohol-related utilities and is not a problem. **Read what it computes and
-sanity-check it**; Apple has revised these bands recently and I would not swear to
-the exact result.
+This says *frequent*, not *infrequent/mild*, and that distinction cost a
+rejection. Submitted as infrequent/mild, App Review rejected the build under
+**guideline 2.3.6**: an app must be rated for the highest level of content it
+offers, and every screen of this one is about beer. Frequent is the honest answer
+for an app whose entire subject is a beverage, even though it depicts no drinking.
+
+App Store Connect computes the band from these answers rather than letting you
+pick it: frequent yields **17+** (16 in Brazil), where infrequent/mild yielded
+12+.
 
 ### 4.2 App privacy ("nutrition label")
 
@@ -330,6 +334,26 @@ No third-party content. The beer artwork is generated procedurally by
 stock imagery, no licence to attribute. The formulas and the model come from the
 Android original by C. Auer, ported with his agreement; `LICENSE.md` and
 `ACKNOWLEDGEMENTS.md` record the authorship.
+
+### 4.4a No references to other platforms
+
+App Review rejected the first submission under **guideline 2.3.10** as well: the
+descriptions closed with "a port of the Android app by C. Auer", and store copy
+must not point users at other platforms.
+
+The credit itself has to stay — the design is licensed CC BY 4.0, which requires
+attribution — so only the platform went: "BeerCHILLER is built on an original
+concept and design by C. Auer."
+
+`tools/make_appstore_metadata.py` holds the copy. After editing it, check the
+whole directory rather than the file you touched:
+
+```bash
+grep -rniE "android|google|play store|windows" AppStore/metadata/
+```
+
+The app's own strings were already clean — the Android-only keys were dropped
+during the port — so this was purely a metadata problem.
 
 ### 4.5 Review notes
 

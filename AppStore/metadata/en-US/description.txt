@@ -33,4 +33,4 @@ A NOTE ON ACCURACY
 
 The times are estimates. A real fridge or freezer cools faster or slower depending on airflow, how full it is, contact with the shelf, and how often the door opens. Treat the countdown as a good guide, not a measurement.
 
-BeerCHILLER for iOS is a port of the Android app by C. Auer. Enjoy responsibly.
+BeerCHILLER is built on an original concept and design by C. Auer. Enjoy responsibly.

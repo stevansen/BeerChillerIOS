@@ -33,4 +33,4 @@ BeerCHILLER ne collecte rien et ne contient aucun code réseau. Vos réglages et
 
 Les durées sont des estimations. Un réfrigérateur ou un congélateur réel refroidit plus vite ou plus lentement selon la circulation de l’air, le remplissage, le contact avec la clayette et la fréquence d’ouverture de la porte. Prenez le décompte comme un bon repère, pas comme une mesure.
 
-BeerCHILLER pour iOS est un portage de l’app Android de C. Auer. À consommer avec modération.
+BeerCHILLER repose sur un concept et un design originaux de C. Auer. À consommer avec modération.

@@ -118,7 +118,7 @@ A NOTE ON ACCURACY
 
 The times are estimates. A real fridge or freezer cools faster or slower depending on airflow, how full it is, contact with the shelf, and how often the door opens. Treat the countdown as a good guide, not a measurement.
 
-BeerCHILLER for iOS is a port of the Android app by C. Auer. Enjoy responsibly.""",
+BeerCHILLER is built on an original concept and design by C. Auer. Enjoy responsibly.""",
 
     "de": """BeerCHILLER sagt dir, wie lange dein Bier im Kühlschrank oder Gefrierschrank braucht — und meldet sich, sobald es kalt ist.
 
@@ -155,7 +155,7 @@ ZUR GENAUIGKEIT
 
 Die Zeiten sind Schätzungen. Ein echter Kühl- oder Gefrierschrank kühlt schneller oder langsamer — je nach Luftstrom, Beladung, Kontakt zum Einlegeboden und wie oft die Tür aufgeht. Nimm den Countdown als guten Richtwert, nicht als Messung.
 
-BeerCHILLER für iOS ist eine Portierung der Android-App von C. Auer. Genieße verantwortungsvoll.""",
+BeerCHILLER beruht auf einem Konzept und Design von C. Auer. Genieße verantwortungsvoll.""",
 
     "es": """BeerCHILLER te dice cuánto tiempo necesita tu cerveza en la nevera o el congelador, y te avisa en cuanto está fría.
 
@@ -192,7 +192,7 @@ SOBRE LA PRECISIÓN
 
 Los tiempos son estimaciones. Una nevera o un congelador reales enfrían más rápido o más despacio según la circulación del aire, la carga, el contacto con la bandeja y la frecuencia con que se abre la puerta. Toma la cuenta atrás como una buena guía, no como una medición.
 
-BeerCHILLER para iOS es una adaptación de la app de Android de C. Auer. Consume con responsabilidad.""",
+BeerCHILLER se basa en un concepto y un diseño originales de C. Auer. Consume con responsabilidad.""",
 
     "fr": """BeerCHILLER vous dit combien de temps votre bière doit rester au réfrigérateur ou au congélateur, et vous prévient dès qu’elle est fraîche.
 
@@ -229,7 +229,7 @@ BeerCHILLER ne collecte rien et ne contient aucun code réseau. Vos réglages et
 
 Les durées sont des estimations. Un réfrigérateur ou un congélateur réel refroidit plus vite ou plus lentement selon la circulation de l’air, le remplissage, le contact avec la clayette et la fréquence d’ouverture de la porte. Prenez le décompte comme un bon repère, pas comme une mesure.
 
-BeerCHILLER pour iOS est un portage de l’app Android de C. Auer. À consommer avec modération.""",
+BeerCHILLER repose sur un concept et un design originaux de C. Auer. À consommer avec modération.""",
 
     "it": """BeerCHILLER ti dice quanto tempo serve alla tua birra in frigo o in congelatore, e ti avvisa appena è fredda.
 
@@ -266,7 +266,7 @@ SULLA PRECISIONE
 
 I tempi sono stime. Un frigorifero o un congelatore reale raffredda più o meno rapidamente in base al flusso d’aria, al carico, al contatto con il ripiano e a quante volte si apre la porta. Considera il conto alla rovescia una buona indicazione, non una misura.
 
-BeerCHILLER per iOS è un port dell’app Android di C. Auer. Bevi responsabilmente.""",
+BeerCHILLER si basa su un’idea e un design originali di C. Auer. Bevi responsabilmente.""",
 
     "nl": """BeerCHILLER vertelt je hoe lang je bier in de koelkast of de vriezer moet, en laat het weten zodra het koud is.
 
@@ -304,7 +304,7 @@ OVER DE NAUWKEURIGHEID
 
 De tijden zijn schattingen. Een echte koelkast of vriezer koelt sneller of langzamer, afhankelijk van luchtstroming, belading, contact met de plaat en hoe vaak de deur opengaat. Zie het aftellen als een goede richtlijn, niet als een meting.
 
-BeerCHILLER voor iOS is een port van de Android-app van C. Auer. Geniet met mate.""",
+BeerCHILLER is gebaseerd op een oorspronkelijk concept en ontwerp van C. Auer. Geniet met mate.""",
 
     "pt": """O BeerCHILLER diz-te quanto tempo a tua cerveja precisa no frigorífico ou no congelador, e avisa assim que estiver fresca.
 
@@ -341,7 +341,7 @@ SOBRE A PRECISÃO
 
 Os tempos são estimativas. Um frigorífico ou congelador real arrefece mais depressa ou mais devagar, dependendo da circulação de ar, da carga, do contacto com a prateleira e da frequência com que a porta é aberta. Toma a contagem como uma boa referência, não como uma medição.
 
-O BeerCHILLER para iOS é uma adaptação da app Android de C. Auer. Bebe com responsabilidade.""",
+O BeerCHILLER baseia-se num conceito e design originais de C. Auer. Bebe com responsabilidade.""",
 }
 
 RELEASE_NOTES = {

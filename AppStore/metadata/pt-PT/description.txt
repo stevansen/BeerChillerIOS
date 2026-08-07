@@ -33,4 +33,4 @@ SOBRE A PRECISÃO
 
 Os tempos são estimativas. Um frigorífico ou congelador real arrefece mais depressa ou mais devagar, dependendo da circulação de ar, da carga, do contacto com a prateleira e da frequência com que a porta é aberta. Toma a contagem como uma boa referência, não como uma medição.
 
-O BeerCHILLER para iOS é uma adaptação da app Android de C. Auer. Bebe com responsabilidade.
+O BeerCHILLER baseia-se num conceito e design originais de C. Auer. Bebe com responsabilidade.

@@ -33,4 +33,4 @@ ZUR GENAUIGKEIT
 
 Die Zeiten sind Schätzungen. Ein echter Kühl- oder Gefrierschrank kühlt schneller oder langsamer — je nach Luftstrom, Beladung, Kontakt zum Einlegeboden und wie oft die Tür aufgeht. Nimm den Countdown als guten Richtwert, nicht als Messung.
 
-BeerCHILLER für iOS ist eine Portierung der Android-App von C. Auer. Genieße verantwortungsvoll.
+BeerCHILLER beruht auf einem Konzept und Design von C. Auer. Genieße verantwortungsvoll.

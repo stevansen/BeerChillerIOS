@@ -33,4 +33,4 @@ SOBRE LA PRECISIÓN
 
 Los tiempos son estimaciones. Una nevera o un congelador reales enfrían más rápido o más despacio según la circulación del aire, la carga, el contacto con la bandeja y la frecuencia con que se abre la puerta. Toma la cuenta atrás como una buena guía, no como una medición.
 
-BeerCHILLER para iOS es una adaptación de la app de Android de C. Auer. Consume con responsabilidad.
+BeerCHILLER se basa en un concepto y un diseño originales de C. Auer. Consume con responsabilidad.
