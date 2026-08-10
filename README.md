@@ -1,9 +1,13 @@
 # BeerCHILLER for iOS
 
-A native iOS/watchOS port of the Android app
-[cauer71/BeerCHILLER](https://github.com/cauer71/BeerCHILLER) — it estimates how
-long a bottle or can of beer needs in the fridge or freezer and alerts you when
-the target temperature is reached.
+A native iOS and watchOS app that estimates how long a bottle or can of beer
+needs in the fridge or freezer, times it, and raises an alarm when the target
+temperature is reached. Built on an original concept and design by C. Auer.
+
+> This page is the App Store listing's support URL, so it leads with what the app
+> does. The heritage and the porting notes are all still here — see *Lineage*,
+> *The cooling model* and *Deliberate deviations* — just not as the first thing a
+> visitor reads.
 
 ## Requirements
 
@@ -24,6 +28,18 @@ Everything for the store lives in [`AppStore/`](AppStore/):
   Apple's limit.
 * `AppStore/screenshots/` — regenerate with
   `bash tools/make_appstore_screenshots.sh`.
+
+## Lineage
+
+BeerCHILLER for iOS is a from-scratch reimplementation of
+[cauer71/BeerCHILLER](https://github.com/cauer71/BeerCHILLER), with C. Auer's
+agreement. Nothing is shared but the cooling model, the localized help text and
+the visual idea; the SwiftUI interface, the widgets, the watch app, the artwork
+and the alarm are new.
+
+The model is ported 1:1 and pinned by the original project's own unit tests
+reproduced verbatim — see *Parity* below — so the two apps give the same answer
+for the same inputs.
 
 ## Licence and credits
 
