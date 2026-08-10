@@ -1,0 +1,5 @@
+Een echt alarm wanneer het bier klaar is.
+
+• Met de app open klinkt er nu geluid — eerder verscheen het klaar-scherm in stilte.
+• Vanaf iOS 26.1 zet BeerCHILLER een systeemwekker: die gaat door Focus heen en blijft bellen tot je hem stopt.
+• De melding bij een gesloten app werkt als voorheen.

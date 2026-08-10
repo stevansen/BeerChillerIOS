@@ -1,0 +1,5 @@
+Una alarma de verdad cuando la cerveza está lista.
+
+• Con la app abierta ahora suena: antes, la pantalla de aviso aparecía en silencio.
+• Desde iOS 26.1, BeerCHILLER programa una alarma del sistema: suena a través de los modos de concentración y no para hasta que la detienes.
+• La notificación con la app cerrada funciona como antes.

@@ -1,0 +1,1 @@
+Quanto tempo precisa a tua cerveja no congelador? O BeerCHILLER calcula-o com um modelo de arrefecimento calibrado, inicia o temporizador e avisa quando estiver fresca.

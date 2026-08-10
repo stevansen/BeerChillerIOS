@@ -1,0 +1,5 @@
+A real alarm when the beer is ready.
+
+• With the app open it now makes a sound — before, the ready screen appeared in silence.
+• On iOS 26.1 and later BeerCHILLER schedules a system alarm: it rings through Focus and keeps ringing until you stop it.
+• The notification for a closed app works as before.

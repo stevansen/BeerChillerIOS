@@ -7,10 +7,19 @@ Layout follows fastlane deliver, so the directory can be uploaded as-is:
 Locales are App Store Connect's codes, not the app's language codes: Italian is
 "it", not "it-IT".
 """
+import sys
 from pathlib import Path
 
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))          # so appstore_copy_next is importable
+
+# --next selects the copy staged for the coming release and writes it beside the
+# live set, so the repository records both what is published and what is queued.
+# Nothing is uploaded by this script either way.
+NEXT = "--next" in sys.argv
+
 # Derived from this file's location, so the script works in any clone.
-ROOT = Path(__file__).resolve().parent.parent / "AppStore/metadata"
+ROOT = HERE.parent / ("AppStore/metadata-next" if NEXT else "AppStore/metadata")
 
 # field -> Apple's maximum length (None = no documented limit worth enforcing)
 LIMITS = {
@@ -357,6 +366,19 @@ RELEASE_NOTES = {
 SUPPORT_URL = "https://github.com/stevansen/BeerChillerIOS"
 MARKETING_URL = "https://github.com/stevansen/BeerChillerIOS"
 PRIVACY_URL = "https://github.com/stevansen/BeerChillerIOS/blob/main/PRIVACY.md"
+
+
+if NEXT:
+    import appstore_copy_next as _next
+    # Only what the staged module defines is overridden; everything else keeps
+    # the published wording. A field that is not being revised then cannot drift
+    # by sitting duplicated in two places.
+    for _field in ("SUBTITLE", "PROMO", "KEYWORDS", "DESCRIPTION", "RELEASE_NOTES"):
+        if hasattr(_next, _field):
+            globals()[_field] = getattr(_next, _field)
+    print("staged copy overrides: "
+          + ", ".join(f for f in ("SUBTITLE", "PROMO", "KEYWORDS", "DESCRIPTION",
+                                  "RELEASE_NOTES") if hasattr(_next, f)))
 
 
 def main():

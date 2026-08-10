@@ -1,0 +1,1 @@
+bière,refroidir,frigo,congélateur,minuteur,alarme,température,froid

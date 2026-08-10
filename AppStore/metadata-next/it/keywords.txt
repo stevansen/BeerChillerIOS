@@ -1,0 +1,1 @@
+birra,raffreddare,frigo,congelatore,timer,sveglia,temperatura,freddo

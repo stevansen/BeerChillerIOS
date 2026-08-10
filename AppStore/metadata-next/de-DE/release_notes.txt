@@ -1,0 +1,5 @@
+Ein echter Alarm, wenn das Bier fertig ist.
+
+• Bei geöffneter App klingelt es jetzt — vorher erschien der Fertig-Schirm stumm.
+• Ab iOS 26.1 stellt BeerCHILLER einen Systemwecker: Er klingelt durch Fokus hindurch und hört erst auf, wenn du ihn wegdrückst.
+• Die Mitteilung bei geschlossener App funktioniert wie bisher.

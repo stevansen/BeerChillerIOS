@@ -1,0 +1,1 @@
+Beer in the freezer, forgotten again? BeerCHILLER works out how long it really needs, counts the minutes down, and raises an alarm the moment it’s cold.

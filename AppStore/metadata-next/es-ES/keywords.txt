@@ -1,0 +1,1 @@
+cerveza,enfriar,nevera,congelador,temporizador,alarma,temperatura,frío

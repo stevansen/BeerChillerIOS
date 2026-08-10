@@ -1,0 +1,5 @@
+Una sveglia vera quando la birra è pronta.
+
+• Con l’app aperta ora suona: prima la schermata di fine compariva in silenzio.
+• Da iOS 26.1 BeerCHILLER programma una sveglia di sistema: suona attraverso Full Immersion e continua finché non la fermi.
+• La notifica ad app chiusa funziona come prima.

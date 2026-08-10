@@ -1,0 +1,5 @@
+Une vraie alarme quand la bière est prête.
+
+• App ouverte, elle sonne désormais : avant, l’écran de fin s’affichait en silence.
+• À partir d’iOS 26.1, BeerCHILLER programme une alarme système : elle traverse les modes de concentration et sonne jusqu’à ce que vous l’arrêtiez.
+• La notification app fermée fonctionne comme avant.

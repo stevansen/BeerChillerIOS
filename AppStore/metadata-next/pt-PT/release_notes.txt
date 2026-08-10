@@ -1,0 +1,5 @@
+Um alarme a sério quando a cerveja está pronta.
+
+• Com a app aberta passa a tocar — antes, o ecrã de pronto aparecia em silêncio.
+• A partir do iOS 26.1 o BeerCHILLER agenda um alarme do sistema: atravessa os modos de concentração e continua até o parares.
+• A notificação com a app fechada funciona como antes.
