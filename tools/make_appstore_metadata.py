@@ -46,9 +46,9 @@ SUBTITLE = {
 }
 
 PROMO = {
-    "en": "How long does your beer need in the freezer? BeerCHILLER works it out "
-          "from a calibrated cooling model, times it, and tells you the moment "
-          "it is cold.",
+    "en": "Beer in the freezer, forgotten again? BeerCHILLER works out how long "
+          "it really needs, counts the minutes down, and raises an alarm the "
+          "moment it\u2019s cold.",
     "de": "Wie lange braucht das Bier im Gefrierschrank? BeerCHILLER berechnet "
           "es mit einem kalibrierten Kühlmodell, stellt den Timer und meldet "
           "sich, sobald es kalt ist.",
@@ -58,9 +58,9 @@ PROMO = {
     "fr": "Combien de temps votre bière doit-elle rester au congélateur ? "
           "BeerCHILLER le calcule avec un modèle calibré, lance le minuteur "
           "et vous prévient dès qu’elle est fraîche.",
-    "it": "Quanto tempo serve alla birra nel congelatore? BeerCHILLER lo calcola "
-          "con un modello di raffreddamento calibrato, avvia il timer e ti "
-          "avvisa appena è fredda.",
+    "it": "Birra in congelatore, dimenticata di nuovo? BeerCHILLER calcola "
+          "quanto le serve davvero, fa il conto alla rovescia e suona appena "
+          "è fredda.",
     "nl": "Hoe lang moet je bier in de vriezer? BeerCHILLER berekent het met een "
           "gekalibreerd koelmodel, zet de timer en laat het weten zodra het "
           "koud is.",

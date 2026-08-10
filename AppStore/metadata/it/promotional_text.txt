@@ -1,1 +1,1 @@
-Quanto tempo serve alla birra nel congelatore? BeerCHILLER lo calcola con un modello di raffreddamento calibrato, avvia il timer e ti avvisa appena è fredda.
+Birra in congelatore, dimenticata di nuovo? BeerCHILLER calcola quanto le serve davvero, fa il conto alla rovescia e suona appena è fredda.
