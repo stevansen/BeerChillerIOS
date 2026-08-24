@@ -18,17 +18,34 @@ public enum SharedStore {
     /// Notification posted (locally) whenever the shared session changes.
     public static let sessionDidChangeNotification = Notification.Name("BeerChillerSessionDidChange")
 
+    /// True when this process is actually a member of the App Group.
+    ///
+    /// `containerURL(forSecurityApplicationGroupIdentifier:)` is the only signal
+    /// that answers this. A round-trip write-then-read does not: measured against
+    /// a deliberately non-existent group, `UserDefaults(suiteName:)` hands back a
+    /// working suite and the round-trip succeeds, because the writes land in a
+    /// plist inside this app's own container. The data is simply invisible to the
+    /// widget and the watch — the app keeps working and nothing is shared, which
+    /// is the kind of defect noticed weeks later.
+    ///
+    ///     group.com.bierchiller.app.shared        containerURL present, round-trip true
+    ///     group.com.bierchiller.app.doesnotexist  containerURL nil,     round-trip true
+    ///
+    /// Note for a future macOS or Mac Catalyst target: those require the group to
+    /// be written `$(TeamIdentifierPrefix)group.…`, while iOS, watchOS and tvOS
+    /// use it bare. Resolve the identifier per platform rather than sharing one
+    /// literal — and keep asserting the container, not the string.
+    public static var isSharingContainer: Bool {
+        FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) != nil
+    }
+
     public static let defaults: UserDefaults = {
-        if let suite = UserDefaults(suiteName: appGroupIdentifier) {
-            // Round-trip probe: an entitlement-less build hands back a suite that
-            // silently drops writes on device. Verify before trusting it.
-            let probeKey = "__beerchiller_probe"
-            suite.set(true, forKey: probeKey)
-            if suite.bool(forKey: probeKey) {
-                suite.removeObject(forKey: probeKey)
-                return suite
-            }
+        if isSharingContainer, let suite = UserDefaults(suiteName: appGroupIdentifier) {
+            return suite
         }
+        // Unsigned or misconfigured build: keep working on standard defaults
+        // rather than pretending the group is there.
         return .standard
     }()
 
