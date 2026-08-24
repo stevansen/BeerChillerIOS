@@ -31,10 +31,27 @@ public enum SharedStore {
     ///     group.com.bierchiller.app.shared        containerURL present, round-trip true
     ///     group.com.bierchiller.app.doesnotexist  containerURL nil,     round-trip true
     ///
-    /// Note for a future macOS or Mac Catalyst target: those require the group to
-    /// be written `$(TeamIdentifierPrefix)group.…`, while iOS, watchOS and tvOS
-    /// use it bare. Resolve the identifier per platform rather than sharing one
-    /// literal — and keep asserting the container, not the string.
+    /// Two notes for whoever adds another kind of shared storage, or a macOS or
+    /// Mac Catalyst target. Both are identifiers that need a team prefix and fail
+    /// quietly without one, and the two rules are not the same rule:
+    ///
+    /// * **App Groups** need the prefix on macOS and Mac Catalyst only —
+    ///   `$(TeamIdentifierPrefix)group.…` — while iOS, watchOS and tvOS use the
+    ///   identifier bare. A single shared literal is therefore wrong on the Mac
+    ///   and right everywhere else, which is the worst shape a constant can have.
+    /// * **Keychain access groups** need the prefix on *every* platform, and it
+    ///   is a different build setting: `$(AppIdentifierPrefix)com.example.shared`.
+    ///   The two prefixes usually expand to the same team identifier but are not
+    ///   guaranteed to, so they are not interchangeable.
+    ///
+    /// Resolve such an identifier per platform instead of sharing one literal,
+    /// and assert the thing itself — the container, or a keychain round trip
+    /// against a second target — never the string.
+    ///
+    /// Neither applies today: there is no macOS or Catalyst target, and the app
+    /// never touches the keychain. Checked rather than assumed — no `SecItem`
+    /// call anywhere in the sources, and `keychain-access-groups` appears in none
+    /// of the four entitlements files.
     public static var isSharingContainer: Bool {
         FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier) != nil
