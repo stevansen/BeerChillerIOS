@@ -123,7 +123,16 @@ final class AppStoreScreenshots: XCTestCase {
 
         app.buttons["menu.open"].tap()
 
-        let modelRow = app.buttons["menu.model"]
+        // iOS 27 no longer carries a menu row's accessibilityIdentifier through to
+        // the presented menu — the row is a plain button with only its label. The
+        // identifier is still tried first; the fallback matches the one menu title
+        // containing "mod" (Modell / model / modèle / modello / modelo), which no
+        // other row in any of the seven languages does.
+        let byIdentifier = app.buttons["menu.model"]
+        let byTitle = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS[c] 'mod'")).firstMatch
+        _ = byIdentifier.waitForExistence(timeout: 3)
+        let modelRow = byIdentifier.exists ? byIdentifier : byTitle
         XCTAssertTrue(modelRow.waitForExistence(timeout: 10),
                       "the ⋯ menu did not open, or the model row is missing")
         modelRow.tap()

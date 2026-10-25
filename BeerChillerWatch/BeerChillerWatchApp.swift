@@ -27,7 +27,7 @@ struct BeerChillerWatchApp: App {
                 .environmentObject(settings)
                 .environmentObject(controller)
         }
-        .onChange(of: scenePhase) { phase in
+        .onValueChange(of: scenePhase) { phase in
             if phase == .active {
                 // Pull the counterpart's latest state rather than waiting for a
                 // delegate callback that may never arrive.

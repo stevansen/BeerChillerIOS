@@ -70,7 +70,7 @@ struct ThemedCard<Content: View>: View {
 
 struct BrandHeader: View {
     @Environment(\.palette) private var palette
-    @Environment(\.sizeCategory) private var sizeCategory
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @EnvironmentObject private var settings: AppSettings
 
     var onOpenSettings: () -> Void
@@ -82,7 +82,7 @@ struct BrandHeader: View {
     /// Grows with the text size, but capped so the glyph cannot push the
     /// wordmark and the menu button off the row at accessibility sizes.
     private var markHeight: CGFloat {
-        if sizeCategory.isAccessibilityCategory { return isCompact ? 34 : 42 }
+        if dynamicTypeSize.isAccessibilitySize { return isCompact ? 34 : 42 }
         return isCompact ? 26 : 34
     }
 
@@ -207,6 +207,22 @@ struct CoolingDial: View {
 
     private let tickCount = 96
 
+    // The dial scales with its frame, not with the text size, so the fonts are
+    // scaled by the user's Dynamic Type setting on top (capped, because the ring
+    // has a fixed interior). The value line already shrinks via minimumScaleFactor.
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var typeScale: CGFloat {
+        switch dynamicTypeSize {
+        case .xSmall, .small: return 0.92
+        case .medium, .large: return 1
+        case .xLarge: return 1.06
+        case .xxLarge: return 1.12
+        case .xxxLarge: return 1.18
+        default: return 1.24
+        }
+    }
+
     var body: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
@@ -225,12 +241,12 @@ struct CoolingDial: View {
 
                 VStack(spacing: size * 0.03) {
                     Text(title)
-                        .font(.system(size: max(13, size * 0.075), weight: .regular))
+                        .font(.system(size: max(13, size * 0.075) * typeScale, weight: .regular))
                         .foregroundStyle(palette.secondaryText)
                         .textCase(palette.usesPhotoBackground ? .uppercase : nil)
 
                     Text(value)
-                        .font(.system(size: max(28, size * 0.175), weight: .semibold))
+                        .font(.system(size: max(28, size * 0.175) * typeScale, weight: .semibold))
                         .foregroundStyle(palette.primaryText)
                         .minimumScaleFactor(0.5)
                         .lineLimit(1)
@@ -238,7 +254,7 @@ struct CoolingDial: View {
 
                     if let subtitle {
                         Text(subtitle)
-                            .font(.system(size: max(12, size * 0.062)))
+                            .font(.system(size: max(12, size * 0.062) * typeScale))
                             .foregroundStyle(palette.secondaryText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
@@ -310,6 +326,8 @@ struct ThemedSegments<Value: Hashable>: View {
                 } label: {
                     Text(label(option))
                         .font(.body.weight(selected ? .semibold : .regular))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
                         .foregroundStyle(
                             !enabled ? palette.disabledText
                                 : selected ? palette.selectedText : palette.unselectedText
@@ -429,6 +447,9 @@ struct CompactTemperatureCell: View {
     var value: String
     var canDecrease: Bool
     var canIncrease: Bool
+    /// Value above a full-width − / + pair instead of between them: ~100 pt per
+    /// cell instead of ~150, for landscape on phones with large side insets.
+    var isStacked: Bool = false
     var onStep: (Int) -> Void
 
     var body: some View {
@@ -441,22 +462,21 @@ struct CompactTemperatureCell: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
 
-            HStack(spacing: 3) {
-                stepButton(symbol: "minus", enabled: canDecrease, delta: -1)
+            if isStacked {
+                VStack(spacing: 3) {
+                    valueChip(minHeight: 28)
 
-                Text(value)
-                    .font(.subheadline.weight(.medium))
-                    .monospacedDigit()
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.65)
-                    .foregroundStyle(palette.primaryText)
-                    .frame(minWidth: 56, maxWidth: .infinity, minHeight: 44)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .fill(palette.chip)
-                    )
-
-                stepButton(symbol: "plus", enabled: canIncrease, delta: 1)
+                    HStack(spacing: 4) {
+                        stepButton(symbol: "minus", enabled: canDecrease, delta: -1)
+                        stepButton(symbol: "plus", enabled: canIncrease, delta: 1)
+                    }
+                }
+            } else {
+                HStack(spacing: 3) {
+                    stepButton(symbol: "minus", enabled: canDecrease, delta: -1)
+                    valueChip(minHeight: 44)
+                    stepButton(symbol: "plus", enabled: canIncrease, delta: 1)
+                }
             }
         }
         .accessibilityElement(children: .ignore)
@@ -471,6 +491,20 @@ struct CompactTemperatureCell: View {
         }
     }
 
+    private func valueChip(minHeight: CGFloat) -> some View {
+        Text(value)
+            .font(.subheadline.weight(.medium))
+            .monospacedDigit()
+            .lineLimit(1)
+            .minimumScaleFactor(0.65)
+            .foregroundStyle(palette.primaryText)
+            .frame(minWidth: 56, maxWidth: .infinity, minHeight: minHeight)
+            .background(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(palette.chip)
+            )
+    }
+
     private func stepButton(symbol: String, enabled: Bool, delta: Int) -> some View {
         Button {
             onStep(delta)
@@ -478,11 +512,11 @@ struct CompactTemperatureCell: View {
             Image(systemName: symbol)
                 .font(.body.weight(.semibold))
                 .foregroundStyle(enabled ? palette.primaryText : palette.disabledText)
-                .frame(width: 44, height: 44)
+                .frame(minWidth: 44, maxWidth: isStacked ? .infinity : 44, minHeight: 44)
         }
         .buttonStyle(.plain)
         // Behind the button, not inside its label — see ActionButtonBackground.
-        .background(Circle().fill(palette.chip))
+        .background(Capsule(style: .continuous).fill(palette.chip))
         .disabled(!enabled)
     }
 }
@@ -507,16 +541,30 @@ private struct ActionButtonBackground: View {
 
     var fill: Color
     var isEnabled: Bool
+    /// Primary buttons carry the brand tint through the glass.
+    var isProminent: Bool = false
 
     var body: some View {
-        Capsule(style: .continuous)
-            .fill(fill)
-            .overlay(
-                Capsule(style: .continuous)
-                    .strokeBorder(isEnabled ? palette.accent.opacity(0.55)
-                                            : palette.separator,
-                                  lineWidth: isEnabled ? 1.5 : 1)
-            )
+        if #available(iOS 26.0, *) {
+            // Liquid Glass on iOS 26. Drawn behind the Button, for the same
+            // reason as the capsule below. Disabled buttons stay un-tinted.
+            Capsule(style: .continuous)
+                .fill(Color.clear)
+                .glassEffect(
+                    isProminent && isEnabled
+                        ? .regular.tint(palette.accent).interactive(true)
+                        : .regular.interactive(isEnabled),
+                    in: Capsule(style: .continuous))
+        } else {
+            Capsule(style: .continuous)
+                .fill(fill)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .strokeBorder(isEnabled ? palette.accent.opacity(0.55)
+                                                : palette.separator,
+                                      lineWidth: isEnabled ? 1.5 : 1)
+                )
+        }
     }
 }
 
@@ -545,7 +593,8 @@ struct PrimaryActionButton: View {
         }
         .buttonStyle(.plain)
         .background(ActionButtonBackground(fill: isEnabled ? palette.accent : palette.chip,
-                                          isEnabled: isEnabled))
+                                          isEnabled: isEnabled,
+                                          isProminent: true))
         .disabled(!isEnabled)
     }
 }

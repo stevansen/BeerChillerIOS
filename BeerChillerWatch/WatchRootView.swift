@@ -25,7 +25,7 @@ struct WatchRootView: View {
         }
         .tabViewStyle(.page)
         .environment(\.palette, palette)
-        .onChange(of: controller.isShowingAlarm) { isShowing in
+        .onValueChange(of: controller.isShowingAlarm) { isShowing in
             // A distinct haptic when the beer is ready.
             if isShowing {
                 WKInterfaceDevice.current().play(.notification)

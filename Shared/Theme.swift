@@ -182,3 +182,30 @@ public extension EnvironmentValues {
         set { self[PaletteKey.self] = newValue }
     }
 }
+
+// MARK: - Compatibility
+
+public extension View {
+    /// `onChange(of:)` without the deprecated one-parameter closure. iOS 17 and
+    /// watchOS 10 introduced the two-parameter form; the deployment targets are
+    /// lower, so older systems keep the previous call.
+    @ViewBuilder
+    func onValueChange<V: Equatable>(of value: V, perform action: @escaping (V) -> Void) -> some View {
+        if #available(iOS 17.0, watchOS 10.0, *) {
+            self.onChange(of: value) { _, newValue in action(newValue) }
+        } else {
+            self.onChange(of: value, perform: action)
+        }
+    }
+}
+
+public extension Scene {
+    /// Scene counterpart of `onValueChange(of:perform:)`.
+    func onValueChange<V: Equatable>(of value: V, perform action: @escaping (V) -> Void) -> some Scene {
+        if #available(iOS 17.0, watchOS 10.0, *) {
+            return self.onChange(of: value) { _, newValue in action(newValue) }
+        } else {
+            return self.onChange(of: value, perform: action)
+        }
+    }
+}

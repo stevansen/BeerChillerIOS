@@ -628,7 +628,7 @@ def main():
 
     app_settings = {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
-        "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "",
+        "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
         "CODE_SIGN_ENTITLEMENTS": "BeerChiller/BeerChiller.entitlements",
         "INFOPLIST_FILE": "BeerChiller/Info.plist",
         "GENERATE_INFOPLIST_FILE": "NO",

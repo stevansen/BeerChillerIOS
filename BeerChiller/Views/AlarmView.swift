@@ -15,6 +15,8 @@ struct AlarmView: View {
     @Environment(\.palette) private var palette
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    @ScaledMetric(relativeTo: .largeTitle) private var iconSize: CGFloat = 84
+
     @State private var isPulsing = false
 
     var body: some View {
@@ -25,7 +27,7 @@ struct AlarmView: View {
                 Spacer()
 
                 Image(systemName: "snowflake")
-                    .font(.system(size: 84, weight: .light))
+                    .font(.system(size: iconSize, weight: .light))
                     .foregroundStyle(palette.accent)
                     .scaleEffect(isPulsing ? 1.06 : 1.0)
                     .animation(reduceMotion ? nil

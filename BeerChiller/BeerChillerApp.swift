@@ -37,7 +37,7 @@ struct BeerChillerApp: App {
                 .environmentObject(controller)
                 .appearanceOverride(settings.appearance.colorScheme)
         }
-        .onChange(of: scenePhase) { phase in
+        .onValueChange(of: scenePhase) { phase in
             // Coming back from the background: recompute against the wall clock
             // instead of trusting a timer that was suspended.
             if phase == .active {

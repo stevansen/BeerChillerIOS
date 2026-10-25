@@ -90,14 +90,14 @@ struct RootView: View {
         .onAppear {
             if controller.isShowingAlarm { activeSheet = .alarm }
         }
-        .onChange(of: controller.isShowingAlarm) { isShowing in
+        .onValueChange(of: controller.isShowingAlarm) { isShowing in
             if isShowing {
                 activeSheet = .alarm
             } else if activeSheet == .alarm {
                 activeSheet = nil
             }
         }
-        .onChange(of: activeSheet) { sheet in
+        .onValueChange(of: activeSheet) { sheet in
             // Dismissing the alarm sheet by any route acknowledges the alarm.
             if sheet != .alarm && controller.isShowingAlarm {
                 controller.acknowledgeAlarm()
@@ -147,8 +147,18 @@ struct RootView: View {
         // compact temperature cells needs ~150 pt for its value chip to hold
         // "-18 °C" without truncating. An iPad has width to spare, so the dial
         // takes more of it and the control column is capped and centred instead.
-        let dialSize = min(geometry.size.width * (isRoomy ? 0.38 : 0.30),
+        var dialSize = min(geometry.size.width * (isRoomy ? 0.38 : 0.30),
                            geometry.size.height - (isRoomy ? 96 : 66))
+
+        // The three side-by-side cells need ~470 pt. A phone with large side
+        // insets (iPhone Duo: ~83 pt each side in landscape, 678 pt wide) leaves
+        // the column far less than that, which pushed the Stop button and the ⋯
+        // menu off the right edge. Below the threshold the dial shrinks and the
+        // cells switch to a stacked form that needs ~100 pt each.
+        let isTight = !isRoomy && (geometry.size.width - 40 - columnSpacing - dialSize) < 470
+        if isTight {
+            dialSize = min(geometry.size.width * 0.24, geometry.size.height - 66)
+        }
 
         return VStack(spacing: 6) {
             BrandHeader(
@@ -168,8 +178,8 @@ struct RootView: View {
                 // accessibility sizes fall back to a scroll view rather than
                 // clipping.
                 ViewThatFits(in: .vertical) {
-                    wideControls
-                    ScrollView(showsIndicators: false) { wideControls }
+                    wideControls(isTight: isTight)
+                    ScrollView(showsIndicators: false) { wideControls(isTight: isTight) }
                 }
                 // Capped on iPad so the three temperature cells stay a compact
                 // group instead of stretching across the whole column. Left
@@ -190,8 +200,8 @@ struct RootView: View {
     /// The full portrait rows were tried on iPad and were worse: in a column that
     /// wide, the label and its stepper end up ~300 pt apart and stop reading as
     /// one control. iPad gets a larger dial and more generous spacing instead.
-    private var wideControls: some View {
-        VStack(spacing: 8) {
+    private func wideControls(isTight: Bool) -> some View {
+        VStack(spacing: isTight ? 5 : 8) {
             HStack(spacing: 10) {
                 ThemedSegments(options: ContainerType.allCases,
                                label: { $0 == .bottle
@@ -213,8 +223,8 @@ struct RootView: View {
                 .accessibilityElement(children: .contain)
                 .accessibilityLabel(Text(LocalizedStringKey("bottle_size")))
 
-            ThemedCard(padding: 12) {
-                VStack(spacing: 10) {
+            ThemedCard(padding: isTight ? 8 : 12) {
+                VStack(spacing: isTight ? 6 : 10) {
                     ThemedSegments(options: DeviceMode.allCases,
                                    label: { $0 == .freezer
                                        ? Formatting.localized("freezer")
@@ -228,6 +238,7 @@ struct RootView: View {
                                                           unit: settings.temperatureUnit),
                             canDecrease: settings.startTempC > CoolingModel.minStartTempC,
                             canIncrease: settings.startTempC < CoolingModel.maxStartTempC,
+                            isStacked: isTight,
                             onStep: settings.stepStartTemp)
 
                         CompactTemperatureCell(
@@ -236,6 +247,7 @@ struct RootView: View {
                                                           unit: settings.temperatureUnit),
                             canDecrease: settings.targetTempC > CoolingModel.minTargetTempC,
                             canIncrease: settings.targetTempC < CoolingModel.maxTargetTempC,
+                            isStacked: isTight,
                             onStep: settings.stepTargetTemp)
 
                         CompactTemperatureCell(
@@ -244,6 +256,7 @@ struct RootView: View {
                                                           unit: settings.temperatureUnit),
                             canDecrease: settings.deviceTempC > CoolingModel.minDeviceTempC,
                             canIncrease: settings.deviceTempC < CoolingModel.maxDeviceTempC,
+                            isStacked: isTight,
                             onStep: settings.stepDeviceTemp)
                     }
                 }
